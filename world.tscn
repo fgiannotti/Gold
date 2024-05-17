@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://tnse7f1bt8dr"]
+
+[ext_resource type="PackedScene" uid="uid://dwefapskvcvfg" path="res://player.tscn" id="1_g6hkq"]
+[ext_resource type="TileSet" uid="uid://bym5hofa5rula" path="res://assets/road_tiles.tres" id="2_kkw4e"]
+[ext_resource type="Script" path="res://TileMap.gd" id="3_w42sr"]
+
+[node name="World" type="Node2D"]
+position = Vector2(87, 62)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = -0.523598
+enabled = false
+zoom = Vector2(3, 3)
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(-33, -19)
+tile_set = ExtResource("2_kkw4e")
+format = 2
+layer_0/name = "walls"
+layer_0/tile_data = PackedInt32Array(0, 393216, 3)
+script = ExtResource("3_w42sr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -654.0
+offset_top = 19.0
+offset_right = -476.0
+offset_bottom = 197.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" parent="." instance=ExtResource("1_g6hkq")]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

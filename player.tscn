@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwefapskvcvfg"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_pjfle"]
+[ext_resource type="Texture2D" uid="uid://cg0dg85pd3868" path="res://assets/knight_sprite.png" id="2_3egbw"]
+
+[sub_resource type="Animation" id="Animation_ycqu0"]
+resource_name = "Run"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qteh5"]
+_data = {
+"Run": SubResource("Animation_ycqu0")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_pjfle")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qteh5")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7.62939e-06, 0)
+scale = Vector2(0.816667, 0.816666)
+texture = ExtResource("2_3egbw")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-4, 7, 0, 7, 0, 5, 2, 6, 2, 7, 4, 7, 4, 2, 5, 2, 5, -3, 4, -3, 4, -5, 2, -5, 0, -8, -4, -8, -5, -6)
