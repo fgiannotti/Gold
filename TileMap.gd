@@ -1,7 +1,7 @@
 extends TileMap
 
-const MAZE_WIDTH =  5
-const MAZE_HEIGHT = 5  # counting from 0
+const MAZE_WIDTH =  8
+const MAZE_HEIGHT = 8  # counting from 0
 
 # values set from binary mapping
 const NORTH_DIR = 4
@@ -15,24 +15,41 @@ var decimal_from_directions = {
 	Vector2(0,-1): WEST_DIR,
 }
 
+var decimal_to_cord = {
+	0: Vector2(5,2),
+	1: Vector2(1,0),
+	2: Vector2(4,2),
+	3: Vector2(2,2),
+	4: Vector2(7,1),
+	5: Vector2(4,3),
+	6: Vector2(7,0),
+	7: Vector2(4,1),
+	8: Vector2(5,1),
+	9: Vector2(0,0),
+	10: Vector2(6,0),
+	11: Vector2(1,2),
+	12: Vector2(6,1),
+	13: Vector2(5,0),
+	14: Vector2(0,3),
+	15: Vector2(6,3),
+}
 const decimal_max: int = 15 # 0 to 15 are the possibles decimal values of the tile set
-
+const SOURCE_ID = 0 # Tileset atlas, only 1
+const DEBUG_MAZE = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
-	for i in MAZE_HEIGHT:
-		for j in MAZE_WIDTH:
-			print('set_cell')
-			set_cell(0, Vector2i(i,j),0,Vector2i(0,0),0)
-	generate_maze()
-
+	var maze: Array = generate_maze()
+	
+	for i in maze.size():
+		for j in maze[i].size():
+			set_cell(0, Vector2i(i,j), SOURCE_ID,decimal_to_cord[maze[j][i]],0) # FLIP INDEX BECAUSE X axis is my J index and viceversa
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 var stack = []
 func generate_maze():
-	var maze: Array = empty_maze(1)
+	var maze: Array = empty_maze(15)
 	var visited_maze: Array = empty_maze(0)
 	var starting_cell = Vector2(1,1)
 	print(maze)
@@ -41,21 +58,17 @@ func generate_maze():
 	print('Executing maze build')
 	place_borders(visited_maze)
 	build_with_backtracking(maze, visited_maze)
-	print(maze)
+	print('returning maze...', maze)
+	return maze
 
 func build_with_backtracking(maze, visited_maze):
 	var cell: Vector2
 	while stack.size() > 0:
-		print('-----------')
-		cell = stack.pop_back()
-		print('Iterating with cell: ', cell, ' and stack: ', stack)
-		# Build neighbors
-		#if int(cell.x) % 2 == 0 && int(cell.y) % 2 == 0:
-			#print('placing cell as visited', cell)
-			#visited_maze[cell.x][cell.y] = 1
-			#maze[cell.x][cell.y] = 1
-			#continue
+		if DEBUG_MAZE:
+			print('-----------')
+			print('Iterating with cell: ', cell, ' and stack: ', stack)
 
+		cell = stack.pop_back()
 		var neighbors: Array = []
 		if cell.x > 0:
 			if visited_maze[cell.x-1][cell.y] == 0:
@@ -80,19 +93,13 @@ func build_with_backtracking(maze, visited_maze):
 			var direction_to_open_nghbr_pov: Vector2 = cell - chosen_nghbr # 1,1 - 1,2 = 0,-1
 
 			#print('direction ', direction, ' decimal obtained: ', decimal_from_directions[direction])
-			if maze[cell.x][cell.y] == 1:
-				maze[cell.x][cell.y] = decimal_max - decimal_from_directions[direction_to_open_cell_pov]
-			else:
-				maze[cell.x][cell.y] -= decimal_from_directions[direction_to_open_cell_pov]
+			maze[cell.x][cell.y] -= decimal_from_directions[direction_to_open_cell_pov]
+			maze[chosen_nghbr.x][chosen_nghbr.y] -= decimal_from_directions[direction_to_open_nghbr_pov]
 
-			if maze[chosen_nghbr.x][chosen_nghbr.y] == 1:
-				maze[chosen_nghbr.x][chosen_nghbr.y] = decimal_max - decimal_from_directions[direction_to_open_nghbr_pov]
-			else:
-				maze[chosen_nghbr.x][chosen_nghbr.y] -= decimal_from_directions[direction_to_open_nghbr_pov]
-
-			print('From cell:', cell, ' value: ',maze[cell.x][cell.y] ,' chosen neighbor: ', chosen_nghbr, '  neighbors: ', neighbors,' with value: ', maze[chosen_nghbr.x][chosen_nghbr.y])
-			print('maze so far...')
-			print(maze)
+			if DEBUG_MAZE:
+				print('From cell:', cell, ' value: ',maze[cell.x][cell.y] ,' chosen neighbor: ', chosen_nghbr, '  neighbors: ', neighbors,' with value: ', maze[chosen_nghbr.x][chosen_nghbr.y])
+				print('maze so far...') 
+				print(maze)
 
 			visited_maze[chosen_nghbr.x][chosen_nghbr.y] = 1
 			stack.push_back(chosen_nghbr)
