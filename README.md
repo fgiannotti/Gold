@@ -1,5 +1,7 @@
 ## Gold
 
+Work in Progress: [Trello]([url](https://trello.com/b/ZGhbgg1I/gold))
+
 Mining game using a Backtracking maze generation algorithm called "Recursive Backtracking" basically a randomized DFS. Implementation based from [wikipedia]([url](https://en.wikipedia.org/wiki/Maze_generation_algorithm)):
 
 
