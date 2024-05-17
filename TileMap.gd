@@ -1,7 +1,7 @@
 extends TileMap
 
-const MAZE_WIDTH =  8
-const MAZE_HEIGHT = 8  # counting from 0
+const MAZE_WIDTH =  20
+const MAZE_HEIGHT = 20  # counting from 0
 
 # values set from binary mapping
 const NORTH_DIR = 4
@@ -39,6 +39,8 @@ const DEBUG_MAZE = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var maze: Array = generate_maze()
+	await connect_cell_with_nghbr(maze, Vector2(0,1), Vector2(1,1))
+	await connect_cell_with_nghbr(maze, Vector2(7,6), Vector2(6,6))
 	
 	for i in maze.size():
 		for j in maze[i].size():
@@ -88,13 +90,7 @@ func build_with_backtracking(maze, visited_maze):
 			stack.push_back(cell)
 			var rnd_neighbr: int = RandomNumberGenerator.new().randi_range(0,neighbors.size()-1)
 			var chosen_nghbr: Vector2 = neighbors[rnd_neighbr]
-			# Create the path
-			var direction_to_open_cell_pov: Vector2 = chosen_nghbr - cell  # 1,2 - 1,1 = 0,1
-			var direction_to_open_nghbr_pov: Vector2 = cell - chosen_nghbr # 1,1 - 1,2 = 0,-1
-
-			#print('direction ', direction, ' decimal obtained: ', decimal_from_directions[direction])
-			maze[cell.x][cell.y] -= decimal_from_directions[direction_to_open_cell_pov]
-			maze[chosen_nghbr.x][chosen_nghbr.y] -= decimal_from_directions[direction_to_open_nghbr_pov]
+			connect_cell_with_nghbr(maze, cell, chosen_nghbr)
 
 			if DEBUG_MAZE:
 				print('From cell:', cell, ' value: ',maze[cell.x][cell.y] ,' chosen neighbor: ', chosen_nghbr, '  neighbors: ', neighbors,' with value: ', maze[chosen_nghbr.x][chosen_nghbr.y])
@@ -103,7 +99,16 @@ func build_with_backtracking(maze, visited_maze):
 
 			visited_maze[chosen_nghbr.x][chosen_nghbr.y] = 1
 			stack.push_back(chosen_nghbr)
+			
+func connect_cell_with_nghbr(maze, cell, nghbr_cell):
+	# Create the path
+	var direction_to_open_cell_pov: Vector2 = nghbr_cell - cell  # 1,2 - 1,1 = 0,1
+	var direction_to_open_nghbr_pov: Vector2 = cell - nghbr_cell # 1,1 - 1,2 = 0,-1
 
+	#print('direction ', direction, ' decimal obtained: ', decimal_from_directions[direction])
+	maze[cell.x][cell.y] -= decimal_from_directions[direction_to_open_cell_pov]
+	maze[nghbr_cell.x][nghbr_cell.y] -= decimal_from_directions[direction_to_open_nghbr_pov]
+	
 func empty_maze(val: int):
 	var maze: Array = []
 	for i in MAZE_HEIGHT:
