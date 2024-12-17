@@ -5,10 +5,10 @@
 [ext_resource type="Script" path="res://TileMap.gd" id="3_w42sr"]
 
 [node name="World" type="Node2D"]
-position = Vector2(87, 62)
+position = Vector2(81, 112)
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(-33, -19)
+position = Vector2(-23, 2)
 tile_set = ExtResource("2_kkw4e")
 format = 2
 layer_0/name = "walls"
@@ -26,14 +26,15 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_g6hkq")]
-position = Vector2(69, 86)
+position = Vector2(111, 137)
 scale = Vector2(2.5, 2.5)
 collision_layer = 2
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-1, 3)
+position = Vector2(1.6, -5.72205e-06)
 rotation = -0.523598
 enabled = false
-zoom = Vector2(3, 3)
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
