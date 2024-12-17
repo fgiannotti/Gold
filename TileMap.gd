@@ -58,9 +58,9 @@ var decimal_to_cord = {
 	12: Vector2(6,1),
 	13: Vector2(5,0),
 	14: Vector2(0,3),
+	SOLID_TILE_VAL: Vector2(6,3),
 	
 	# Room Mapping
-	SOLID_TILE_VAL: Vector2(6,3),
 	ROOM_OPEN: Vector2(5,3),
 	ROOM_CEILING: Vector2(2,0),
 	ROOM_TOP_LEFT: Vector2(2,1),
@@ -90,9 +90,9 @@ func _ready():
 	# await connect_cell_with_nghbr(maze, Vector2(7,6), Vector2(6,6))
 	
 	# Set tile 
-	for i in maze.size():
-		for j in maze[i].size():
-			set_cell(0, Vector2i(j,i), SOURCE_ID,decimal_to_cord[maze[j][i]],0) # FLIP INDEX BECAUSE X axis is my J index and viceversa
+	for y in maze.size():
+		for x in maze[y].size():
+			set_cell(0, Vector2i(x,y), SOURCE_ID,decimal_to_cord[maze[y][x]],0)
 	for room in rooms:
 		set_cell(0, Vector2i(room.top_gate.y, room.top_gate.x), SOURCE_ID,decimal_to_cord[ROOM_TOP_GATE],0)
 		set_cell(0, Vector2i(room.bottom_gate.y, room.bottom_gate.x), SOURCE_ID,decimal_to_cord[ROOM_BOTTOM_GATE],0)
@@ -115,7 +115,7 @@ func generate_maze():
 	stack.append(starting_cell)
 	print('Executing maze build')
 	place_borders(visited_maze)
-	#place_rooms(maze, visited_maze)
+	place_rooms(maze, visited_maze)
 	build_with_backtracking(maze, visited_maze)
 	print('returning maze...', maze)
 	return maze
@@ -193,16 +193,16 @@ func place_rooms(maze: Array, visited_maze: Array):
 	var position1 = Vector2(2,2)
 	#var position2 = Vector2(round(3*MAZE_WIDTH/4),round(MAZE_HEIGHT/4))
 	#var position3 = Vector2(round(MAZE_WIDTH/4),round(3*MAZE_HEIGHT/4))
-	# var position4 = Vector2(round(3*(MAZE_WIDTH-4)/4),round(3*(MAZE_HEIGHT-4)/4))
+	var position4 = Vector2(11,11)
 	var room1: Room = Room.new(position1)
 	#var room2: Room = Room.new(position2)
 	#var room3: Room = Room.new(position3)
-	# var room4: Room = Room.new(position4)
+	var room4: Room = Room.new(position4)
 	# Place borders
 	fill_maze_from_room(maze,visited_maze, room1)
 	#fill_maze_from_room(maze,visited_maze, room2)
 	#fill_maze_from_room(maze,visited_maze, room3)
-	# fill_maze_from_room(maze,visited_maze, room4)
+	fill_maze_from_room(maze,visited_maze, room4)
 # j == x
 # i == y
 
@@ -210,13 +210,48 @@ func fill_maze_from_room(maze,visited_maze, room1):
 	var height_line_finish: float = room1.height_line_finish
 	var width_line_finish: float = room1.width_line_finish
 	
-	print("width_line_finish ", width_line_finish)
-	print("height_line_finish ", height_line_finish)
+	print("width_line_finish ", width_line_finish, " position_x ",room1.position.x)
+	print("height_line_finish ", height_line_finish, " position_y ",room1.position.y)
 	maze[room1.position.y][room1.position.x] = ROOM_TOP_LEFT
 	maze[room1.position.y][width_line_finish] = ROOM_TOP_RIGHT 
-	# maze[height_line_finish][room1.position.x] = ROOM_BOTTOM_LEFT
+	maze[height_line_finish][room1.position.x] = ROOM_BOTTOM_LEFT
 	maze[height_line_finish][width_line_finish] = ROOM_BOTTOM_RIGHT
 
+	# Left/Right Borders
+	for y in range(room1.position.y+1, height_line_finish):
+		maze[y][room1.position.x] = ROOM_LEFT_WALL
+		maze[y][width_line_finish] = ROOM_RIGHT_WALL
+		
+	for x in range(room1.position.x+1, width_line_finish):
+		maze[room1.position.y][x] = ROOM_CEILING
+		maze[height_line_finish][x] = ROOM_FLOOR
+		
+	for x in range(room1.position.x+1, width_line_finish):
+		for y in range(room1.position.y+1, height_line_finish):
+			maze[y][x] = ROOM_OPEN
+	
+	print("iterating to fill gates for room...")
+	for x in range(room1.position.x, width_line_finish+1):
+		for y in range(room1.position.y, height_line_finish+1):
+			visited_maze[y][x] = 1
+			var cell = Vector2(y,x)
+			if cell == room1.top_gate:
+				print('setting top room door as unvisited ', x, y)
+				visited_maze[y][x] = 0
+				maze[y][x] = TOP_CLOSED
+			if cell == room1.bottom_gate:
+				print('setting bottom room door as unvisited ', x, y)
+				visited_maze[y][x] = 0
+				maze[y][x] = DOWN_CLOSED
+			if cell == room1.left_gate:
+				print('setting left room door as unvisited ', x, y)
+				visited_maze[y][x] = 0
+				maze[y][x] = LEFT_CLOSED
+			if cell == room1.right_gate:
+				print('setting right room door as unvisited ', x, y)
+				visited_maze[y][x] = 0
+				maze[y][x] = RIGHT_CLOSED
+	rooms.append(room1)
 
 func place_borders(visited_maze):
 	# techito
@@ -251,18 +286,18 @@ class Room:
 	# HEIGHT == first index
 	func _init(position: Vector2):
 		self.dimension = Vector2(
-			3,
-			3
+			RandomNumberGenerator.new().randi_range(3,5),
+			RandomNumberGenerator.new().randi_range(3,5),
 			)
 		self.position = position
 		self.height_line_finish = self.position.y + self.dimension.y
 		self.width_line_finish = self.position.x + self.dimension.x
 
-		self.left_gate = Vector2(round((self.height_line_finish + 1)/ 2), self.position.x)
-		self.right_gate = Vector2(round((self.height_line_finish + 1)/ 2), self.width_line_finish)
+		self.left_gate = Vector2(round((self.position.y + self.height_line_finish + 1)/ 2), self.position.x)
+		self.right_gate = Vector2(round((self.position.y + self.height_line_finish + 1)/ 2), self.width_line_finish)
 
-		self.top_gate = Vector2(self.position.y, round((self.width_line_finish + 1)/ 2))
-		self.bottom_gate = Vector2(self.height_line_finish, round((self.width_line_finish + 1)/ 2))
+		self.top_gate = Vector2(self.position.y, round(( self.position.x+ self.width_line_finish + 1)/ 2))
+		self.bottom_gate = Vector2(self.height_line_finish, round(( self.position.x+ self.width_line_finish + 1)/ 2))
 		
 		print("left_gate ", left_gate)
 		print("right_gate ", right_gate)

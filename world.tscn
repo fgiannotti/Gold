@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://TileMap.gd" id="3_w42sr"]
 
 [node name="World" type="Node2D"]
-position = Vector2(81, 112)
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-23, 2)
