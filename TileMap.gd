@@ -58,7 +58,7 @@ var decimal_to_cord = {
 	12: Vector2(6,1),
 	13: Vector2(5,0),
 	14: Vector2(0,3),
-	SOLID_TILE_VAL: Vector2(6,3),
+	SOLID_TILE_VAL: Vector2(6,2),
 	
 	# Room Mapping
 	ROOM_OPEN: Vector2(5,3),
@@ -79,7 +79,7 @@ var decimal_to_cord = {
 	ROOM_BOTTOM_GATE: Vector2(4,0)
 }
 
-const SOURCE_ID = 0 # Tileset atlas, only 1
+const SOURCE_ID = 2 # Tileset atlas, only 1
 const DEBUG_MAZE = false
 
 # Called when the node enters the scene tree for the first time.
@@ -114,8 +114,9 @@ func generate_maze():
 	visited_maze[starting_cell.x][starting_cell.y] = 1
 	stack.append(starting_cell)
 	print('Executing maze build')
-	place_borders(visited_maze)
+
 	place_rooms(maze, visited_maze)
+	place_borders(visited_maze)
 	build_with_backtracking(maze, visited_maze)
 	print('returning maze...', maze)
 	return maze
@@ -190,18 +191,20 @@ func empty_maze(val: int):
 	# Leave middle as free values
 
 func place_rooms(maze: Array, visited_maze: Array):
-	var position1 = Vector2(2,2)
-	#var position2 = Vector2(round(3*MAZE_WIDTH/4),round(MAZE_HEIGHT/4))
-	#var position3 = Vector2(round(MAZE_WIDTH/4),round(3*MAZE_HEIGHT/4))
-	var position4 = Vector2(11,11)
+	var position1 = Vector2(MAZE_WIDTH/8,MAZE_HEIGHT/8)
+	var position2 = Vector2(round(5*MAZE_WIDTH/8), round(MAZE_HEIGHT/8))
+	var position3 = Vector2(round(MAZE_WIDTH/8), round(5*MAZE_HEIGHT/8))
+	var position4 = Vector2(round(5*MAZE_WIDTH/8), round(5*MAZE_HEIGHT/8))
+	
+	
 	var room1: Room = Room.new(position1)
-	#var room2: Room = Room.new(position2)
-	#var room3: Room = Room.new(position3)
+	var room2: Room = Room.new(position2)
+	var room3: Room = Room.new(position3)
 	var room4: Room = Room.new(position4)
 	# Place borders
 	fill_maze_from_room(maze,visited_maze, room1)
-	#fill_maze_from_room(maze,visited_maze, room2)
-	#fill_maze_from_room(maze,visited_maze, room3)
+	fill_maze_from_room(maze,visited_maze, room2)
+	fill_maze_from_room(maze,visited_maze, room3)
 	fill_maze_from_room(maze,visited_maze, room4)
 # j == x
 # i == y
@@ -285,13 +288,27 @@ class Room:
 
 	# HEIGHT == first index
 	func _init(position: Vector2):
+		# MAX is W/2, H/2
 		self.dimension = Vector2(
-			RandomNumberGenerator.new().randi_range(3,5),
-			RandomNumberGenerator.new().randi_range(3,5),
+			RandomNumberGenerator.new().randi_range(3,7),
+			RandomNumberGenerator.new().randi_range(3,7),
 			)
-		self.position = position
-		self.height_line_finish = self.position.y + self.dimension.y
+		self.position = position	
+		
+		var width_line_finish_aux = self.position.x + self.dimension.x
+		if width_line_finish_aux >= MAZE_WIDTH:
+			print('[room] dimension too wide', self.position)
+			self.dimension.x -= (width_line_finish_aux - MAZE_WIDTH + 1)
+			
 		self.width_line_finish = self.position.x + self.dimension.x
+
+		var height_line_finish_aux = self.position.y + self.dimension.y
+		if height_line_finish_aux >= MAZE_HEIGHT:
+			print('[room] dimension too high', self.position)
+			self.dimension.y -= (height_line_finish_aux - MAZE_HEIGHT + 1)
+			
+		self.height_line_finish = self.position.y + self.dimension.y
+		
 
 		self.left_gate = Vector2(round((self.position.y + self.height_line_finish + 1)/ 2), self.position.x)
 		self.right_gate = Vector2(round((self.position.y + self.height_line_finish + 1)/ 2), self.width_line_finish)
