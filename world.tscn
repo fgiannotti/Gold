@@ -1,14 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://tnse7f1bt8dr"]
+[gd_scene load_steps=7 format=3 uid="uid://tnse7f1bt8dr"]
 
+[ext_resource type="Script" path="res://world.gd" id="1_08p84"]
 [ext_resource type="PackedScene" uid="uid://dwefapskvcvfg" path="res://player.tscn" id="1_g6hkq"]
 [ext_resource type="TileSet" uid="uid://bym5hofa5rula" path="res://assets/road_tiles.tres" id="2_kkw4e"]
 [ext_resource type="Script" path="res://TileMap.gd" id="3_w42sr"]
+[ext_resource type="PackedScene" uid="uid://dikvq6ldpm2dy" path="res://food_bar.tscn" id="5_8gkl0"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="5_s70qn"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_08p84")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FoodBar" parent="CanvasLayer" instance=ExtResource("5_8gkl0")]
+layout_direction = 2
+offset_left = -152.0
+offset_top = 16.0
+offset_right = -42.0
+offset_bottom = 26.0
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(-23, 2)
 tile_set = ExtResource("2_kkw4e")
+rendering_quadrant_size = 64
 format = 2
 layer_0/name = "walls"
 layer_0/tile_data = PackedInt32Array(0, 393216, 3)
@@ -25,15 +38,19 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_g6hkq")]
-position = Vector2(111, 137)
+position = Vector2(144, 81)
 scale = Vector2(2.5, 2.5)
 collision_layer = 2
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("tilemap")]
 position = Vector2(1.6, -5.72205e-06)
 rotation = -0.523598
-enabled = false
-zoom = Vector2(2, 2)
+offset = Vector2(1, 1)
+zoom = Vector2(4, 4)
 position_smoothing_enabled = true
+script = ExtResource("5_s70qn")
+tilemap = NodePath("../../TileMap")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="food_updated" from="Player" to="CanvasLayer/FoodBar" method="_on_player_food_updated"]
