@@ -77,6 +77,7 @@ var decimal_to_cord = {
 	ROOM_RIGHT_GATE: Vector2(3,1),
 	ROOM_TOP_GATE: Vector2(3,3),
 	ROOM_BOTTOM_GATE: Vector2(4,0)
+	
 }
 
 const SOURCE_ID = 2 # Tileset atlas, only 1
@@ -232,26 +233,26 @@ func fill_maze_from_room(maze,visited_maze, room1):
 	for x in range(room1.position.x+1, width_line_finish):
 		for y in range(room1.position.y+1, height_line_finish):
 			maze[y][x] = ROOM_OPEN
-	
-	print("iterating to fill gates for room...")
+		
+	# print("iterating to fill gates for room...")
 	for x in range(room1.position.x, width_line_finish+1):
 		for y in range(room1.position.y, height_line_finish+1):
 			visited_maze[y][x] = 1
 			var cell = Vector2(y,x)
 			if cell == room1.top_gate:
-				print('setting top room door as unvisited ', x, y)
+				# print('setting top room door as unvisited ', x, y)
 				visited_maze[y][x] = 0
 				maze[y][x] = TOP_CLOSED
 			if cell == room1.bottom_gate:
-				print('setting bottom room door as unvisited ', x, y)
+				# print('setting bottom room door as unvisited ', x, y)
 				visited_maze[y][x] = 0
 				maze[y][x] = DOWN_CLOSED
 			if cell == room1.left_gate:
-				print('setting left room door as unvisited ', x, y)
+				# print('setting left room door as unvisited ', x, y)
 				visited_maze[y][x] = 0
 				maze[y][x] = LEFT_CLOSED
 			if cell == room1.right_gate:
-				print('setting right room door as unvisited ', x, y)
+				# print('setting right room door as unvisited ', x, y)
 				visited_maze[y][x] = 0
 				maze[y][x] = RIGHT_CLOSED
 	rooms.append(room1)
@@ -277,7 +278,7 @@ class Room:
 	var dimension: Vector2
 	var position: Vector2 # its first top left tile
 	var room_tiles: Array
-	
+	var staircase_tile: Vector2 = Vector2(0,0)
 	var height_line_finish: float
 	var width_line_finish: float
 	
