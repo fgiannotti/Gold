@@ -195,9 +195,10 @@ func place_rooms(maze: Array, visited_maze: Array):
 	var position2 = Vector2(round(5*MAZE_WIDTH/8), round(MAZE_HEIGHT/8))
 	var position3 = Vector2(round(MAZE_WIDTH/8), round(5*MAZE_HEIGHT/8))
 	var position4 = Vector2(round(5*MAZE_WIDTH/8), round(5*MAZE_HEIGHT/8))
-	
-	
+
 	var room1: Room = Room.new(position1)
+	room1.room_tiles.pop_front()
+	room1.room_tiles.push_front(Vector2(6,4))
 	var room2: Room = Room.new(position2)
 	var room3: Room = Room.new(position3)
 	var room4: Room = Room.new(position4)
@@ -277,6 +278,8 @@ class Room:
 	var dimension: Vector2
 	var position: Vector2 # its first top left tile
 	var room_tiles: Array
+	var hasStair: bool = false
+	var stairTile = Vector2(0,0)
 	
 	var height_line_finish: float
 	var width_line_finish: float
@@ -323,3 +326,5 @@ class Room:
 		for x in range(self.position.x, width_line_finish+1):
 			for y in range(self.position.y, height_line_finish+1):
 				room_tiles.append(Vector2(y,x))
+		#if stairTile:
+			#room_tiles.append(stairTile)
