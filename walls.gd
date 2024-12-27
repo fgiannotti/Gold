@@ -207,7 +207,7 @@ func place_rooms(maze: Array, visited_maze: Array):
 	var room3: Room = Room.new(position3)
 	var room4: Room = Room.new(position4)
 	var rooms: Array[Room] = [room1,room2,room3,room4]
-	pickRandomRoom(rooms);
+	choseRoomForStairs(rooms);
 	# Place borders
 	fill_maze_from_room(maze,visited_maze, room1)
 	fill_maze_from_room(maze,visited_maze, room2)
