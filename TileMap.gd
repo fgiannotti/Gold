@@ -238,7 +238,9 @@ func fill_maze_from_room(maze,visited_maze, room1):
 			if (room1.hasStair):
 				maze[y][x] = STAIR_DOWN
 				room1.hasStair = false
-			maze[y][x] = ROOM_OPEN
+				
+			else:
+				maze[y][x] = ROOM_OPEN
 	
 	print("iterating to fill gates for room...")
 	for x in range(room1.position.x, width_line_finish+1):
@@ -285,7 +287,6 @@ class Room:
 	var position: Vector2 # its first top left tile
 	var room_tiles: Array
 	var hasStair: bool = false
-	var stairTile = Vector2(0,0)
 	
 	var height_line_finish: float
 	var width_line_finish: float
@@ -316,15 +317,25 @@ class Room:
 			print('[room] dimension too high', self.position)
 			self.dimension.y -= (height_line_finish_aux - MAZE_HEIGHT + 1)
 			
+			
 		self.height_line_finish = self.position.y + self.dimension.y
 		
-
 		self.left_gate = Vector2(round((self.position.y + self.height_line_finish + 1)/ 2), self.position.x)
+		if(self.left_gate.y == 0):
+			self.left_gate = Vector2(-1,-1)
+			
 		self.right_gate = Vector2(round((self.position.y + self.height_line_finish + 1)/ 2), self.width_line_finish)
-
+		if(self.right_gate.y >= MAZE_WIDTH-2):
+			self.right_gate = Vector2(-1,-1)
+			
 		self.top_gate = Vector2(self.position.y, round(( self.position.x+ self.width_line_finish + 1)/ 2))
+		if(self.top_gate.x == 0):
+			self.top_gate = Vector2(-1,-1)
+			
 		self.bottom_gate = Vector2(self.height_line_finish, round(( self.position.x+ self.width_line_finish + 1)/ 2))
-		
+		if(self.bottom_gate.x >= MAZE_HEIGHT-2):
+			self.bottom_gate = Vector2(-1,-1)
+			
 		print("left_gate ", left_gate)
 		print("right_gate ", right_gate)
 		print("bottom_gate ", bottom_gate)

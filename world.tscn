@@ -32,7 +32,6 @@ collision_layer = 2
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(1.6, -5.72205e-06)
 rotation = -0.523598
-enabled = false
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
