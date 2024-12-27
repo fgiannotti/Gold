@@ -27,4 +27,3 @@ func _process(delta):
 func _ready():
 	food = 100
 	
-

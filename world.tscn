@@ -48,6 +48,7 @@ rotation = -0.523598
 offset = Vector2(1, 1)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
+editor_draw_screen = false
 script = ExtResource("5_s70qn")
 tilemap = NodePath("../../TileMap")
 
