@@ -17,6 +17,7 @@ var decimal_from_directions = {
 }
 const SOLID_TILE_VAL = 15 
 # Room tiles
+const STAIR_DOWN = 31
 const ROOM_OPEN = 16
 const ROOM_CEILING = 17
 const ROOM_FLOOR = 21
@@ -61,6 +62,9 @@ var decimal_to_cord = {
 	SOLID_TILE_VAL: Vector2(6,2),
 	
 	# Room Mapping
+	
+	STAIR_DOWN: Vector2(6,4),
+	
 	ROOM_OPEN: Vector2(5,3),
 	ROOM_CEILING: Vector2(2,0),
 	ROOM_TOP_LEFT: Vector2(2,1),
@@ -197,12 +201,11 @@ func place_rooms(maze: Array, visited_maze: Array):
 	var position4 = Vector2(round(5*MAZE_WIDTH/8), round(5*MAZE_HEIGHT/8))
 
 	var room1: Room = Room.new(position1)
-	room1.room_tiles.pop_front()
-	room1.room_tiles.push_front(Vector2(6,4))
 	var room2: Room = Room.new(position2)
 	var room3: Room = Room.new(position3)
 	var room4: Room = Room.new(position4)
 	# Place borders
+	room1.hasStair = true
 	fill_maze_from_room(maze,visited_maze, room1)
 	fill_maze_from_room(maze,visited_maze, room2)
 	fill_maze_from_room(maze,visited_maze, room3)
@@ -232,6 +235,9 @@ func fill_maze_from_room(maze,visited_maze, room1):
 		
 	for x in range(room1.position.x+1, width_line_finish):
 		for y in range(room1.position.y+1, height_line_finish):
+			if (room1.hasStair):
+				maze[y][x] = STAIR_DOWN
+				room1.hasStair = false
 			maze[y][x] = ROOM_OPEN
 	
 	print("iterating to fill gates for room...")
