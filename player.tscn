@@ -12,6 +12,8 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+light_mask = 2
+visibility_layer = 2
 script = ExtResource("1_pjfle")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

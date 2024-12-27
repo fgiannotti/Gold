@@ -1,4 +1,4 @@
-extends TileMap
+extends TileMapLayer
 
 const MAZE_WIDTH =  20
 const MAZE_HEIGHT = 20  # counting from 0
@@ -93,12 +93,12 @@ func _ready():
 	# Set tile 
 	for y in maze.size():
 		for x in maze[y].size():
-			set_cell(0, Vector2i(x,y), SOURCE_ID,decimal_to_cord[maze[y][x]],0)
+			set_cell(Vector2i(x,y), SOURCE_ID,decimal_to_cord[maze[y][x]],0)
 	for room in rooms:
-		set_cell(0, Vector2i(room.top_gate.y, room.top_gate.x), SOURCE_ID,decimal_to_cord[ROOM_TOP_GATE],0)
-		set_cell(0, Vector2i(room.bottom_gate.y, room.bottom_gate.x), SOURCE_ID,decimal_to_cord[ROOM_BOTTOM_GATE],0)
-		set_cell(0, Vector2i(room.right_gate.y, room.right_gate.x), SOURCE_ID,decimal_to_cord[ROOM_RIGHT_GATE],0)
-		set_cell(0, Vector2i(room.left_gate.y, room.left_gate.x), SOURCE_ID,decimal_to_cord[ROOM_LEFT_GATE],0)
+		set_cell(Vector2i(room.top_gate.y, room.top_gate.x), SOURCE_ID,decimal_to_cord[ROOM_TOP_GATE],0)
+		set_cell(Vector2i(room.bottom_gate.y, room.bottom_gate.x), SOURCE_ID,decimal_to_cord[ROOM_BOTTOM_GATE],0)
+		set_cell(Vector2i(room.right_gate.y, room.right_gate.x), SOURCE_ID,decimal_to_cord[ROOM_RIGHT_GATE],0)
+		set_cell(Vector2i(room.left_gate.y, room.left_gate.x), SOURCE_ID,decimal_to_cord[ROOM_LEFT_GATE],0)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
