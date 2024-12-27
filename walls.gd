@@ -246,7 +246,7 @@ func fill_maze_from_room(maze,visited_maze, room1):
 		var intRandomX = rng.randi_range(room1.position.x+1, width_line_finish)
 		var intRandomY = rng.randi_range(room1.position.y+1, height_line_finish)
 		maze[intRandomY][intRandomX] = STAIR_DOWN
-		print('######### escaleraaaa###############')
+		print('######### Spawn Stair ###############')
 
 	# print("iterating to fill gates for room...")
 	for x in range(room1.position.x, width_line_finish+1):
