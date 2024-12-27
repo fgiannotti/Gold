@@ -192,7 +192,7 @@ func empty_maze(val: int):
 # Place rooms 
 	# Put borders
 	# Leave middle as free values
-func pickRandomRoom(rooms: Array):
+func choseRoomForStairs(rooms: Array):
 	var room = rooms.pick_random()
 	room.hasStair = true
 func place_rooms(maze: Array, visited_maze: Array):
@@ -236,15 +236,18 @@ func fill_maze_from_room(maze,visited_maze, room1):
 		maze[room1.position.y][x] = ROOM_CEILING
 		maze[height_line_finish][x] = ROOM_FLOOR
 	
-	var rng = RandomNumberGenerator.new()
+	
 	for x in range(room1.position.x+1, width_line_finish):
 		for y in range(room1.position.y+1, height_line_finish):
-			if (room1.hasStair && rng.randi_range(1,5) == 5 ): #Podra pasar que en ninguna de las iteraciones toque el 5?
-				maze[y][x] = STAIR_DOWN
-				room1.hasStair = false
-			else:
 				maze[y][x] = ROOM_OPEN
-		
+	#assign stair
+	if(room1.hasStair):
+		var rng = RandomNumberGenerator.new()
+		var intRandomX = rng.randi_range(room1.position.x+1, width_line_finish)
+		var intRandomY = rng.randi_range(room1.position.y+1, height_line_finish)
+		maze[intRandomY][intRandomX] = STAIR_DOWN
+		print('######### escaleraaaa###############')
+
 	# print("iterating to fill gates for room...")
 	for x in range(room1.position.x, width_line_finish+1):
 		for y in range(room1.position.y, height_line_finish+1):
