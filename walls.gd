@@ -195,6 +195,7 @@ func empty_maze(val: int):
 func choseRoomForStairs(rooms: Array):
 	var room = rooms.pick_random()
 	room.hasStair = true
+
 func place_rooms(maze: Array, visited_maze: Array):
 	var position1 = Vector2(MAZE_WIDTH/8,MAZE_HEIGHT/8)
 	var position2 = Vector2(round(5*MAZE_WIDTH/8), round(MAZE_HEIGHT/8))
@@ -246,7 +247,7 @@ func fill_maze_from_room(maze,visited_maze, room1):
 		var intRandomX = rng.randi_range(room1.position.x+1, width_line_finish)
 		var intRandomY = rng.randi_range(room1.position.y+1, height_line_finish)
 		maze[intRandomY][intRandomX] = STAIR_DOWN
-		print('######### Spawn Stair ###############')
+		print('######### Spawn Stair ###############', Vector2(intRandomY, intRandomX))
 
 	# print("iterating to fill gates for room...")
 	for x in range(room1.position.x, width_line_finish+1):
