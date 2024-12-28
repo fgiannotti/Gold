@@ -17,6 +17,7 @@ var decimal_from_directions = {
 }
 const SOLID_TILE_VAL = 15 
 # Room tiles
+const STAIR_DOWN = 31
 const ROOM_OPEN = 16
 const ROOM_CEILING = 17
 const ROOM_FLOOR = 21
@@ -61,6 +62,7 @@ var decimal_to_cord = {
 	SOLID_TILE_VAL: Vector2(6,2),
 	
 	# Room Mapping
+	STAIR_DOWN: Vector2(6,4),
 	ROOM_OPEN: Vector2(5,3),
 	ROOM_CEILING: Vector2(2,0),
 	ROOM_TOP_LEFT: Vector2(2,1),
@@ -190,6 +192,9 @@ func empty_maze(val: int):
 # Place rooms 
 	# Put borders
 	# Leave middle as free values
+func choseRoomForStairs(rooms: Array):
+	var room = rooms.pick_random()
+	room.hasStair = true
 
 func place_rooms(maze: Array, visited_maze: Array):
 	var position1 = Vector2(MAZE_WIDTH/8,MAZE_HEIGHT/8)
@@ -202,6 +207,8 @@ func place_rooms(maze: Array, visited_maze: Array):
 	var room2: Room = Room.new(position2)
 	var room3: Room = Room.new(position3)
 	var room4: Room = Room.new(position4)
+	var rooms: Array[Room] = [room1,room2,room3,room4]
+	choseRoomForStairs(rooms);
 	# Place borders
 	fill_maze_from_room(maze,visited_maze, room1)
 	fill_maze_from_room(maze,visited_maze, room2)
@@ -229,11 +236,19 @@ func fill_maze_from_room(maze,visited_maze, room1):
 	for x in range(room1.position.x+1, width_line_finish):
 		maze[room1.position.y][x] = ROOM_CEILING
 		maze[height_line_finish][x] = ROOM_FLOOR
-		
+	
+	
 	for x in range(room1.position.x+1, width_line_finish):
 		for y in range(room1.position.y+1, height_line_finish):
-			maze[y][x] = ROOM_OPEN
-		
+				maze[y][x] = ROOM_OPEN
+	#assign stair
+	if(room1.hasStair):
+		var rng = RandomNumberGenerator.new()
+		var intRandomX = rng.randi_range(room1.position.x+1, width_line_finish)
+		var intRandomY = rng.randi_range(room1.position.y+1, height_line_finish)
+		maze[intRandomY][intRandomX] = STAIR_DOWN
+		print('######### Spawn Stair ###############', Vector2(intRandomY, intRandomX))
+
 	# print("iterating to fill gates for room...")
 	for x in range(room1.position.x, width_line_finish+1):
 		for y in range(room1.position.y, height_line_finish+1):
@@ -281,6 +296,7 @@ class Room:
 	var staircase_tile: Vector2 = Vector2(0,0)
 	var height_line_finish: float
 	var width_line_finish: float
+	var hasStair: bool = false
 	
 	var left_gate: Vector2
 	var right_gate: Vector2
@@ -294,7 +310,7 @@ class Room:
 			RandomNumberGenerator.new().randi_range(3,7),
 			RandomNumberGenerator.new().randi_range(3,7),
 			)
-		self.position = position	
+		self.position = position
 		
 		var width_line_finish_aux = self.position.x + self.dimension.x
 		if width_line_finish_aux >= MAZE_WIDTH:
@@ -312,11 +328,17 @@ class Room:
 		
 
 		self.left_gate = Vector2(round((self.position.y + self.height_line_finish + 1)/ 2), self.position.x)
+		if(self.left_gate.y == 0):
+			self.left_gate = Vector2(-1,-1)
 		self.right_gate = Vector2(round((self.position.y + self.height_line_finish + 1)/ 2), self.width_line_finish)
-
+		if(self.right_gate.y >= MAZE_WIDTH-2):
+			self.right_gate = Vector2(-1,-1)
 		self.top_gate = Vector2(self.position.y, round(( self.position.x+ self.width_line_finish + 1)/ 2))
+		if(self.top_gate.x == 0):
+			self.top_gate = Vector2(-1,-1)
 		self.bottom_gate = Vector2(self.height_line_finish, round(( self.position.x+ self.width_line_finish + 1)/ 2))
-		
+		if(self.bottom_gate.x >= MAZE_HEIGHT-2):
+			self.bottom_gate = Vector2(-1,-1)
 		print("left_gate ", left_gate)
 		print("right_gate ", right_gate)
 		print("bottom_gate ", bottom_gate)
