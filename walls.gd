@@ -244,8 +244,8 @@ func fill_maze_from_room(maze,visited_maze, room1):
 	#assign stair
 	if(room1.hasStair):
 		var rng = RandomNumberGenerator.new()
-		var intRandomX = rng.randi_range(room1.position.x+1, width_line_finish)
-		var intRandomY = rng.randi_range(room1.position.y+1, height_line_finish)
+		var intRandomX = rng.randi_range(room1.position.x+1, width_line_finish-1)
+		var intRandomY = rng.randi_range(room1.position.y+1, height_line_finish-1)
 		maze[intRandomY][intRandomX] = STAIR_DOWN
 		print('######### Spawn Stair ###############', Vector2(intRandomY, intRandomX))
 
