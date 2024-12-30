@@ -4,7 +4,7 @@ signal food_updated(value: float)
 
 const SPEED = 180
 
-# FOOD CONFIG
+const run_speed = 280
 var food: float
 const STEPS_FOR_HUNGER = 100
 var step_count = 0
@@ -18,6 +18,10 @@ func _process(delta):
 	self.velocity = direction * SPEED
 
 	var collision_info = move_and_collide(self.velocity * delta)
+	
+	if Input.is_action_pressed("run"):  # Corremos con "shift"
+		velocity = direction * run_speed
+
 	if !collision_info and (direction.x != 0 || direction.y != 0):
 		print('[player] step count++ ', step_count, ' ',food)
 		step_count += 1
