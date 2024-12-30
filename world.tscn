@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://tnse7f1bt8dr"]
+[gd_scene load_steps=19 format=3 uid="uid://tnse7f1bt8dr"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_08p84"]
 [ext_resource type="PackedScene" uid="uid://dwefapskvcvfg" path="res://player.tscn" id="1_g6hkq"]
+[ext_resource type="Script" path="res://canvas_layer.gd" id="2_62aik"]
+[ext_resource type="Script" path="res://inventory.gd" id="3_cwkem"]
 [ext_resource type="Texture2D" uid="uid://n1egmcow8wlr" path="res://assets/spritesheetroads.png" id="3_uncjc"]
 [ext_resource type="Texture2D" uid="uid://bogduly2iqjwp" path="res://assets/spritesheet_mines.png" id="4_edp4q"]
 [ext_resource type="PackedScene" uid="uid://dikvq6ldpm2dy" path="res://food_bar.tscn" id="5_8gkl0"]
@@ -9,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://boat3fu6ld88d" path="res://assets/spritesheet_mines_thick.png" id="5_sf0ek"]
 [ext_resource type="Texture2D" uid="uid://byw722arigel8" path="res://assets/spritesheet_mines_thick_2.png" id="6_oviw8"]
 [ext_resource type="Script" path="res://walls.gd" id="7_okn77"]
+[ext_resource type="PackedScene" uid="uid://kac2vdauu2h7" path="res://inventory.tscn" id="10_080ne"]
 
 [sub_resource type="GDScript" id="GDScript_xh1te"]
 
@@ -16,7 +19,7 @@
 texture = ExtResource("3_uncjc")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 13.8677, -19.9868, 14.2145, -8.80287, -10.6789, 10.3181, -20.4197, 32, -24.9764, 7.18796, -32, -32, -32)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 13.8677, -19.9868, 14.2145, -8.29778, -11.2561, 10.3181, -20.4197, 32, -24.9764, 7.18796, -32, -32, -32)
 0:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(-32, 16, -19.9868, 14.936, -20.3476, 32, -32, 32, -32, 16)
 0:0/0/physics_layer_0/polygon_2/points = PackedVector2Array(16, -32, 18.6159, -21.5021, 32, -21.5021, 32, -32)
 0:0/0/physics_layer_0/polygon_3/points = PackedVector2Array(22.5844, 21.0691, 32, 18.9045, 32, 32, 21.8628, 32)
@@ -240,6 +243,7 @@ texture_region_size = Vector2i(64, 64)
 texture = ExtResource("6_oviw8")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, -22.4401, -21.6464, -22.4401, -19.8425, 32, -32, 32, -32, -32, 32, -32)
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -333,6 +337,17 @@ sources/3 = SubResource("TileSetAtlasSource_sin6i")
 script = ExtResource("1_08p84")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("2_62aik")
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("10_080ne")]
+anchor_right = 0.145833
+anchor_bottom = 0.0
+offset_left = 192.0
+offset_top = 96.0
+offset_right = 304.0
+offset_bottom = 288.0
+script = ExtResource("3_cwkem")
 
 [node name="FoodBar" parent="CanvasLayer" instance=ExtResource("5_8gkl0")]
 layout_direction = 2
@@ -350,17 +365,8 @@ use_parent_material = true
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 3, 0, 0, 0)
 tile_set = SubResource("TileSet_2vppk")
 rendering_quadrant_size = 64
+collision_visibility_mode = 1
 script = ExtResource("7_okn77")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -654.0
-offset_top = 19.0
-offset_right = -476.0
-offset_bottom = 197.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_g6hkq")]
 light_mask = 3
@@ -381,4 +387,6 @@ editor_draw_screen = false
 script = ExtResource("5_s70qn")
 tileMapLayer = NodePath("../../TileMap/walls")
 
+[connection signal="closed" from="CanvasLayer/Inventory" to="." method="_on_inventory_closed"]
+[connection signal="opened" from="CanvasLayer/Inventory" to="." method="_on_inventory_opened"]
 [connection signal="food_updated" from="Player" to="CanvasLayer/FoodBar" method="_on_player_food_updated"]
