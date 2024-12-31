@@ -84,7 +84,8 @@ var decimal_to_cord = {
 
 const SOURCE_ID = 2 # Tileset atlas, only 1
 const DEBUG_MAZE = false
-
+var localStairPosition: Vector2
+signal stairReady(localStairPosition)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var maze: Array = generate_maze()
@@ -101,7 +102,8 @@ func _ready():
 		set_cell(Vector2i(room.bottom_gate.y, room.bottom_gate.x), SOURCE_ID,decimal_to_cord[ROOM_BOTTOM_GATE],0)
 		set_cell(Vector2i(room.right_gate.y, room.right_gate.x), SOURCE_ID,decimal_to_cord[ROOM_RIGHT_GATE],0)
 		set_cell(Vector2i(room.left_gate.y, room.left_gate.x), SOURCE_ID,decimal_to_cord[ROOM_LEFT_GATE],0)
-		
+	localStairPosition = self.map_to_local(localStairPosition)
+	emit_signal("stairReady", localStairPosition)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -247,7 +249,8 @@ func fill_maze_from_room(maze,visited_maze, room1):
 		var intRandomX = rng.randi_range(room1.position.x+1, width_line_finish-1)
 		var intRandomY = rng.randi_range(room1.position.y+1, height_line_finish-1)
 		maze[intRandomY][intRandomX] = STAIR_DOWN
-		print('######### Spawn Stair ###############', Vector2(intRandomY, intRandomX))
+		localStairPosition = Vector2(intRandomX,intRandomY )
+		print('######### Spawn Stair ###############',localStairPosition )
 
 	# print("iterating to fill gates for room...")
 	for x in range(room1.position.x, width_line_finish+1):
