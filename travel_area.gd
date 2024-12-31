@@ -19,4 +19,4 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_walls_stair_ready(stairPosition: Variant) -> void:
 	self.global_position = stairPosition
 	auxStairPosition = stairPosition
-	print('Posicion del Area: ', self.global_position, "Posicion aux: ", auxStairPosition)
+	print('Area Position: ', self.global_position,)

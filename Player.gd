@@ -40,7 +40,7 @@ func play_movement_animation():
 	elif self.velocity.x > 0: direction = "Right"
 	elif self.velocity.y < 0: direction = "Up"
 	animations.play("walk" + direction)
-	print("Posicion del loco este: ", self.position)
+	#print("Player position: ", self.position)
 
 func _ready():
 	food = 100

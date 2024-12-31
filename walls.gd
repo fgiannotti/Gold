@@ -102,6 +102,7 @@ func _ready():
 		set_cell(Vector2i(room.bottom_gate.y, room.bottom_gate.x), SOURCE_ID,decimal_to_cord[ROOM_BOTTOM_GATE],0)
 		set_cell(Vector2i(room.right_gate.y, room.right_gate.x), SOURCE_ID,decimal_to_cord[ROOM_RIGHT_GATE],0)
 		set_cell(Vector2i(room.left_gate.y, room.left_gate.x), SOURCE_ID,decimal_to_cord[ROOM_LEFT_GATE],0)
+
 	localStairPosition = self.map_to_local(localStairPosition)
 	emit_signal("stairReady", localStairPosition)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -248,7 +249,8 @@ func fill_maze_from_room(maze,visited_maze, room1):
 		var rng = RandomNumberGenerator.new()
 		var intRandomX = rng.randi_range(room1.position.x+1, width_line_finish-1)
 		var intRandomY = rng.randi_range(room1.position.y+1, height_line_finish-1)
-		maze[intRandomY][intRandomX] = STAIR_DOWN
+		#maze[intRandomY][intRandomX] = STAIR_DOWN
+		#Antes la Linea de arriba ponia la escalera desde el Tile Set
 		localStairPosition = Vector2(intRandomX,intRandomY )
 		print('######### Spawn Stair ###############',localStairPosition )
 
@@ -349,3 +351,9 @@ class Room:
 		for x in range(self.position.x, width_line_finish+1):
 			for y in range(self.position.y, height_line_finish+1):
 				room_tiles.append(Vector2(y,x))
+
+
+func _on_travel_area_body_entered(body: Node2D) -> void:
+	self.clear()
+	rooms = []
+	_ready()
