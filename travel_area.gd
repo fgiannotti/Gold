@@ -11,10 +11,6 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_body_entered(body: Node2D) -> void:
-	body.position = auxStairPosition
-	print("Enter TravelArea 2D")
-
 
 func _on_walls_stair_ready(stairPosition: Variant) -> void:
 	self.global_position = stairPosition

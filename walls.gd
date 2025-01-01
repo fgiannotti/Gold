@@ -1,5 +1,7 @@
 extends TileMapLayer
 
+signal stairReady(stair_position_in_world)
+
 const MAZE_WIDTH =  20
 const MAZE_HEIGHT = 20  # counting from 0
 
@@ -84,8 +86,9 @@ var decimal_to_cord = {
 
 const SOURCE_ID = 2 # Tileset atlas, only 1
 const DEBUG_MAZE = false
-var localStairPosition: Vector2
-signal stairReady(localStairPosition)
+var stair_position_in_world: Vector2
+var stair_position_in_tilemap: Vector2
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var maze: Array = generate_maze()
@@ -103,8 +106,8 @@ func _ready():
 		set_cell(Vector2i(room.right_gate.y, room.right_gate.x), SOURCE_ID,decimal_to_cord[ROOM_RIGHT_GATE],0)
 		set_cell(Vector2i(room.left_gate.y, room.left_gate.x), SOURCE_ID,decimal_to_cord[ROOM_LEFT_GATE],0)
 
-	localStairPosition = self.map_to_local(localStairPosition)
-	emit_signal("stairReady", localStairPosition)
+	stair_position_in_world = self.map_to_local(stair_position_in_tilemap)
+	emit_signal("stairReady", stair_position_in_world)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -251,8 +254,8 @@ func fill_maze_from_room(maze,visited_maze, room1):
 		var intRandomY = rng.randi_range(room1.position.y+1, height_line_finish-1)
 		#maze[intRandomY][intRandomX] = STAIR_DOWN
 		#Antes la Linea de arriba ponia la escalera desde el Tile Set
-		localStairPosition = Vector2(intRandomX,intRandomY )
-		print('######### Spawn Stair ###############',localStairPosition )
+		stair_position_in_tilemap = Vector2(intRandomX,intRandomY )
+		print('######### Spawn Stair ###############',stair_position_in_tilemap )
 
 	# print("iterating to fill gates for room...")
 	for x in range(room1.position.x, width_line_finish+1):
@@ -357,3 +360,4 @@ func _on_travel_area_body_entered(body: Node2D) -> void:
 	self.clear()
 	rooms = []
 	_ready()
+# Tambien podriamos cambiar la posicion del player aca post armado del laberinto move_to_valid_tile_player()
