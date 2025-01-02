@@ -1,5 +1,7 @@
 extends TileMapLayer
 
+signal stair_decided(stair_position_in_world)
+
 const MAZE_WIDTH =  20
 const MAZE_HEIGHT = 20  # counting from 0
 
@@ -84,6 +86,8 @@ var decimal_to_cord = {
 
 const SOURCE_ID = 2 # Tileset atlas, only 1
 const DEBUG_MAZE = false
+var stair_position_in_world: Vector2
+var stair_position_in_tilemap: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -101,7 +105,9 @@ func _ready():
 		set_cell(Vector2i(room.bottom_gate.y, room.bottom_gate.x), SOURCE_ID,decimal_to_cord[ROOM_BOTTOM_GATE],0)
 		set_cell(Vector2i(room.right_gate.y, room.right_gate.x), SOURCE_ID,decimal_to_cord[ROOM_RIGHT_GATE],0)
 		set_cell(Vector2i(room.left_gate.y, room.left_gate.x), SOURCE_ID,decimal_to_cord[ROOM_LEFT_GATE],0)
-		
+
+	stair_position_in_world = self.map_to_local(stair_position_in_tilemap)
+	emit_signal("stair_decided", stair_position_in_world)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -192,9 +198,9 @@ func empty_maze(val: int):
 # Place rooms 
 	# Put borders
 	# Leave middle as free values
-func choseRoomForStairs(rooms: Array):
+func chose_room_for_stairs(rooms: Array):
 	var room = rooms.pick_random()
-	room.hasStair = true
+	room.has_stair = true
 
 func place_rooms(maze: Array, visited_maze: Array):
 	var position1 = Vector2(MAZE_WIDTH/8,MAZE_HEIGHT/8)
@@ -208,7 +214,7 @@ func place_rooms(maze: Array, visited_maze: Array):
 	var room3: Room = Room.new(position3)
 	var room4: Room = Room.new(position4)
 	var rooms: Array[Room] = [room1,room2,room3,room4]
-	choseRoomForStairs(rooms);
+	chose_room_for_stairs(rooms);
 	# Place borders
 	fill_maze_from_room(maze,visited_maze, room1)
 	fill_maze_from_room(maze,visited_maze, room2)
@@ -242,12 +248,14 @@ func fill_maze_from_room(maze,visited_maze, room1):
 		for y in range(room1.position.y+1, height_line_finish):
 				maze[y][x] = ROOM_OPEN
 	#assign stair
-	if(room1.hasStair):
+	if(room1.has_stair):
 		var rng = RandomNumberGenerator.new()
-		var intRandomX = rng.randi_range(room1.position.x+1, width_line_finish)
-		var intRandomY = rng.randi_range(room1.position.y+1, height_line_finish)
-		maze[intRandomY][intRandomX] = STAIR_DOWN
-		print('######### Spawn Stair ###############', Vector2(intRandomY, intRandomX))
+		var int_random_x = rng.randi_range(room1.position.x+1, width_line_finish-1)
+		var int_random_y = rng.randi_range(room1.position.y+1, height_line_finish-1)
+		#maze[intRandomY][intRandomX] = STAIR_DOWN
+		#Antes la Linea de arriba ponia la escalera desde el Tile Set
+		stair_position_in_tilemap = Vector2(int_random_x,int_random_y )
+		print('######### Spawn Stair ###############',stair_position_in_tilemap )
 
 	# print("iterating to fill gates for room...")
 	for x in range(room1.position.x, width_line_finish+1):
@@ -293,10 +301,9 @@ class Room:
 	var dimension: Vector2
 	var position: Vector2 # its first top left tile
 	var room_tiles: Array
-	var staircase_tile: Vector2 = Vector2(0,0)
 	var height_line_finish: float
 	var width_line_finish: float
-	var hasStair: bool = false
+	var has_stair: bool = false
 	
 	var left_gate: Vector2
 	var right_gate: Vector2
@@ -346,3 +353,10 @@ class Room:
 		for x in range(self.position.x, width_line_finish+1):
 			for y in range(self.position.y, height_line_finish+1):
 				room_tiles.append(Vector2(y,x))
+
+
+func _on_travel_area_body_entered(_body: Node2D) -> void:
+	self.clear()
+	rooms = []
+	_ready()
+# Tambien podriamos cambiar la posicion del player aca post armado del laberinto move_to_valid_tile_player()

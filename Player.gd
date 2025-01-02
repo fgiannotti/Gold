@@ -23,7 +23,7 @@ func _process(delta):
 		velocity = direction * run_speed
 
 	if !collision_info and (direction.x != 0 || direction.y != 0):
-		print('[player] step count++ ', step_count, ' ',food)
+		#print('[player] step count++ ', step_count, ' ',food)
 		step_count += 1
 		if step_count >= STEPS_FOR_HUNGER:
 			step_count = 0
@@ -40,6 +40,7 @@ func play_movement_animation():
 	elif self.velocity.x > 0: direction = "Right"
 	elif self.velocity.y < 0: direction = "Up"
 	animations.play("walk" + direction)
+	#print("Player position: ", self.position)
 
 func _ready():
 	food = 100
