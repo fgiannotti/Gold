@@ -12,6 +12,6 @@ func _process(delta: float) -> void:
 
 
 
-func _on_walls_stair_ready(stairPosition: Variant) -> void:
-	self.global_position = stairPosition
+func _on_walls_stair_decided(stair_position_in_world: Variant) -> void:
+	self.global_position = stair_position_in_world
 	print('Area Position: ', self.global_position,)

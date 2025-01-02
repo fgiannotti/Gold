@@ -392,7 +392,7 @@ tileMapLayer = NodePath("../../TileMap/walls")
 
 [connection signal="closed" from="CanvasLayer/Inventory" to="." method="_on_inventory_closed"]
 [connection signal="opened" from="CanvasLayer/Inventory" to="." method="_on_inventory_opened"]
-[connection signal="stairReady" from="TileMap/walls" to="TravelArea" method="_on_walls_stair_ready"]
+[connection signal="stair_decided" from="TileMap/walls" to="TravelArea" method="_on_walls_stair_decided"]
 [connection signal="food_updated" from="Player" to="CanvasLayer/FoodBar" method="_on_player_food_updated"]
 [connection signal="mouse_entered" from="Player" to="Player" method="_on_mouse_entered"]
 [connection signal="body_entered" from="TravelArea" to="TileMap/walls" method="_on_travel_area_body_entered"]
