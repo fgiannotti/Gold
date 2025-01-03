@@ -355,8 +355,7 @@ class Room:
 				room_tiles.append(Vector2(y,x))
 
 
-func _on_travel_area_body_entered(_body: Node2D) -> void:
+func restart_maze() -> void:
 	self.clear()
 	rooms = []
-	_ready()
-# Tambien podriamos cambiar la posicion del player aca post armado del laberinto move_to_valid_tile_player()
+	_ready() # Regenerate maze

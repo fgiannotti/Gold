@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://byw722arigel8" path="res://assets/spritesheet_mines_thick_2.png" id="6_oviw8"]
 [ext_resource type="Script" path="res://walls.gd" id="7_okn77"]
 [ext_resource type="PackedScene" uid="uid://kac2vdauu2h7" path="res://inventory.tscn" id="10_080ne"]
-[ext_resource type="PackedScene" uid="uid://b7e68h42833gw" path="res://travel_area.tscn" id="13_j7h45"]
+[ext_resource type="PackedScene" uid="uid://dr02y0y7dkdax" path="res://travel_area.tscn" id="13_j7h45"]
 
 [sub_resource type="GDScript" id="GDScript_xh1te"]
 
@@ -395,4 +395,4 @@ tileMapLayer = NodePath("../../TileMap/walls")
 [connection signal="stair_decided" from="TileMap/walls" to="TravelArea" method="_on_walls_stair_decided"]
 [connection signal="food_updated" from="Player" to="CanvasLayer/FoodBar" method="_on_player_food_updated"]
 [connection signal="mouse_entered" from="Player" to="Player" method="_on_mouse_entered"]
-[connection signal="body_entered" from="TravelArea" to="TileMap/walls" method="_on_travel_area_body_entered"]
+[connection signal="body_entered" from="TravelArea" to="." method="_on_travel_area_body_entered"]
