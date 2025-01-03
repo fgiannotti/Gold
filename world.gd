@@ -19,3 +19,8 @@ func _on_inventory_closed() -> void:
 
 func _on_inventory_opened() -> void:
 	get_tree().paused = true
+
+
+
+func _on_travel_area_body_entered(_body: Node2D) -> void:
+	$TileMap/walls.restart_maze()

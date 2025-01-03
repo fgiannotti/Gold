@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7e68h42833gw"]
+[gd_scene load_steps=4 format=3 uid="uid://dr02y0y7dkdax"]
 
 [ext_resource type="Script" path="res://travel_area.gd" id="1_necnh"]
 [ext_resource type="Texture2D" uid="uid://doh53qbwod64r" path="res://assets/stair.png" id="2_ybytx"]
