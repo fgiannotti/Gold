@@ -84,7 +84,7 @@ var decimal_to_cord = {
 	
 }
 
-const SOURCE_ID = 2 # Tileset atlas, only 1
+const SOURCE_ID = 0 # Tileset atlas, only 1
 const DEBUG_MAZE = false
 var stair_position_in_world: Vector2
 var stair_position_in_tilemap: Vector2
