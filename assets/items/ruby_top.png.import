@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bogduly2iqjwp"
-path="res://.godot/imported/spritesheet_mines.png-f0de697dcad6b71a127b42d7f043803f.ctex"
+uid="uid://hg1tpd8s8gtp"
+path="res://.godot/imported/ruby_top.png-6e101bc99e4291a64eb306da3b1a93c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesheet_mines.png"
-dest_files=["res://.godot/imported/spritesheet_mines.png-f0de697dcad6b71a127b42d7f043803f.ctex"]
+source_file="res://assets/items/ruby_top.png"
+dest_files=["res://.godot/imported/ruby_top.png-6e101bc99e4291a64eb306da3b1a93c6.ctex"]
 
 [params]
 

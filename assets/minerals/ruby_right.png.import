@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n1egmcow8wlr"
-path="res://.godot/imported/spritesheetroads.png-1cfc695bf6614ad1170b39290aaabce9.ctex"
+uid="uid://do7wwwf263wpt"
+path="res://.godot/imported/ruby_right.png-6dfbaa185c79d54026e17953e0f3e0f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesheetroads.png"
-dest_files=["res://.godot/imported/spritesheetroads.png-1cfc695bf6614ad1170b39290aaabce9.ctex"]
+source_file="res://assets/minerals/ruby_right.png"
+dest_files=["res://.godot/imported/ruby_right.png-6dfbaa185c79d54026e17953e0f3e0f2.ctex"]
 
 [params]
 

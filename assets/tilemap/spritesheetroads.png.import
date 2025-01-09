@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byw722arigel8"
-path="res://.godot/imported/spritesheet_mines_thick_2.png-622a1c571efc572fb9e2a6feeac053f7.ctex"
+uid="uid://n1egmcow8wlr"
+path="res://.godot/imported/spritesheetroads.png-28489a3fca3070fa4a75510a9fb84329.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesheet_mines_thick_2.png"
-dest_files=["res://.godot/imported/spritesheet_mines_thick_2.png-622a1c571efc572fb9e2a6feeac053f7.ctex"]
+source_file="res://assets/tilemap/spritesheetroads.png"
+dest_files=["res://.godot/imported/spritesheetroads.png-28489a3fca3070fa4a75510a9fb84329.ctex"]
 
 [params]
 
