@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=9 format=3 uid="uid://bym5hofa5rula"]
 
-[ext_resource type="Texture2D" uid="uid://n1egmcow8wlr" path="res://assets/spritesheetroads.png" id="1_yxoeq"]
-[ext_resource type="Texture2D" uid="uid://bogduly2iqjwp" path="res://assets/spritesheet_mines.png" id="2_twv1d"]
-[ext_resource type="Texture2D" uid="uid://boat3fu6ld88d" path="res://assets/spritesheet_mines_thick.png" id="3_aw8gp"]
-[ext_resource type="Texture2D" uid="uid://byw722arigel8" path="res://assets/spritesheet_mines_thick_2.png" id="4_lh1r8"]
+[ext_resource type="Texture2D" uid="uid://n1egmcow8wlr" path="res://assets/tilemap/spritesheetroads.png" id="1_yxoeq"]
+[ext_resource type="Texture2D" uid="uid://bogduly2iqjwp" path="res://assets/tilemap/spritesheet_mines.png" id="2_twv1d"]
+[ext_resource type="Texture2D" uid="uid://boat3fu6ld88d" path="res://assets/tilemap/spritesheet_mines_thick.png" id="3_aw8gp"]
+[ext_resource type="Texture2D" uid="uid://byw722arigel8" path="res://assets/tilemap/spritesheet_mines_thick_2.png" id="4_lh1r8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ayrw7"]
 texture = ExtResource("1_yxoeq")

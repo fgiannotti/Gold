@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byeuudrx2hykr"
-path="res://.godot/imported/ruby1.png-b5c207a585c05b6a2d5b48f0be3617ec.ctex"
+uid="uid://byw722arigel8"
+path="res://.godot/imported/spritesheet_mines_thick_2.png-2a38ba998b2bccb250915d0b7c6da826.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ruby1.png"
-dest_files=["res://.godot/imported/ruby1.png-b5c207a585c05b6a2d5b48f0be3617ec.ctex"]
+source_file="res://assets/tilemap/spritesheet_mines_thick_2.png"
+dest_files=["res://.godot/imported/spritesheet_mines_thick_2.png-2a38ba998b2bccb250915d0b7c6da826.ctex"]
 
 [params]
 

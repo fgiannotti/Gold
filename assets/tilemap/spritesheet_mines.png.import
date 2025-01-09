@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b22t3cyvqghtf"
-path="res://.godot/imported/slot2.png-4b9b919613664b0d05569bc78af9c725.ctex"
+uid="uid://bogduly2iqjwp"
+path="res://.godot/imported/spritesheet_mines.png-426f1975418dfc7e0bee21a11f4acfbe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/slot2.png"
-dest_files=["res://.godot/imported/slot2.png-4b9b919613664b0d05569bc78af9c725.ctex"]
+source_file="res://assets/tilemap/spritesheet_mines.png"
+dest_files=["res://.godot/imported/spritesheet_mines.png-426f1975418dfc7e0bee21a11f4acfbe.ctex"]
 
 [params]
 

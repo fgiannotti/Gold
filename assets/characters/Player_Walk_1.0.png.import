@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boat3fu6ld88d"
-path="res://.godot/imported/spritesheet_mines_thick.png-659d233bdac8977764eb38111e2fe022.ctex"
+uid="uid://de5didni3i3ty"
+path="res://.godot/imported/Player_Walk_1.0.png-f7c53bb5b27dfe01d5805ee4c474b949.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesheet_mines_thick.png"
-dest_files=["res://.godot/imported/spritesheet_mines_thick.png-659d233bdac8977764eb38111e2fe022.ctex"]
+source_file="res://assets/characters/Player_Walk_1.0.png"
+dest_files=["res://.godot/imported/Player_Walk_1.0.png-f7c53bb5b27dfe01d5805ee4c474b949.ctex"]
 
 [params]
 

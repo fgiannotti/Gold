@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+class_name Player
 signal food_updated(value: float)
 
 const SPEED = 180
@@ -13,6 +14,7 @@ const moving = false
 var is_mining = false
 @onready var animations = $AnimationPlayer
 
+@export var inventory: Inventory
 
 var facing_direction: Vector2 # Saves last moved direction
 func _process(delta):
@@ -66,7 +68,7 @@ func play_mine_animation():
 
 func _ready():
 	food = 100
-
+	print($Sprite2D.get_rect())
 
 # movement_collides is null when there was no collision
 func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exists: bool):
