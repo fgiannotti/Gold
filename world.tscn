@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://tnse7f1bt8dr"]
+[gd_scene load_steps=17 format=3 uid="uid://tnse7f1bt8dr"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_08p84"]
 [ext_resource type="PackedScene" uid="uid://dwefapskvcvfg" path="res://player.tscn" id="1_g6hkq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://byw722arigel8" path="res://assets/spritesheet_mines_thick_2.png" id="6_oviw8"]
 [ext_resource type="Script" path="res://walls.gd" id="7_okn77"]
 [ext_resource type="PackedScene" uid="uid://kac2vdauu2h7" path="res://inventory.tscn" id="10_080ne"]
+[ext_resource type="PackedScene" uid="uid://o3xdej4tf14w" path="res://slime_1.tscn" id="12_7e7j1"]
 [ext_resource type="PackedScene" uid="uid://dr02y0y7dkdax" path="res://travel_area.tscn" id="13_j7h45"]
 
 [sub_resource type="GDScript" id="GDScript_xh1te"]
@@ -302,6 +303,12 @@ script = ExtResource("5_s70qn")
 tileMapLayer = NodePath("../../TileMap/walls")
 
 [node name="TravelArea" parent="." instance=ExtResource("13_j7h45")]
+
+[node name="Slime1" parent="." instance=ExtResource("12_7e7j1")]
+light_mask = 3
+visibility_layer = 3
+z_index = 2
+position = Vector2(171, 133)
 
 [connection signal="closed" from="CanvasLayer/Inventory" to="." method="_on_inventory_closed"]
 [connection signal="opened" from="CanvasLayer/Inventory" to="." method="_on_inventory_opened"]
