@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://boat3fu6ld88d" path="res://assets/tilemap/spritesheet_mines_thick.png" id="5_sf0ek"]
 [ext_resource type="Texture2D" uid="uid://byw722arigel8" path="res://assets/tilemap/spritesheet_mines_thick_2.png" id="6_oviw8"]
 [ext_resource type="Script" path="res://walls.gd" id="7_okn77"]
-[ext_resource type="PackedScene" uid="uid://kac2vdauu2h7" path="res://inventory.tscn" id="10_080ne"]
+[ext_resource type="PackedScene" uid="uid://kac2vdauu2h7" path="res://inventory_gui.tscn" id="10_080ne"]
 [ext_resource type="PackedScene" uid="uid://o3xdej4tf14w" path="res://slime_1.tscn" id="12_7e7j1"]
+[ext_resource type="Script" path="res://marker_2d.gd" id="12_u4ybm"]
 [ext_resource type="PackedScene" uid="uid://dr02y0y7dkdax" path="res://travel_area.tscn" id="13_j7h45"]
 
 [sub_resource type="GDScript" id="GDScript_xh1te"]
@@ -302,15 +303,19 @@ tileMapLayer = NodePath("../../TileMap/walls")
 
 [node name="TravelArea" parent="." instance=ExtResource("13_j7h45")]
 
-[node name="Slime1" parent="." instance=ExtResource("12_7e7j1")]
+[node name="Slime1" parent="." node_paths=PackedStringArray("end_point") instance=ExtResource("12_7e7j1")]
 light_mask = 3
 visibility_layer = 3
 z_index = 2
-position = Vector2(171, 133)
+position = Vector2(170, 147)
+end_point = NodePath("Marker2D")
 
-[connection signal="closed" from="CanvasLayer/Inventory" to="." method="_on_inventory_closed"]
-[connection signal="opened" from="CanvasLayer/Inventory" to="." method="_on_inventory_opened"]
+[node name="Marker2D" type="Marker2D" parent="Slime1"]
+position = Vector2(12, 44)
+script = ExtResource("12_u4ybm")
+
 [connection signal="stair_decided" from="TileMap/walls" to="TravelArea" method="_on_walls_stair_decided"]
 [connection signal="food_updated" from="Player" to="CanvasLayer/FoodBar" method="_on_player_food_updated"]
 [connection signal="mouse_entered" from="Player" to="Player" method="_on_mouse_entered"]
 [connection signal="body_entered" from="TravelArea" to="." method="_on_travel_area_body_entered"]
+[connection signal="stair_position" from="TravelArea" to="Slime1/Marker2D" method="_on_travel_area_stair_position"]

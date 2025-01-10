@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
 
-const SPEED = 60
+const SPEED = 15
 var start_position
 var end_position
 var limit = 1
 
-@onready var animations = $AnimatedSprite2D
+@onready var animations = $SlimeSprite
 
 func _ready() -> void:
 	start_position = position
