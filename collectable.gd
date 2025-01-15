@@ -1,5 +1,6 @@
 extends Area2D
 
+@export var collectableAsItem: InventoryItem
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,6 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_walls_stair_decided(stair_position_in_world: Variant) -> void:
-	self.global_position = stair_position_in_world
-	print('Area Position: ', self.global_position,)
+func collect() -> InventoryItem:
+	print('collect called')
+	queue_free()
+	return collectableAsItem
