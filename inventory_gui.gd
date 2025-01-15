@@ -1,5 +1,7 @@
 extends Control
 
+class_name InventoryGUI
+
 signal opened
 signal closed
 
@@ -13,8 +15,14 @@ func _ready():
 	
 func update():
 	for i in range(min(inventory.items.size(), slots.size())):
+		print('updating item in slot', i)
 		slots[i].update_slot(inventory.items[i])
 
+func add_item(item: InventoryItem):
+	print('inserting item')
+	inventory.insert(item)
+	update()
+	
 func open():
 	self.visible = true
 	self.isOpen = true

@@ -14,7 +14,7 @@ const moving = false
 var is_mining = false
 @onready var animations = $AnimationPlayer
 
-@export var inventory: Inventory
+@export var collectablesLayer: TileMapLayer
 
 var facing_direction: Vector2 # Saves last moved direction
 func _process(delta):
@@ -33,6 +33,10 @@ func _process(delta):
 		is_mining = true
 		
 		play_mine_animation()
+		var tile_position = nearest_tile()
+		print('trying to mine nearest tile: ', tile_position, ' player position: ',  self.position)
+		if tile_position:
+			collectablesLayer.mine_tile(tile_position)
 		await animations.animation_finished
 		is_mining = false
 		return
@@ -45,6 +49,10 @@ func _process(delta):
 			play_movement_animation()
 		else:
 			animations.stop(true)
+
+func nearest_tile() -> Vector2:
+	var player_position = position
+	return (player_position + facing_direction).floor()
 
 func process_direction():
 	if Input.is_action_pressed("left"):
@@ -68,12 +76,11 @@ func play_mine_animation():
 
 func _ready():
 	food = 100
-	print($Sprite2D.get_rect())
 
 # movement_collides is null when there was no collision
 func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exists: bool):
 	if !movement_collides and movement_intent_exists and !is_mining:
-		print('[player] step count++ ', step_count, ' ',food)
+		# print('[player] step count++ ', step_count, ' ',food)
 		step_count += 1
 		if step_count >= STEPS_FOR_HUNGER:
 			step_count = 0
