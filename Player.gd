@@ -15,7 +15,6 @@ var is_mining = false
 @onready var animations = $AnimationPlayer
 
 @export var collectablesLayer: TileMapLayer
-@export var inventory: Inventory # EXPORTAR INVENTARIO, LLAMARLO  EN COLLECTABLES PARA GUARDAR OBJETOS
 
 var facing_direction: Vector2 # Saves last moved direction
 func _process(delta):
