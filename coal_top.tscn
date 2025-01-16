@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cytw3vrumimem"]
+
+[ext_resource type="PackedScene" uid="uid://tv3iqfgr8365" path="res://coal_bot.tscn" id="1_3kd21"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwpkk"]
+resource_local_to_scene = true
+size = Vector2(16, 13)
+
+[node name="CoalTop" instance=ExtResource("1_3kd21")]
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+position = Vector2(-8, -24)
+shape = SubResource("RectangleShape2D_rwpkk")
+
+[node name="Sprite2D" parent="." index="2"]
+frame = 0
