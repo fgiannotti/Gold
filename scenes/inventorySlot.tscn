@@ -28,3 +28,14 @@ layout_mode = 2
 
 [node name="Item" type="Sprite2D" parent="CenterContainer/Panel"]
 scale = Vector2(4.5, 4.5)
+
+[node name="Label" type="Label" parent="CenterContainer/Panel"]
+custom_minimum_size = Vector2(32, 23)
+layout_mode = 0
+offset_left = 21.0
+offset_top = 14.0
+offset_right = 53.0
+offset_bottom = 37.0
+scale = Vector2(1.25, 1.25)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "19"

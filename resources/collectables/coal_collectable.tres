@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CollectableStats" load_steps=4 format=3 uid="uid://bkwkhrlp6stug"]
+
+[ext_resource type="Resource" uid="uid://ca6ofjq7o6pq0" path="res://inventory/items/coal_item.tres" id="1_t5lyl"]
+[ext_resource type="Script" path="res://resources/collectables/collectable_stats.gd" id="2_l0dkv"]
+[ext_resource type="Texture2D" uid="uid://bpn5lcy5fuocw" path="res://assets/minerals/coal (1).png" id="3_tlkur"]
+
+[resource]
+script = ExtResource("2_l0dkv")
+name = "coal_top"
+texture = ExtResource("3_tlkur")
+collectedItem = ExtResource("1_t5lyl")

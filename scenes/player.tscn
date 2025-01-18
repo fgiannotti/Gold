@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwefapskvcvfg"]
+[gd_scene load_steps=14 format=3 uid="uid://dwefapskvcvfg"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_pjfle"]
-[ext_resource type="Resource" uid="uid://bwp0r2rbrwfkf" path="res://inventory/player_inventory_res.tres" id="2_3t4d8"]
 [ext_resource type="Texture2D" uid="uid://vlvt8futc4mu" path="res://assets/characters/Player_WalkPickDamage_1.6.png" id="3_ifouo"]
 
 [sub_resource type="Animation" id="Animation_53d14"]
@@ -180,7 +179,6 @@ _data = {
 light_mask = 2
 visibility_layer = 2
 script = ExtResource("1_pjfle")
-inventory = ExtResource("2_3t4d8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

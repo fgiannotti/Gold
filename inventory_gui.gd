@@ -14,9 +14,9 @@ func _ready():
 	update()
 	
 func update():
-	for i in range(min(inventory.items.size(), slots.size())):
+	for i in range(min(inventory.itemSlots.size(), slots.size())):
 		print('updating item in slot', i)
-		slots[i].update_slot(inventory.items[i])
+		slots[i].update_slot(inventory.itemSlots[i])
 
 func add_item(item: InventoryItem):
 	print('inserting item')

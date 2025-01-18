@@ -1,6 +1,8 @@
 extends Area2D
 
-@export var collectableAsItem: InventoryItem
+class_name Collectable
+
+@export var collectableStats: CollectableStats
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,4 +16,4 @@ func _process(delta: float) -> void:
 func collect() -> InventoryItem:
 	print('collect called')
 	queue_free()
-	return collectableAsItem
+	return collectableStats.item
