@@ -2,7 +2,16 @@ extends Resource
 
 class_name Inventory
 
-@export var items: Array[InventoryItem]
+@export var itemSlots: Array[InventorySlot]
 
 func insert(item: InventoryItem):
-	self.items.append(item)
+	for i in range(itemSlots.size()):
+		if itemSlots[i].item == item:
+			itemSlots[i].amount += 1
+			return
+
+		if !itemSlots[i].item:
+			itemSlots[i].item = item
+			itemSlots[i].amount = 1
+			print('item inserted in pos', i, item.name)
+			return
