@@ -1,10 +1,14 @@
 extends Area2D
 
-@export var collectableAsItem: InventoryItem
+# Generic collectable, use it if it fulfills your needs
+# Or create your own .gd if you need to extend it (more variables)
+class_name Mineral
+
+@export var mineral_data: MineralData
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$Sprite2D.texture = mineral_data.texture
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -13,4 +17,4 @@ func _process(delta: float) -> void:
 func collect() -> InventoryItem:
 	print('collect called')
 	queue_free()
-	return collectableAsItem
+	return mineral_data.collectableAsItem
