@@ -17,6 +17,7 @@ var is_mining = false
 @export var collectablesLayer: TileMapLayer
 
 var facing_direction: Vector2 # Saves last moved direction
+
 func _process(delta):
 	var direction = process_direction()
 
@@ -76,6 +77,7 @@ func play_mine_animation():
 
 func _ready():
 	food = 100
+	print("player is at ", self.global_position)
 
 # movement_collides is null when there was no collision
 func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exists: bool):

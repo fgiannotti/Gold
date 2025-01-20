@@ -8,3 +8,4 @@
 script = ExtResource("2_8r31n")
 texture = ExtResource("3_rebjw")
 collectableAsItem = ExtResource("1_vnu1u")
+name = "coal"

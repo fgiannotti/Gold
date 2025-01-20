@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MineralData" load_steps=4 format=3 uid="uid://ne2lxtil3ady"]
+
+[ext_resource type="Resource" uid="uid://ca6ofjq7o6pq0" path="res://inventory/items/coal_item.tres" id="1_sijd7"]
+[ext_resource type="Script" path="res://collectables/minerals/mineral_data.gd" id="2_unjp4"]
+[ext_resource type="Texture2D" uid="uid://s8tyck0cn0ju" path="res://assets/minerals/coal_bot.png" id="3_80ao8"]
+
+[resource]
+script = ExtResource("2_unjp4")
+texture = ExtResource("3_80ao8")
+collectableAsItem = ExtResource("1_sijd7")
+name = "coal"

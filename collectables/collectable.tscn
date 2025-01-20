@@ -6,6 +6,7 @@
 resource_local_to_scene = true
 
 [node name="Collectable" type="Area2D"]
+priority = 1
 script = ExtResource("1_lnhni")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
