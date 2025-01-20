@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://tnse7f1bt8dr"]
+[gd_scene load_steps=21 format=3 uid="uid://tnse7f1bt8dr"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_08p84"]
 [ext_resource type="PackedScene" uid="uid://dwefapskvcvfg" path="res://player.tscn" id="1_g6hkq"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Camera2D.gd" id="5_s70qn"]
 [ext_resource type="Texture2D" uid="uid://boat3fu6ld88d" path="res://assets/tilemap/spritesheet_mines_thick.png" id="5_sf0ek"]
 [ext_resource type="PackedScene" uid="uid://855dhonyglxi" path="res://coal_left.tscn" id="6_elrvs"]
-[ext_resource type="Script" path="res://collectables.gd" id="6_h0dmf"]
+[ext_resource type="Script" path="res://collectables_tilemap.gd" id="6_h0dmf"]
 [ext_resource type="PackedScene" uid="uid://cyca6ysjueyuv" path="res://coal_right.tscn" id="7_drvos"]
 [ext_resource type="Script" path="res://walls.gd" id="7_okn77"]
 [ext_resource type="PackedScene" uid="uid://cytw3vrumimem" path="res://coal_top.tscn" id="8_cwrdr"]
@@ -203,6 +203,8 @@ end_point = NodePath("Marker2D")
 position = Vector2(12, 44)
 script = ExtResource("12_u4ybm")
 
+[connection signal="closed" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_closed"]
+[connection signal="opened" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_opened"]
 [connection signal="stair_decided" from="TileMap/walls" to="TravelArea" method="_on_walls_stair_decided"]
 [connection signal="food_updated" from="Player" to="CanvasLayer/FoodBar" method="_on_player_food_updated"]
 [connection signal="mouse_entered" from="Player" to="Player" method="_on_mouse_entered"]
