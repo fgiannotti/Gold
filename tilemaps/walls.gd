@@ -83,7 +83,6 @@ var decimal_to_cord = {
 	ROOM_BOTTOM_GATE: Vector2(4, 0)
 	
 }
-@onready var cord_to_decimals = flip_dict(decimal_to_cord)
 
 const SOURCE_ID = 0 # Tileset atlas, only 1
 const DEBUG_MAZE = false
