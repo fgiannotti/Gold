@@ -4,13 +4,19 @@ extends TileMapLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("setting cell in 2,1 for testing")
-	set_cell(Vector2i(2, 1), 0, Vector2i(0, 0), 1)
-
+	print('setting coal in cell 2,1 with custom resource during runtime')
+	var coal_instance: Node = preload("res://collectables/minerals/coal/coal.tscn").instantiate()
+	coal_instance.mineral_data = load("res://collectables/minerals/coal/mineral_data_coal_left.tres") 
+	spawn_scene_at_tile(Vector2i(2,1), coal_instance)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func spawn_scene_at_tile(tile_coords: Vector2i, instance: Node):
+	instance.global_position = map_to_local(tile_coords)  # Align to tile position
+	add_child(instance)  # Add as a child to the TileMapLayer
+
 func collectable_at_tile(tileset_cords: Vector2i) -> Node2D:
 	# Convert the tilemap coordinates to world position
 	var world_position = map_to_local(tileset_cords)
