@@ -2,10 +2,10 @@
 
 [ext_resource type="Resource" uid="uid://ca6ofjq7o6pq0" path="res://inventory/items/coal_item.tres" id="1_sijd7"]
 [ext_resource type="Script" path="res://collectables/minerals/mineral_data.gd" id="2_unjp4"]
-[ext_resource type="Texture2D" uid="uid://s8tyck0cn0ju" path="res://assets/minerals/coal_bot.png" id="3_80ao8"]
+[ext_resource type="Texture2D" uid="uid://cw6xe31j5rimo" path="res://assets/minerals/coal down.png" id="3_jfv2w"]
 
 [resource]
 script = ExtResource("2_unjp4")
-texture = ExtResource("3_80ao8")
+texture = ExtResource("3_jfv2w")
 collectableAsItem = ExtResource("1_sijd7")
 name = "coal"
