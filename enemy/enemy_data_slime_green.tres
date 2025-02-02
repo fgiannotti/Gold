@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://beqlill2w4k4x"]
+
+[ext_resource type="Script" path="res://enemy/enemy_data.gd" id="1_mqcfj"]
+[ext_resource type="Texture2D" uid="uid://d115jhppyj06u" path="res://assets/Slime1_Walk_full.png" id="2_0tr8t"]
+
+[resource]
+script = ExtResource("1_mqcfj")
+sprite = ExtResource("2_0tr8t")
+max_speed = 80.0
