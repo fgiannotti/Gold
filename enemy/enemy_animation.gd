@@ -23,13 +23,15 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	var direction_to_player = (player.global_position - enemy.global_position).normalized()
 	var distance_to_player = enemy.global_position.distance_to(player.global_position)
-
+	
 	if distance_to_player < detection_radius:
 		enemy.velocity = direction_to_player * chase_speed
 		is_chasing = true
+		sprite.texture = enemy.run_sprite
 	else:
 		enemy.velocity = current_direction * speed
 		is_chasing = false
+		sprite.texture = enemy.walk_sprite
 
 	var collision = enemy.move_and_collide(enemy.velocity * delta)
 	

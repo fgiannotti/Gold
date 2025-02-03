@@ -43,6 +43,10 @@ const TOP_CLOSED = 1
 const LEFT_CLOSED = 8
 const RIGHT_CLOSED = 2
 
+@export var enemy_spawner: EnemySpawner
+
+var positions_open_room: Array = []
+
 # Map decimals to TileSet
 var decimal_to_cord = {
 
@@ -108,6 +112,8 @@ func _ready():
 
 	stair_position_in_world = self.map_to_local(stair_position_in_tilemap)
 	emit_signal("stair_decided", stair_position_in_world)
+	
+	enemy_spawner.spawn_enemies(positions_open_room, 50)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -247,6 +253,7 @@ func fill_maze_from_room(maze, visited_maze, room1):
 	for x in range(room1.position.x + 1, width_line_finish):
 		for y in range(room1.position.y + 1, height_line_finish):
 				maze[y][x] = ROOM_OPEN
+				positions_open_room.append(self.map_to_local(Vector2(x,y)))
 	#assign stair
 	if (room1.has_stair):
 		var rng = RandomNumberGenerator.new()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp4sssxne84ei"
-path="res://.godot/imported/Slime1_Idle_full.png-6afbd4350ad427f191be3d3b38d61e17.ctex"
+uid="uid://cor8fwcrr66i0"
+path="res://.godot/imported/Slime1_Death_full.png-c5d0516a188bd46f2981e6549c440353.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Slime1_Idle_full.png"
-dest_files=["res://.godot/imported/Slime1_Idle_full.png-6afbd4350ad427f191be3d3b38d61e17.ctex"]
+source_file="res://assets/enemy/Slime1_Death_full.png"
+dest_files=["res://.godot/imported/Slime1_Death_full.png-c5d0516a188bd46f2981e6549c440353.ctex"]
 
 [params]
 

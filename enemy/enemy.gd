@@ -2,17 +2,21 @@ class_name Enemy
 extends CharacterBody2D
 
 @export var stats: EnemyData
-
+var run_sprite: Texture2D
+var walk_sprite: Texture2D
 var max_speed: float
-var start_position
-var end_position
-var limit = 1
+var hp: float
+
 
 @onready var sprite : Sprite2D = $Sprite2D
 
 func _ready() -> void:
 	randomize()
+	walk_sprite = stats.walk_sprite
+	run_sprite = stats.run_sprite
+	
+	sprite.texture = stats.walk_sprite
 	max_speed = stats.max_speed
-	sprite.texture = stats.sprite
-	start_position = position
-	end_position = start_position + Vector2(0,3*50)
+	hp = stats.hp
+	
+	

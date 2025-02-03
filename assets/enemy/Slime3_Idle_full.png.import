@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d115jhppyj06u"
-path="res://.godot/imported/Slime1_Walk_full.png-55f5825e11e3ec8cd5d29f82ec6720e7.ctex"
+uid="uid://5dgscn5uxq23"
+path="res://.godot/imported/Slime3_Idle_full.png-c4aebbcd45b5d33841903dcda9124e0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Slime1_Walk_full.png"
-dest_files=["res://.godot/imported/Slime1_Walk_full.png-55f5825e11e3ec8cd5d29f82ec6720e7.ctex"]
+source_file="res://assets/enemy/Slime3_Idle_full.png"
+dest_files=["res://.godot/imported/Slime3_Idle_full.png-c4aebbcd45b5d33841903dcda9124e0d.ctex"]
 
 [params]
 
