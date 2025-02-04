@@ -43,7 +43,7 @@ const TOP_CLOSED = 1
 const LEFT_CLOSED = 8
 const RIGHT_CLOSED = 2
 
-@export var enemy_spawner: EnemySpawner
+var enemy_spawner: EnemyAutoloader
 
 var positions_open_room: Array = []
 
@@ -113,7 +113,7 @@ func _ready():
 	stair_position_in_world = self.map_to_local(stair_position_in_tilemap)
 	emit_signal("stair_decided", stair_position_in_world)
 	
-	enemy_spawner.spawn_enemies(positions_open_room, 50)
+	EnemyAutoloader.spawn_enemies(positions_open_room, 3)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -360,8 +360,11 @@ class Room:
 			for y in range(self.position.y, height_line_finish + 1):
 				room_tiles.append(Vector2(y, x))
 
+func clear_enemies():
+	get_tree().call_group("enemies", "queue_free")
 
 func restart_maze() -> void:
 	self.clear()
 	rooms = []
+	clear_enemies()
 	_ready() # Regenerate maze

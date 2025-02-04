@@ -19,8 +19,9 @@ func _process(delta: float) -> void:
 func spawn_enemies(valid_positions: Array, qty: int):
 	for n in qty:
 		var spawned_enemy : Enemy = enemy_scene.instantiate()
-		spawned_enemy.stats = enemy_stats[1]
-		get_parent().add_child.call_deferred(spawned_enemy)
+		spawned_enemy.stats = enemy_stats[0]
+		get_tree().root.get_node("World").add_child.call_deferred(spawned_enemy)
+		spawned_enemy.add_to_group("enemies", true)
 		var aux_positon = valid_positions.pick_random()
 		spawned_enemy.global_position = aux_positon
 		
