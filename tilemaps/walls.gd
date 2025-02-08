@@ -1,14 +1,14 @@
 extends TileMapLayer
 
-signal stair_decided(stair_position_in_world)
+signal stair_decided(stair_position_in_world: Vector2i)
 
 const MAZE_WIDTH = 20
 const MAZE_HEIGHT = 20 # counting from 0
 
-# values set from binary mapping
-const NORTH_DIR = 4
+# values set from binary mapping SENW
 const SOUTH_DIR = 1
 const EAST_DIR = 2
+const NORTH_DIR = 4
 const WEST_DIR = 8
 
 var decimal_from_directions = {
@@ -36,7 +36,7 @@ const ROOM_LEFT_GATE = 26
 const ROOM_RIGHT_GATE = 27
 const ROOM_TOP_GATE = 28
 const ROOM_BOTTOM_GATE = 29
-
+# all bits 0, all open
 const ALL_DIRECTIONS = 0
 const DOWN_CLOSED = 4
 const TOP_CLOSED = 1
@@ -61,7 +61,7 @@ var decimal_to_cord = {
 	RIGHT_CLOSED: Vector2(4, 2),
 	9: Vector2(0, 0),
 	10: Vector2(6, 0),
-	11: Vector2(1, 2),
+	11: Vector2(1, 2), # 1 0 1 1
 	12: Vector2(6, 1),
 	13: Vector2(5, 0),
 	14: Vector2(0, 3),
@@ -90,7 +90,6 @@ var decimal_to_cord = {
 
 const SOURCE_ID = 0 # Tileset atlas, only 1
 const DEBUG_MAZE = false
-var stair_position_in_world: Vector2
 var stair_position_in_tilemap: Vector2
 
 # Called when the node enters the scene tree for the first time.
@@ -110,16 +109,50 @@ func _ready():
 		set_cell(Vector2i(room.right_gate.y, room.right_gate.x), SOURCE_ID, decimal_to_cord[ROOM_RIGHT_GATE], 0)
 		set_cell(Vector2i(room.left_gate.y, room.left_gate.x), SOURCE_ID, decimal_to_cord[ROOM_LEFT_GATE], 0)
 
-	stair_position_in_world = self.map_to_local(stair_position_in_tilemap)
+	var stair_position_in_world = self.map_to_local(stair_position_in_tilemap)
 	emit_signal("stair_decided", stair_position_in_world)
-	
+
 	EnemyAutoloader.spawn_enemies(positions_open_room, 3)
+
+
+######
+# Functions used to ask questions about tiles in other nodes
+######
+'''# values set from binary mapping
+const NORTH_DIR = 4
+const SOUTH_DIR = 1
+const EAST_DIR = 2
+const WEST_DIR = 8'''
+# SENW
+# 1 means closed direction
+func directions_closed_at_pos(tilemap_pos: Vector2i) -> Array[int]:
+	var tile_data = self.get_cell_tile_data(tilemap_pos).get_custom_data('directions_closed')
+	
+	if tile_data == null or tile_data.size() != 4:
+		# Default to all directions closed if no valid custom data found
+		return [0, 0, 0, 0]
+	
+	# The custom data is in the form [South, East, North, West] with 1 for closed, 0 for open
+	var directions: Array[int] = [
+		tile_data[0],  # South
+		tile_data[1],  # East
+		tile_data[2],  # North
+		tile_data[3],  # West
+	]
+	print('in tilemap pos ', tilemap_pos, ' tile_data', tile_data)
+
+	
+	return directions
+######
+######
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 var stack = []
 var rooms: Array = []
+
 func generate_maze():
 	# Initialize maze and extra maze
 	var maze: Array = empty_maze(SOLID_TILE_VAL)
@@ -368,3 +401,9 @@ func restart_maze() -> void:
 	rooms = []
 	clear_enemies()
 	_ready() # Regenerate maze
+
+func flip_dict(dict: Dictionary) -> Dictionary:
+	var flipped_dict = {}
+	for key in dict:
+		flipped_dict[dict[key]] = key
+	return flipped_dict
