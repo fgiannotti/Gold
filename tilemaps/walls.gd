@@ -400,7 +400,7 @@ func restart_maze() -> void:
 	rooms = []
 	clear_enemies()
 	_ready() # Regenerate maze
-	emit_signal("maze_rebuilt")
+	MineralAutoloader.respawn_minerals()
 
 func flip_dict(dict: Dictionary) -> Dictionary:
 	var flipped_dict = {}

@@ -61,12 +61,13 @@ const WEST_POS  = 3
 func _on_world_ready() -> void:
 	spawn_all_minerals()
 
-func _on_walls_maze_rebuilt() -> void:
-	var children = $"../TileMap/collectables".get_children()
-	for child in children:
-		child.free()
+func respawn_minerals():
+	clear_minerals()
 	spawn_all_minerals()
-
+	
+func clear_minerals():
+	get_tree().call_group("minerals", "queue_free")
+	
 func spawn_all_minerals():
 	print('spawning all minerals...')
 	var mineral_count = 0
@@ -97,6 +98,7 @@ func spawn_mineral_at_pos(coords: Vector2i, valid_pos: int):
 	var mineral_name = choose_mineral()
 	print("chosen mineral ", mineral_name)
 	var mineral_instance: Node = preload("res://collectables/minerals/mineral.tscn").instantiate()
+	mineral_instance.add_to_group("minerals", true)
 	mineral_instance.mineral_data = minerals_data_dict[mineral_name][valid_pos]
 	print('mineral data: ', mineral_instance.mineral_data.resource_name)
 	collectables_tilemap.spawn_scene_at_tile(coords, mineral_instance)
