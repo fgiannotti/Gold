@@ -1,6 +1,7 @@
 extends TileMapLayer
 
 signal stair_decided(stair_position_in_world: Vector2i)
+signal maze_rebuilt()
 
 const MAZE_WIDTH = 20
 const MAZE_HEIGHT = 20 # counting from 0
@@ -399,6 +400,7 @@ func restart_maze() -> void:
 	rooms = []
 	clear_enemies()
 	_ready() # Regenerate maze
+	emit_signal("maze_rebuilt")
 
 func flip_dict(dict: Dictionary) -> Dictionary:
 	var flipped_dict = {}

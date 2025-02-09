@@ -1,11 +1,9 @@
 [gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://cddkavagxwj4q"]
 
 [ext_resource type="Script" path="res://inventory/inventory_item.gd" id="1_qxkge"]
-
-[sub_resource type="Resource" id="Resource_ktkt8"]
-metadata/__load_path__ = "res://assets/items/ruby_top.png"
+[ext_resource type="Texture2D" uid="uid://drdgyaxhuqpws" path="res://assets/items/ruby item.png" id="2_x4v7b"]
 
 [resource]
 script = ExtResource("1_qxkge")
 name = "ruby"
-texture = SubResource("Resource_ktkt8")
+texture = ExtResource("2_x4v7b")

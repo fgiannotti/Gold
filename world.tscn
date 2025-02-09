@@ -272,6 +272,7 @@ script = ExtResource("13_2i7fw")
 [connection signal="ready" from="." to="MineralLoader" method="_on_world_ready"]
 [connection signal="closed" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_closed"]
 [connection signal="opened" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_opened"]
+[connection signal="maze_rebuilt" from="TileMap/walls" to="MineralLoader" method="_on_walls_maze_rebuilt"]
 [connection signal="stair_decided" from="TileMap/walls" to="TravelArea" method="_on_walls_stair_decided"]
 [connection signal="food_updated" from="Player" to="CanvasLayer/FoodBar" method="_on_player_food_updated"]
 [connection signal="mouse_entered" from="Player" to="Player" method="_on_mouse_entered"]

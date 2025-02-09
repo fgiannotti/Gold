@@ -61,12 +61,18 @@ const WEST_POS  = 3
 func _on_world_ready() -> void:
 	spawn_all_minerals()
 
+func _on_walls_maze_rebuilt() -> void:
+	var children = $"../TileMap/collectables".get_children()
+	for child in children:
+		child.free()
+	spawn_all_minerals()
+
 func spawn_all_minerals():
 	print('spawning all minerals...')
 	var mineral_count = 0
 	# spawn them sequentially with a random. Then ask gpt how to do it better
-	for x in range(0, walls_tilemap.MAZE_WIDTH):
-		for y in range(0, walls_tilemap.MAZE_HEIGHT):
+	for x in range(1, walls_tilemap.MAZE_WIDTH):
+		for y in range(1, walls_tilemap.MAZE_HEIGHT):
 			if WITH_MAX_MINERAL && mineral_count == MAX_MINERAL_SPAWNED: return
 			if rng.randi_range(1,100) > 20:
 				var directions = walls_tilemap.directions_closed_at_pos(Vector2i(x,y))
