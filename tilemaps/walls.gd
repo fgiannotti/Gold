@@ -133,10 +133,10 @@ func directions_closed_at_pos(tilemap_pos: Vector2i) -> Array[int]:
 	
 	# The custom data is in the form [South, East, North, West] with 1 for closed, 0 for open
 	var directions: Array[int] = [
-		tile_data[0],  # South
-		tile_data[1],  # East
-		tile_data[2],  # North
-		tile_data[3],  # West
+		tile_data[0], # South
+		tile_data[1], # East
+		tile_data[2], # North
+		tile_data[3], # West
 	]
 	print('in tilemap pos ', tilemap_pos, ' tile_data', tile_data)
 
@@ -285,7 +285,7 @@ func fill_maze_from_room(maze, visited_maze, room1):
 	for x in range(room1.position.x + 1, width_line_finish):
 		for y in range(room1.position.y + 1, height_line_finish):
 				maze[y][x] = ROOM_OPEN
-				positions_open_room.append(self.map_to_local(Vector2(x,y)))
+				positions_open_room.append(self.map_to_local(Vector2(x, y)))
 	#assign stair
 	if (room1.has_stair):
 		var rng = RandomNumberGenerator.new()
