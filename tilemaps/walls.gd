@@ -43,6 +43,8 @@ const TOP_CLOSED = 1
 const LEFT_CLOSED = 8
 const RIGHT_CLOSED = 2
 
+var positions_open_room: Array = []
+
 # Map decimals to TileSet
 var decimal_to_cord = {
 
@@ -108,6 +110,9 @@ func _ready():
 	var stair_position_in_world = self.map_to_local(stair_position_in_tilemap)
 	emit_signal("stair_decided", stair_position_in_world)
 
+	EnemyAutoloader.spawn_enemies(positions_open_room, 50)
+
+
 ######
 # Functions used to ask questions about tiles in other nodes
 ######
@@ -138,6 +143,7 @@ func directions_closed_at_pos(tilemap_pos: Vector2i) -> Array[int]:
 	return directions
 ######
 ######
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
@@ -278,6 +284,7 @@ func fill_maze_from_room(maze, visited_maze, room1):
 	for x in range(room1.position.x + 1, width_line_finish):
 		for y in range(room1.position.y + 1, height_line_finish):
 				maze[y][x] = ROOM_OPEN
+				positions_open_room.append(self.map_to_local(Vector2(x,y)))
 	#assign stair
 	if (room1.has_stair):
 		var rng = RandomNumberGenerator.new()
@@ -384,10 +391,13 @@ class Room:
 			for y in range(self.position.y, height_line_finish + 1):
 				room_tiles.append(Vector2(y, x))
 
+func clear_enemies():
+	get_tree().call_group("enemies", "queue_free")
 
 func restart_maze() -> void:
 	self.clear()
 	rooms = []
+	clear_enemies()
 	_ready() # Regenerate maze
 
 func flip_dict(dict: Dictionary) -> Dictionary:
