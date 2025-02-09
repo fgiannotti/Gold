@@ -15,7 +15,6 @@ run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-
 [autoload]
 
 EnemyAutoloader="*res://enemy/enemy_spawner.gd"
@@ -25,9 +24,10 @@ EnemyAutoloader="*res://enemy/enemy_spawner.gd"
 folder_colors={
 "res://assets/": "green",
 "res://collectables/": "yellow",
-"res://inventory/": "orange"
+"res://enemy/": "red",
+"res://inventory/": "orange",
+"res://player/": "blue"
 }
-
 
 [input]
 

@@ -43,8 +43,6 @@ const TOP_CLOSED = 1
 const LEFT_CLOSED = 8
 const RIGHT_CLOSED = 2
 
-var enemy_spawner: EnemyAutoloader
-
 var positions_open_room: Array = []
 
 # Map decimals to TileSet
@@ -112,7 +110,7 @@ func _ready():
 	var stair_position_in_world = self.map_to_local(stair_position_in_tilemap)
 	emit_signal("stair_decided", stair_position_in_world)
 
-	EnemyAutoloader.spawn_enemies(positions_open_room, 3)
+	EnemyAutoloader.spawn_enemies(positions_open_room, 50)
 
 
 ######

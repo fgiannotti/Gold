@@ -5,10 +5,7 @@ extends Node
 @onready var enemy : Enemy = get_owner()
 
 var player: Player
-
-@export var speed: float = 50  # Velocidad normal
-@export var chase_speed: float = 80  # Velocidad al perseguir al jugador
-@export var detection_radius: float = 100  # Distancia de detección
+var detection_radius: float = 100
 
 var directions = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 var current_direction = Vector2.ZERO
@@ -25,24 +22,24 @@ func _physics_process(delta: float) -> void:
 	var distance_to_player = enemy.global_position.distance_to(player.global_position)
 	
 	if distance_to_player < detection_radius:
-		enemy.velocity = direction_to_player * chase_speed
+		enemy.velocity = direction_to_player * enemy.max_speed
 		is_chasing = true
-		sprite.texture = enemy.run_sprite
+		sprite.texture = enemy.enemy_data.run_sprite
 	else:
-		enemy.velocity = current_direction * speed
+		enemy.velocity = current_direction * (enemy.max_speed/2)
 		is_chasing = false
-		sprite.texture = enemy.walk_sprite
+		sprite.texture = enemy.enemy_data.walk_sprite
 
 	var collision = enemy.move_and_collide(enemy.velocity * delta)
 	
-	if collision:  # Si choca con algo, elige una nueva dirección
+	if collision:
 		change_direction()
 
 	update_animation()
 
 func change_direction():
 	if not is_chasing:
-		current_direction = directions[randi() % directions.size()]
+		current_direction = directions[randi_range(0,directions.size()-1)]
 
 
 func update_animation():

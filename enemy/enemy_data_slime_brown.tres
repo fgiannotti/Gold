@@ -8,5 +8,5 @@
 script = ExtResource("1_u0ku4")
 walk_sprite = ExtResource("2_oukge")
 run_sprite = ExtResource("1_vxpeu")
-max_speed = 50.0
+max_speed = 60.0
 hp = 150.0

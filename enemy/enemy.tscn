@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://o3xdej4tf14w"]
+[gd_scene load_steps=11 format=3 uid="uid://o3xdej4tf14w"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_u5pxm"]
-[ext_resource type="Resource" uid="uid://beqlill2w4k4x" path="res://enemy/enemy_data_slime_green.tres" id="2_1ohmk"]
 [ext_resource type="Texture2D" uid="uid://d115jhppyj06u" path="res://assets/enemy/Slime1_Walk_full.png" id="2_otv7q"]
 [ext_resource type="Script" path="res://enemy/enemy_animation.gd" id="4_g3eao"]
 
@@ -104,7 +103,6 @@ _data = {
 collision_layer = 4
 motion_mode = 1
 script = ExtResource("1_u5pxm")
-stats = ExtResource("2_1ohmk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sf84x")

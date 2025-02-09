@@ -2,7 +2,7 @@ class_name EnemySpawner extends Node
 
 var enemy_scene : PackedScene = preload("res://enemy/enemy.tscn")
 
-var enemy_stats: Array[EnemyData] = [
+var enemy_type: Array[EnemyData] = [
 	preload("res://enemy/enemy_data_slime_green.tres"),
 	preload("res://enemy/enemy_data_slime_brown.tres")
 ]
@@ -19,8 +19,9 @@ func _process(delta: float) -> void:
 func spawn_enemies(valid_positions: Array, qty: int):
 	for n in qty:
 		var spawned_enemy : Enemy = enemy_scene.instantiate()
-		spawned_enemy.stats = enemy_stats[0]
+		spawned_enemy.enemy_data = enemy_type[1]
 		get_tree().root.get_node("World").add_child.call_deferred(spawned_enemy)
+		#Create a group that only persist in execution time
 		spawned_enemy.add_to_group("enemies", true)
 		var aux_positon = valid_positions.pick_random()
 		spawned_enemy.global_position = aux_positon
