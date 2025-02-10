@@ -5,6 +5,9 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	food_bar.init_food(100)
+	MineralAutoloader.walls_tilemap = $TileMap/walls
+	MineralAutoloader.collectables_tilemap = $TileMap/collectables
+
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

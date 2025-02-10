@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://dh6uykburpbn6"]
-
-[ext_resource type="Script" path="res://inventory/inventory_item.gd" id="1_ipy5k"]
-[ext_resource type="Texture2D" uid="uid://do7wwwf263wpt" path="res://assets/minerals/ruby_right.png" id="2_mpyx0"]
-
-[resource]
-script = ExtResource("1_ipy5k")
-name = "rock"
-texture = ExtResource("2_mpyx0")

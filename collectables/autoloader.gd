@@ -61,12 +61,19 @@ const WEST_POS  = 3
 func _on_world_ready() -> void:
 	spawn_all_minerals()
 
+func respawn_minerals():
+	clear_minerals()
+	spawn_all_minerals()
+	
+func clear_minerals():
+	get_tree().call_group("minerals", "queue_free")
+	
 func spawn_all_minerals():
 	print('spawning all minerals...')
 	var mineral_count = 0
 	# spawn them sequentially with a random. Then ask gpt how to do it better
-	for x in range(0, walls_tilemap.MAZE_WIDTH):
-		for y in range(0, walls_tilemap.MAZE_HEIGHT):
+	for x in range(1, walls_tilemap.MAZE_WIDTH):
+		for y in range(1, walls_tilemap.MAZE_HEIGHT):
 			if WITH_MAX_MINERAL && mineral_count == MAX_MINERAL_SPAWNED: return
 			if rng.randi_range(1,100) > 20:
 				var directions = walls_tilemap.directions_closed_at_pos(Vector2i(x,y))
@@ -91,6 +98,7 @@ func spawn_mineral_at_pos(coords: Vector2i, valid_pos: int):
 	var mineral_name = choose_mineral()
 	print("chosen mineral ", mineral_name)
 	var mineral_instance: Node = preload("res://collectables/minerals/mineral.tscn").instantiate()
+	mineral_instance.add_to_group("minerals", true)
 	mineral_instance.mineral_data = minerals_data_dict[mineral_name][valid_pos]
 	print('mineral data: ', mineral_instance.mineral_data.resource_name)
 	collectables_tilemap.spawn_scene_at_tile(coords, mineral_instance)
