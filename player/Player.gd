@@ -6,6 +6,7 @@ signal food_updated(value: float)
 const SPEED = 180
 
 const run_speed = 1000
+var hp := 10.0
 var food: float
 const STEPS_FOR_HUNGER = 100
 var step_count = 0
@@ -98,3 +99,11 @@ func direction_string(direction: Vector2):
 		return "Up"
 	elif direction == Vector2.DOWN:
 		return "Down"
+
+func recive_damage(dmg: float):
+	if dmg < self.hp:
+		self.hp -= dmg
+		print("Player recieved damage: ", dmg, "HP: ", hp)
+	else: 
+		print("Dead X(")
+	
