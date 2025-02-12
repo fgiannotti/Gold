@@ -26,6 +26,6 @@ func _on_attack_cooldown_timeout() -> void:
 	can_attack = true
 
 func knockback(player_velocity: Vector2):
-	var knockbackDireciton = (player_velocity -enemy.velocity).normalized() * knockbackPower
-	enemy.velocity = knockbackDireciton
+	var knockbackDirection = (player_velocity -enemy.velocity).normalized() * knockbackPower
+	enemy.velocity = knockbackDirection
 	enemy.move_and_slide()
