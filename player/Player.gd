@@ -6,13 +6,16 @@ signal food_updated(value: float)
 const SPEED = 180
 
 const run_speed = 1000
+var hp := 20.0
 var food: float
 const STEPS_FOR_HUNGER = 100
 var step_count = 0
 
 const moving = false
 var is_mining = false
+var is_immune = false
 @onready var animations = $AnimationPlayer
+@onready var immunity_cooldown = $Timer
 
 @export var collectablesLayer: TileMapLayer
 
@@ -98,3 +101,16 @@ func direction_string(direction: Vector2):
 		return "Up"
 	elif direction == Vector2.DOWN:
 		return "Down"
+
+func receive_damage(dmg: float):
+	if dmg < self.hp && !is_immune:
+		self.hp -= dmg
+		print("Player recieved damage: ", dmg, " HP: ", hp)
+		immunity_cooldown.start()
+		is_immune = true
+	elif dmg > self.hp:
+		print("Dead X(")
+	
+
+func _on_timer_timeout() -> void:
+	is_immune = false

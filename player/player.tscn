@@ -197,3 +197,8 @@ top_level = true
 position = Vector2(0.0360003, 4.68307)
 scale = Vector2(1.14518, 1.0892)
 polygon = PackedVector2Array(-3.84, 6.4, 3.84, 6.4, 3.84, -3.84, -3.84, -3.84)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

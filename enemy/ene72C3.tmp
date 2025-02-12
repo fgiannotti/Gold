@@ -132,14 +132,13 @@ sprite = NodePath("../Sprite2D")
 [node name="Timer" type="Timer" parent="EnemyAnimation"]
 
 [node name="Cactus" type="Area2D" parent="."]
-collision_mask = 3
 script = ExtResource("4_2xob6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cactus"]
 shape = SubResource("CircleShape2D_ud00i")
 
 [node name="AttackCooldown" type="Timer" parent="Cactus"]
-wait_time = 0.3
+wait_time = 1.5
 
 [connection signal="body_entered" from="Cactus" to="Cactus" method="_on_body_entered"]
 [connection signal="timeout" from="Cactus/AttackCooldown" to="Cactus" method="_on_attack_cooldown_timeout"]
