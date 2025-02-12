@@ -13,7 +13,9 @@ var step_count = 0
 
 const moving = false
 var is_mining = false
+var is_immune = false
 @onready var animations = $AnimationPlayer
+@onready var immunity_cooldown = $Timer
 
 @export var collectablesLayer: TileMapLayer
 
@@ -100,10 +102,15 @@ func direction_string(direction: Vector2):
 	elif direction == Vector2.DOWN:
 		return "Down"
 
-func recive_damage(dmg: float):
-	if dmg < self.hp:
+func receive_damage(dmg: float):
+	if dmg < self.hp && !is_immune:
 		self.hp -= dmg
 		print("Player recieved damage: ", dmg, " HP: ", hp)
-	else: 
+		immunity_cooldown.start()
+		is_immune = true
+	elif dmg > self.hp:
 		print("Dead X(")
 	
+
+func _on_timer_timeout() -> void:
+	is_immune = false
