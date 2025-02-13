@@ -69,9 +69,7 @@ func _process(delta):
 
 func nearest_tile() -> Vector2:
 	var player_position = position
-	var nearest_tile = (player_position + facing_direction).floor()
-	print(nearest_tile)
-	return nearest_tile
+	return (player_position + facing_direction).floor()
 
 func process_direction():
 	if Input.is_action_pressed("left"):
