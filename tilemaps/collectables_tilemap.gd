@@ -4,6 +4,9 @@ extends TileMapLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var coal_instance: Node = preload("res://collectables/chest.tscn").instantiate()
+	spawn_scene_at_tile(Vector2i(2,1), coal_instance)
+	
 	return
 	#print('setting coal in cell 2,1 with custom resource during runtime')
 	#var coal_instance: Node = preload("res://collectables/minerals/mineral.tscn").instantiate()
@@ -30,15 +33,15 @@ func collectable_at_tile(tileset_cords: Vector2i) -> Node2D:
 
 	return null
 
-func mine_tile(cords: Vector2i):
+func collect_tile(cords: Vector2i):
 	var tileset_cords = self.local_to_map(cords)
 	print('cords mapped to local ', cords, '  in tileset : ', tileset_cords)
 	
 	var node: Node2D = collectable_at_tile(tileset_cords)
 	if not node: print("No node found at the given tile."); return
-	if node is not Area2D or !node.has_method("collect"): print("The scene does not have a collect method or is not Area2D."); return
+	if  !node.has_method("collect"): print("The scene does not have a collect method"); return
 
-	var item = node.collect()
+	var item = await node.collect()
 	if not item: print("Node did not return item...", node.name); return
 	print("item collected from node, persisting it ",  item.name)
 	inventoryGUI.add_item(item)

@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 # Generic collectable, use it if it fulfills your needs
 # Or create your own .gd if you need to extend it (more variables)
@@ -15,6 +15,6 @@ func _process(delta: float) -> void:
 	pass
 
 func collect() -> InventoryItem:
-	print('collect called')
+	print('mineral collect called!')
 	queue_free()
 	return mineral_data.collectableAsItem

@@ -3,16 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://bv7h1ae33nhjo" path="res://collectables/collectable.tscn" id="1_s673v"]
 [ext_resource type="Script" path="res://collectables/minerals/mineral.gd" id="2_eg51r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lypow"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1o44y"]
 resource_local_to_scene = true
-size = Vector2(16, 13)
+size = Vector2(13, 20)
 
 [node name="Coal" instance=ExtResource("1_s673v")]
 script = ExtResource("2_eg51r")
 mineral_data = null
 
-[node name="Area2D" type="Area2D" parent="." index="0"]
-
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(8, 21)
-shape = SubResource("RectangleShape2D_lypow")
+[node name="CollisionShape2D" parent="CollectableArea" index="0"]
+shape = SubResource("RectangleShape2D_1o44y")

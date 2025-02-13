@@ -7,7 +7,10 @@ func _ready():
 	food_bar.init_food(100)
 	MineralAutoloader.walls_tilemap = $TileMap/walls
 	MineralAutoloader.collectables_tilemap = $TileMap/collectables
-
+	MineralAutoloader.spawn_all_minerals()
+	CollectableAutoloader.walls_tilemap = $TileMap/walls
+	CollectableAutoloader.collectables_tilemap = $TileMap/collectables
+	CollectableAutoloader.spawn_all_collectables()
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

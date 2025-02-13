@@ -1,19 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv7h1ae33nhjo"]
+[gd_scene load_steps=5 format=3 uid="uid://bv7h1ae33nhjo"]
 
 [ext_resource type="Script" path="res://collectables/collectable.gd" id="1_lnhni"]
+[ext_resource type="Resource" uid="uid://ca6ofjq7o6pq0" path="res://inventory/items/coal_item.tres" id="2_7yq5t"]
 [ext_resource type="Texture2D" uid="uid://djlvewue6t3v0" path="res://assets/minerals/coal right.png" id="3_58vk8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m0gom"]
 resource_local_to_scene = true
 size = Vector2(13, 20)
 
-[node name="Collectable" type="Area2D"]
-priority = 1
+[node name="Collectable" type="Node2D"]
 script = ExtResource("1_lnhni")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(26, -7)
-shape = SubResource("RectangleShape2D_m0gom")
+collectableAsItem = ExtResource("2_7yq5t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_58vk8")
+
+[node name="CollectableArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectableArea"]
+position = Vector2(26, -7)
+shape = SubResource("RectangleShape2D_m0gom")
