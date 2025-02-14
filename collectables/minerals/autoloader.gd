@@ -3,8 +3,8 @@ extends Node
 ################################################
 # This is an autoloaded node to spawn minerals
 ################################################
-@onready var walls_tilemap = $"../TileMap/walls"
-@onready var collectables_tilemap = $"../TileMap/collectables"
+@onready var walls_tilemap
+@onready var collectables_tilemap
 
 const WITH_MAX_MINERAL = false
 const MAX_MINERAL_SPAWNED = 50
@@ -57,9 +57,7 @@ const SOUTH_POS = 0
 const EAST_POS  = 1
 const NORTH_POS = 2
 const WEST_POS  = 3
-
-func _on_world_ready() -> void:
-	spawn_all_minerals()
+	
 
 func respawn_minerals():
 	clear_minerals()
@@ -80,7 +78,7 @@ func spawn_all_minerals():
 				if directions == [1,1,1,1] or directions == [0,0,0,0]:
 					continue
 				var valid_pos = rng_until_valid_pos(directions)
-				print("found valid tile to spawn mineral, coords ", Vector2i(x,y), " valid_pos: ", valid_pos)
+				# print("found valid tile to spawn mineral, coords ", Vector2i(x,y), " valid_pos: ", valid_pos)
 				spawn_mineral_at_pos(Vector2i(x,y), valid_pos)
 				mineral_count += 1
 	
@@ -96,11 +94,11 @@ const WEST_DIR = 8'''
 # valid post is one of 0 to 3 for SENW
 func spawn_mineral_at_pos(coords: Vector2i, valid_pos: int):
 	var mineral_name = choose_mineral()
-	print("chosen mineral ", mineral_name)
+	# print("chosen mineral ", mineral_name)
 	var mineral_instance: Node = preload("res://collectables/minerals/mineral.tscn").instantiate()
 	mineral_instance.add_to_group("minerals", true)
 	mineral_instance.mineral_data = minerals_data_dict[mineral_name][valid_pos]
-	print('mineral data: ', mineral_instance.mineral_data.resource_name)
+	# print('mineral data: ', mineral_instance.mineral_data.resource_name)
 	collectables_tilemap.spawn_scene_at_tile(coords, mineral_instance)
 	return
 
@@ -120,7 +118,7 @@ func choose_mineral():
 	# last 45%
 	return "coal"
 
-	
+# look for closed pos to put mineral
 func rng_until_valid_pos(directions: Array[int]) -> int:
 	while true:
 		var position = randi_range(0,3)

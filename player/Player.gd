@@ -12,8 +12,9 @@ const STEPS_FOR_HUNGER = 100
 var step_count = 0
 
 const moving = false
-var is_mining = false
 var is_immune = false
+var is_interacting = false
+
 @onready var animations = $AnimationPlayer
 @onready var immunity_cooldown = $Timer
 
@@ -27,29 +28,41 @@ func _process(delta):
 	self.velocity = direction * SPEED
 
 	var movement_collides = null
-	if !is_mining:
+	if !is_interacting:
 		movement_collides = move_and_collide(self.velocity * delta)
 	
-	if Input.is_action_pressed("run"):  # Corremos con "shift"
+	if Input.is_action_pressed("run"): # Corremos con "shift"
 		self.velocity = direction * run_speed
 
 	if Input.is_action_pressed("mine"):
-		is_mining = true
+		is_interacting = true
 		
 		play_mine_animation()
 		var tile_position = nearest_tile()
-		print('trying to mine nearest tile: ', tile_position, ' player position: ',  self.position)
+		print('trying to mine nearest tile: ', tile_position)
 		if tile_position:
-			collectablesLayer.mine_tile(tile_position)
+			collectablesLayer.collect_tile(tile_position)
 		await animations.animation_finished
-		is_mining = false
+		is_interacting = false
 		return
+
+	if Input.is_action_just_pressed("use"):
+		is_interacting = true
 		
+		play_use_animation()
+		var tile_position = nearest_tile()
+		print('trying to interact nearest tile: ', tile_position)
+		if tile_position:
+			collectablesLayer.collect_tile(tile_position)
+		await animations.animation_finished
+		is_interacting = false
+		return
+			
 	var movement_intent_exists: bool = direction.x != 0 || direction.y != 0
 	trigger_hunger(movement_collides, movement_intent_exists)
 
-	if !is_mining:
-		if direction != Vector2(0,0):
+	if !is_interacting:
+		if direction != Vector2(0, 0):
 			play_movement_animation()
 		else:
 			animations.stop(true)
@@ -67,9 +80,8 @@ func process_direction():
 		facing_direction = Vector2.UP
 	elif Input.is_action_pressed("down"):
 		facing_direction = Vector2.DOWN
-	else: 
+	else:
 		return Vector2.ZERO
-
 	return facing_direction
 
 func play_movement_animation():
@@ -78,13 +90,17 @@ func play_movement_animation():
 func play_mine_animation():
 	animations.play("mine" + direction_string(self.facing_direction))
 
+## TODO: use animation WIP
+func play_use_animation():
+	animations.play("mine" + direction_string(self.facing_direction))
+
 func _ready():
 	food = 100
 	print("player is at ", self.global_position)
 
 # movement_collides is null when there was no collision
 func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exists: bool):
-	if !movement_collides and movement_intent_exists and !is_mining:
+	if !movement_collides and movement_intent_exists and !is_interacting:
 		# print('[player] step count++ ', step_count, ' ',food)
 		step_count += 1
 		if step_count >= STEPS_FOR_HUNGER:
