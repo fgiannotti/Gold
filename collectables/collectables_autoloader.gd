@@ -12,6 +12,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+
+func respawn_collectables():
+	clear_collectables()
+	spawn_all_collectables()
+
+func clear_collectables():
+	get_tree().call_group("chests", "queue_free")
+
 func spawn_all_collectables():
 	# spawn them sequentially with a random. Then ask gpt how to do it better
 	for x in range(1, walls_tilemap.MAZE_WIDTH):

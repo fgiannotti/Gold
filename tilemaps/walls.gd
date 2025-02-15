@@ -401,6 +401,7 @@ func restart_maze() -> void:
 	clear_enemies()
 	_ready() # Regenerate maze
 	MineralAutoloader.respawn_minerals()
+	CollectableAutoloader.respawn_collectables()
 
 func flip_dict(dict: Dictionary) -> Dictionary:
 	var flipped_dict = {}
