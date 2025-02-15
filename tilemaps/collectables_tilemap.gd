@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 func spawn_scene_at_tile(tile_coords: Vector2i, instance: Node):
 	instance.position = map_to_local(tile_coords)  # Align to tile position
 	#set_cell(tile_coords, 0, Vector2i(0, 0), 0)
-	add_child(instance)  # Add as a child to the TileMapLayer
+	add_child.call_deferred(instance)  # Add as a child to the TileMapLayer
 
 func collectable_at_tile(tileset_cords: Vector2i) -> Node2D:
 	# Convert the tilemap coordinates to world position
