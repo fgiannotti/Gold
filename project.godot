@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 EnemyAutoloader="*res://enemy/enemy_spawner.gd"
 MineralAutoloader="*res://collectables/minerals/autoloader.gd"
-CollectableAutoloader="*res://collectables/autoloader.gd"
+CollectableAutoloader="*res://collectables/collectables_autoloader.gd"
 
 [file_customization]
 
