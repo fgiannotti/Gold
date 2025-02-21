@@ -111,7 +111,7 @@ func _ready():
 	var stair_position_in_world = self.map_to_local(stair_position_in_tilemap)
 	emit_signal("stair_decided", stair_position_in_world)
 
-	EnemyAutoloader.spawn_enemies(positions_open_room, 50)
+	EnemyAutoloader.spawn_enemies(positions_open_room, 1)
 
 
 ######

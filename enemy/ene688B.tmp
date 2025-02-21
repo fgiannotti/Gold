@@ -113,7 +113,6 @@ radius = 120.0
 collision_layer = 4
 motion_mode = 1
 wall_min_slide_angle = 0.0
-safe_margin = 2.0
 script = ExtResource("1_u5pxm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -154,11 +153,10 @@ wait_time = 0.3
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
 path_desired_distance = 2.0
-target_desired_distance = 0.5
+target_desired_distance = 2.0
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 25.0
-time_horizon_obstacles = 0.65
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0, 1)

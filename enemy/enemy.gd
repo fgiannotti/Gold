@@ -13,5 +13,6 @@ func _ready() -> void:
 	sprite.texture = enemy_data.walk_sprite
 	max_speed = enemy_data.max_speed
 	hp = enemy_data.hp
-	
-	
+
+func _physics_process(delta: float) -> void:
+	pass
