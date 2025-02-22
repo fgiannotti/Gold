@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://yvy02q4r6sl4"]
+
+[ext_resource type="FontFile" uid="uid://dxpldnp2huw30" path="res://assets/fonts/VT323-Regular.ttf" id="1_ebvyd"]
+
+[resource]
+base_font = ExtResource("1_ebvyd")
+opentype_features = {
+1667329140: 0
+}

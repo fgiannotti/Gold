@@ -7,13 +7,14 @@ const SPEED = 120
 
 const run_speed = 1000
 var hp := 20.0
-var food: float
+var food: float = 100
+var gold: int = 100
 const STEPS_FOR_HUNGER = 100
 var step_count = 0
 
 const moving = false
 var is_immune = false
-var is_interacting = false
+@onready var is_interacting: bool = false
 
 @onready var animations = $AnimationPlayer
 @onready var immunity_cooldown = $Timer
@@ -22,6 +23,10 @@ var is_interacting = false
 
 var facing_direction: Vector2 # Saves last moved direction
 
+
+func _ready():
+	print("player is at ", self.global_position)
+	
 func _process(delta):
 	var direction = process_direction()
 
@@ -46,18 +51,24 @@ func _process(delta):
 		is_interacting = false
 		return
 
-	if Input.is_action_just_pressed("use"):
+	if Input.is_action_just_pressed("use") && !is_interacting:
 		is_interacting = true
 		
 		play_use_animation()
 		var tile_position = nearest_tile()
-		print('trying to interact nearest tile: ', tile_position)
+		print('[Player] trying to interact nearest tile: ', tile_position)
 		if tile_position:
 			collectablesLayer.collect_tile(tile_position)
 		await animations.animation_finished
 		is_interacting = false
 		return
-			
+
+	if Input.is_action_just_pressed("talk"):
+		play_use_animation()
+		print('[Player] trying to talk')
+		InteractionManager.start_interaction()
+		await animations.animation_finished
+	
 	var movement_intent_exists: bool = direction.x != 0 || direction.y != 0
 	trigger_hunger(movement_collides, movement_intent_exists)
 
@@ -92,11 +103,7 @@ func play_mine_animation():
 
 ## TODO: use animation WIP
 func play_use_animation():
-	animations.play("mine" + direction_string(self.facing_direction))
-
-func _ready():
-	food = 100
-	print("player is at ", self.global_position)
+	animations.play("use" + direction_string(self.facing_direction))
 
 # movement_collides is null when there was no collision
 func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exists: bool):

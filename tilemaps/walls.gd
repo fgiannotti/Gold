@@ -111,7 +111,7 @@ func _ready():
 	var stair_position_in_world = self.map_to_local(stair_position_in_tilemap)
 	emit_signal("stair_decided", stair_position_in_world)
 
-	EnemyAutoloader.spawn_enemies(positions_open_room, 50)
+	EnemyAutoloader.spawn_enemies(positions_open_room, 10)
 
 
 ######
@@ -138,7 +138,7 @@ func directions_closed_at_pos(tilemap_pos: Vector2i) -> Array[int]:
 		tile_data[2], # North
 		tile_data[3], # West
 	]
-	print('in tilemap pos ', tilemap_pos, ' tile_data', tile_data)
+	#print('in tilemap pos ', tilemap_pos, ' tile_data', tile_data)
 
 	
 	return directions

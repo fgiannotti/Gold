@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doh53qbwod64r"
-path="res://.godot/imported/STAIR.png-1ed82304c03800a0a7b2b6b92925beb9.ctex"
+uid="uid://lbsj2ujx75eb"
+path="res://.godot/imported/coin-basic.png-4ed482d635c98d0cedf47fee858d44f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/STAIR.png"
-dest_files=["res://.godot/imported/STAIR.png-1ed82304c03800a0a7b2b6b92925beb9.ctex"]
+source_file="res://assets/inventory/coin-basic.png"
+dest_files=["res://.godot/imported/coin-basic.png-4ed482d635c98d0cedf47fee858d44f6.ctex"]
 
 [params]
 

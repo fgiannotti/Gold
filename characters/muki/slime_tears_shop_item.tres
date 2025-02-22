@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopItem" load_steps=3 format=3 uid="uid://e053416g3xpg"]
+
+[ext_resource type="Resource" uid="uid://dco615hw65tog" path="res://inventory/items/slime_tears_item.tres" id="1_66eb6"]
+[ext_resource type="Script" path="res://characters/muki/shop_item_resource.gd" id="2_2t24q"]
+
+[resource]
+script = ExtResource("2_2t24q")
+inventoryItem = ExtResource("1_66eb6")
+description = "Heals 50HP. Salty but refreshing."
+price = 10

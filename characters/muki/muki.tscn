@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://7ldj2fkeixgl"]
+
+[ext_resource type="Script" path="res://muki.gd" id="1_b5e0c"]
+[ext_resource type="Texture2D" uid="uid://bmaxorki32xiv" path="res://assets/characters/Muki 0.2.png" id="2_jtyhe"]
+[ext_resource type="PackedScene" uid="uid://cyg03ht766n1j" path="res://characters/muki/shop_item.tscn" id="3_wam8d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gkvaq"]
+radius = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g63gt"]
+atlas = ExtResource("2_jtyhe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkh66"]
+atlas = ExtResource("2_jtyhe")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld7dd"]
+atlas = ExtResource("2_jtyhe")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04e8o"]
+atlas = ExtResource("2_jtyhe")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4fcxi"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g63gt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkh66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld7dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04e8o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Muki" type="Node2D"]
+script = ExtResource("1_b5e0c")
+
+[node name="Table" type="Panel" parent="."]
+offset_left = -15.0
+offset_top = 14.0
+offset_right = 15.0
+offset_bottom = 23.0
+
+[node name="TalkableArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkableArea"]
+position = Vector2(1, 23)
+shape = SubResource("CircleShape2D_gkvaq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4fcxi")
+
+[node name="ShopItem2" parent="." instance=ExtResource("3_wam8d")]
+position = Vector2(5, 14)
+
+[node name="ShopItem" parent="." instance=ExtResource("3_wam8d")]
+
+[node name="ShopUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ItemDetails" type="Panel" parent="ShopUI"]
+z_index = 99
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 0
+offset_left = -50.0
+offset_top = -71.0
+offset_right = 50.0
+offset_bottom = -8.0
+
+[node name="Title" type="RichTextLabel" parent="ShopUI/ItemDetails"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 96.0
+offset_bottom = 18.0
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/normal_font_size = 11
+text = "Fire Slime Tears"
+
+[node name="Description" type="RichTextLabel" parent="ShopUI/ItemDetails"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 15.0
+offset_right = 102.0
+offset_bottom = 54.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/normal_font_size = 13
+text = "Heals 50HP. Salty but refreshing."
+
+[node name="Price" type="RichTextLabel" parent="ShopUI/ItemDetails"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 46.0
+offset_right = 117.0
+offset_bottom = 65.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "10G [img=12x12]res://assets/inventory/coin-basic.png[/img] "
+
+[connection signal="body_entered" from="TalkableArea" to="." method="_on_talkable_area_body_entered"]
+[connection signal="body_exited" from="TalkableArea" to="." method="_on_talkable_area_body_exited"]

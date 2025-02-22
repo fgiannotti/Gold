@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyg03ht766n1j"]
+
+[ext_resource type="Texture2D" uid="uid://5ug4kf6f4lt5" path="res://assets/shop_items/Slime Tears.png" id="1_6bjss"]
+[ext_resource type="Script" path="res://characters/muki/shop_item.gd" id="1_ag2mo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_awbxk"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uw50s"]
+radius = 13.0
+
+[node name="ShopItem" type="StaticBody2D"]
+position = Vector2(-11, 14)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_ag2mo")
+metadata/shop_item_name = "Slime Tears"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 4)
+shape = SubResource("CircleShape2D_awbxk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3.25, 3.75)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6bjss")
+
+[node name="InteractableArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+position = Vector2(2, 9)
+shape = SubResource("CircleShape2D_uw50s")
+
+[connection signal="body_entered" from="InteractableArea" to="." method="_on_interactable_area_body_entered"]
