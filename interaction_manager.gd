@@ -8,10 +8,13 @@ func start_interaction():
 	if current_npc:
 		current_npc.start_interaction()
 
-func _on_npc_interaction_started():
+func interaction_started():
+	print('[InteractionManager] interaction started received')
 	player.is_interacting = true  # Disable movement
 
-func _on_npc_interaction_finished():
+func interaction_finished():
+	print('[InteractionManager] interaction finished received')
+	current_npc = null
 	player.is_interacting = false  # Re-enable movement
 
 func set_current_npc(npc):

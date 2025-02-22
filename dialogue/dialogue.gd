@@ -8,12 +8,14 @@ func _ready():
 	$NinePatchRect/Text.visible = true
 	$NinePatchRect.visible = true
 
+func print_text():
+	print('[Dialogue] print_text: ', $NinePatchRect/Text.text)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func set_visibility(visible: bool)->Dialogue:
-	print('setting visible: ', visible)
+	print('[Dialogue] setting visible: ', visible)
 	self.visible = visible
 	$NinePatchRect/Name.visible = visible
 	$NinePatchRect/Text.visible = visible
@@ -21,11 +23,11 @@ func set_visibility(visible: bool)->Dialogue:
 	return self
 
 func set_dialogue_text(text:String)-> Dialogue:
-	print('setting text: ', text)
+	print('[Dialogue] setting text: ', text)
 	$NinePatchRect/Text.text = text
 	return self
 
 func set_dialogue_name(text:String) -> Dialogue:
-	print('setting name: ', text)
+	print('[Dialogue] setting name: ', text)
 	$NinePatchRect/Name.text = text
 	return self

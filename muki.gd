@@ -12,12 +12,12 @@ signal interaction_finished
 const coin_path = "[img=12x12]res://assets/inventory/coin-basic.png[/img]"
 
 func start_interaction():
-	interaction_started.emit()
-	print('starting dialogue')
+	InteractionManager.interaction_started()
+	print('[Muki] starting dialogue')
 	await DialogueManager.start_dialogue(dialogue)
-	print('finished dialogue')
+	print('[Muki] finished dialogue')
 
-	interaction_finished.emit()
+	InteractionManager.interaction_finished()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -63,9 +63,9 @@ func _process(delta):
 		is_interacting = false
 		return
 
-	if Input.is_action_just_pressed("talk"):
+	if Input.is_action_just_pressed("talk") && !is_interacting:
 		play_use_animation()
-		print('[Player] trying to talk')
+		print('[Player] trying to talk FIRST HIT')
 		InteractionManager.start_interaction()
 		await animations.animation_finished
 	
