@@ -153,8 +153,8 @@ wait_time = 0.3
 [node name="Navigation" type="Node2D" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
-path_desired_distance = 2.0
-target_desired_distance = 1.0
+path_desired_distance = 10.0
+target_desired_distance = 5.0
 avoidance_enabled = true
 radius = 25.0
 time_horizon_obstacles = 0.65
@@ -163,7 +163,7 @@ debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="RecalculateTimer" type="Timer" parent="Navigation"]
-wait_time = 0.2
+wait_time = 0.1
 autostart = true
 
 [node name="Aggro" type="Node2D" parent="."]

@@ -1,99 +1,28 @@
-class_name Pathfinder extends Node2D
+class_name Raycasts360 extends Node2D
 
-var vectors : Array[Vector2] = [
-		Vector2(0,-1), #UP 
-		Vector2(1,-1), #UP/RIGHT
-		Vector2(1,0),  #RIGHT
-		Vector2(1,1),  #DOWN/RIGHT
-		Vector2(0,1),  #DOWN
-		Vector2(-1,1), #DOWN/LEFT
-		Vector2(-1,0), #LEFT
-		Vector2(-1,-1) #UP/LEFT
-]
+signal player_on_sight
 
-var interests: Array[float]
-var obstacles:Array[float] = [0 , 0 , 0 , 0 , 0 , 0 , 0 , 0] #Obstacles detected by RayCast 0 none, 1 detect
-var outcomes : Array[ float ] = [ 0, 0, 0, 0, 0, 0, 0, 0 ]
 var rays: Array[RayCast2D]
+var is_player_on_sight: bool = false
 
-var move_dir : Vector2 = Vector2.ZERO
-var best_path : Vector2 = Vector2.ZERO
-var player
-
-@onready var timer: Timer = $Timer
+#The idea is to disable the slime’s areas when returning from chasing.
+#During the returning phase (not wandering), raycasts will spawn, and if they detect the player, they will reactivate the areas.
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Gather all Raycast2D Nodes
-	player = get_node("../../Player")
+	connect("player_on_sight", get_parent,)
 	for c in get_children():
 		if c is RayCast2D:
 			rays.append( c )
-	
-	# Normalize all vectors
-	for i in vectors.size():
-		vectors[ i ] = vectors[ i ].normalized()
-		pass
-	
-	# Perform inital pathfinder function
-	set_path()
-	
-	# Connect our timer
-	timer.timeout.connect( set_path )
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	check_collision_player()
+	if is_player_on_sight:
+		emit_signal("player_on_sight")
 
-# Set the "best_path" vector by checking for desired direction and considering obstacles
-func set_path(): 
-	
-	var player_dir: Vector2 = global_position.direction_to(player.global_position)
-	
-	# Reset obstacle values to 0
-	for i in 8:
-		obstacles[i] = 0
-		outcomes[i] = 0
-	
-	# Check each Raycast2D for collisions & update values in obstacles array
-	for i in 8:
-		if rays[ i ].is_colliding():
-			obstacles[i] += 4
-			obstacles[get_next_i(i)] += 1
-			obstacles[get_prev_i(i)] += 1
-	
-	# Populate our interest array. This array contains values that represent
-	# the desireability of each direction
-	interests.clear()
-	for v in vectors:
-		# We want the dot product: A dot product is an operation that takes two vectors
-		# and returns a value which represents how closely they align, essentially measuring
-		# the "overlap" between their directions. Higher values means more similar vectors
-		interests.append( v.dot( player_dir ) )
-	
-	# Populate outcomes array, by combining interest and obstacle arrays
-	for i in 8:
-		outcomes[i] = interests[i] - obstacles[i]
-	
-	# Set the best path with the Vector2 that corresponds with the outcome with the highest value
-	best_path = vectors[ outcomes.find(outcomes.max()) ]
-	pass
-	
-	
-
-# Returns the next index value, wrapping at 8
-func get_next_i( i : int ) -> int:
-	var n_i : int = i + 1
-	if n_i >= 8:
-		return 0
-	else:
-		return n_i
-
-
-# Returns the previous index value, wrapping at -1
-func get_prev_i( i : int ) -> int:
-	var n_i : int = i - 1
-	if n_i < 0:
-		return 7
-	else:
-		return n_i
+func check_collision_player():
+	for ray in rays:
+		if ray.is_colliding():
+			if ray.get_collider() == Player:
+				is_player_on_sight = true
