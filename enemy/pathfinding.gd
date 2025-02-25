@@ -10,7 +10,6 @@ var is_player_on_sight: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Gather all Raycast2D Nodes
-	connect("player_on_sight", get_parent,)
 	for c in get_children():
 		if c is RayCast2D:
 			rays.append( c )
