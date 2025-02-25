@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://o3xdej4tf14w"]
 
-[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_u5pxm"]
+[ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_u5pxm"]
 [ext_resource type="Texture2D" uid="uid://d115jhppyj06u" path="res://assets/enemy/Slime1_Walk_full.png" id="2_otv7q"]
-[ext_resource type="Script" path="res://enemy/cactus.gd" id="4_2xob6"]
-[ext_resource type="Script" path="res://enemy/navigation.gd" id="5_4p0sr"]
+[ext_resource type="Script" path="res://characters/enemy/cactus.gd" id="4_2xob6"]
+[ext_resource type="Script" path="res://characters/enemy/navigation.gd" id="5_4p0sr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sf84x"]
 radius = 5.09902
@@ -128,7 +128,7 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 2
 position = Vector2(0, -1)
-scale = Vector2(0.6875, 0.71875)
+scale = Vector2(0.7, 0.731)
 texture = ExtResource("2_otv7q")
 hframes = 8
 vframes = 4

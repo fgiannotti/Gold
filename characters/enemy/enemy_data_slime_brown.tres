@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://clx5e4umqhes8"]
 
-[ext_resource type="Script" path="res://enemy/enemy_data.gd" id="1_u0ku4"]
+[ext_resource type="Script" path="res://characters/enemy/enemy_data.gd" id="1_u0ku4"]
 [ext_resource type="Texture2D" uid="uid://cbpw6vdh5vam6" path="res://assets/enemy/Slime3_Run_full.png" id="1_vxpeu"]
 [ext_resource type="Texture2D" uid="uid://dwkgjitork7xn" path="res://assets/enemy/Slime3_Walk_full.png" id="2_oukge"]
 

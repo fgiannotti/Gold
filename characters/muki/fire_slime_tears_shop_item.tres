@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopItem" load_steps=3 format=3 uid="uid://ckehv80lr1xkw"]
+
+[ext_resource type="Resource" uid="uid://cb82hi16pkyir" path="res://inventory/items/fire_slime_tears_item.tres" id="1_43vcy"]
+[ext_resource type="Script" path="res://characters/muki/shop_item_resource.gd" id="2_txc2f"]
+
+[resource]
+script = ExtResource("2_txc2f")
+inventoryItem = ExtResource("1_43vcy")
+description = "Heals 100HP. Spicy but refreshing."
+price = 20

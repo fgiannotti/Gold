@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d15grp2q4psq7"
-path="res://.godot/imported/Chest 0.1-Sheet.png-73dca7b9960795dff497e280d29df303.ctex"
+uid="uid://dn3upu3xoifsl"
+path="res://.godot/imported/Miner's Charm.png-36f6c82bdeb1ae5ba069a7aaa4d2845a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/collectables/Chest 0.1-Sheet.png"
-dest_files=["res://.godot/imported/Chest 0.1-Sheet.png-73dca7b9960795dff497e280d29df303.ctex"]
+source_file="res://assets/shop_items/Miner's Charm.png"
+dest_files=["res://.godot/imported/Miner's Charm.png-36f6c82bdeb1ae5ba069a7aaa4d2845a.ctex"]
 
 [params]
 

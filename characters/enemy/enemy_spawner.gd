@@ -1,10 +1,10 @@
 class_name EnemySpawner extends Node
 
-var enemy_scene : PackedScene = preload("res://enemy/enemy.tscn")
+var enemy_scene : PackedScene = preload("res://characters/enemy/enemy.tscn")
 
 var enemy_type: Array[EnemyData] = [
-	preload("res://enemy/enemy_data_slime_green.tres"),
-	preload("res://enemy/enemy_data_slime_brown.tres")
+	preload("res://characters/enemy/enemy_data_slime_green.tres"),
+	preload("res://characters/enemy/enemy_data_slime_brown.tres")
 ]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
