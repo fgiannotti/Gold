@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Player
 signal food_updated(value: float)
 
-const SPEED = 180
+const SPEED = 120
 
 const run_speed = 1000
 var hp := 20.0
