@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dphbual415c0v"
-path="res://.godot/imported/Tileset 1.6 Rocky ground + walls.png-cf3beb771ff94739dbc6cafb6705295e.ctex"
+uid="uid://bi3va31snagjl"
+path="res://.godot/imported/Fire Slime Tears.png-54f8d2355e6c43ebc34e1a3cc8a5de07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/Tileset 1.6 Rocky ground + walls.png"
-dest_files=["res://.godot/imported/Tileset 1.6 Rocky ground + walls.png-cf3beb771ff94739dbc6cafb6705295e.ctex"]
+source_file="res://assets/items/Fire Slime Tears.png"
+dest_files=["res://.godot/imported/Fire Slime Tears.png-54f8d2355e6c43ebc34e1a3cc8a5de07.ctex"]
 
 [params]
 

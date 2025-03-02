@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://collectables/collectable.gd" id="1_3131k"]
 [ext_resource type="Resource" uid="uid://c13svc1h44qeq" path="res://inventory/items/diamond_item.tres" id="2_lkloc"]
-[ext_resource type="Texture2D" uid="uid://cjwakvgdmw81e" path="res://assets/collectables/ChestSheet 0.5.png" id="3_n6nqk"]
+[ext_resource type="Texture2D" uid="uid://cjwakvgdmw81e" path="res://assets/interactables/ChestSheet 0.5.png" id="3_n6nqk"]
 
 [sub_resource type="Animation" id="Animation_281un"]
 length = 0.001

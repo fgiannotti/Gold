@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gi1yxwyi2icl"
-path="res://.godot/imported/Tileset 1.5 Rocky ground + walls.png-624f1332a09c3a7cf8a31b289d1f8399.ctex"
+uid="uid://ck065vlt8daks"
+path="res://.godot/imported/HealthPotion.png-2b26ceaab867cffaefbaa92772a18f4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/Tileset 1.5 Rocky ground + walls.png"
-dest_files=["res://.godot/imported/Tileset 1.5 Rocky ground + walls.png-624f1332a09c3a7cf8a31b289d1f8399.ctex"]
+source_file="res://assets/items/HealthPotion.png"
+dest_files=["res://.godot/imported/HealthPotion.png-2b26ceaab867cffaefbaa92772a18f4b.ctex"]
 
 [params]
 
