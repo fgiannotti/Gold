@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyg03ht766n1j"]
+[gd_scene load_steps=8 format=3 uid="uid://cyg03ht766n1j"]
 
 [ext_resource type="Texture2D" uid="uid://5ug4kf6f4lt5" path="res://assets/shop_items/Slime Tears.png" id="1_6bjss"]
 [ext_resource type="Script" path="res://characters/muki/shop_item.gd" id="1_ag2mo"]
@@ -8,6 +8,44 @@ radius = 3.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uw50s"]
 radius = 13.0
+
+[sub_resource type="Animation" id="Animation_v1t5f"]
+resource_name = "idle"
+length = 1.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(1.6245, 2, 2.46229),
+"update": 0,
+"values": [Vector2(3.25, 3.75), Vector2(3.25, 2.75), Vector2(3.25, 3.75)]
+}
+
+[sub_resource type="Animation" id="Animation_b1uqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.25, 3.75)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ktvrp"]
+_data = {
+"RESET": SubResource("Animation_b1uqy"),
+"idle": SubResource("Animation_v1t5f")
+}
 
 [node name="ShopItem" type="StaticBody2D"]
 position = Vector2(-11, 14)
@@ -33,4 +71,10 @@ collision_mask = 2
 position = Vector2(2, 9)
 shape = SubResource("CircleShape2D_uw50s")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ktvrp")
+}
+
 [connection signal="body_entered" from="InteractableArea" to="." method="_on_interactable_area_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
