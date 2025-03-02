@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brvtagf3ckf5c"
-path="res://.godot/imported/miner.png-fe0143580103ece956f559c681955387.ctex"
+uid="uid://cacy18h2wad1u"
+path="res://.godot/imported/Rug 0.2.png-cce6b094382ea544b0c0d9428415fb92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/miner.png"
-dest_files=["res://.godot/imported/miner.png-fe0143580103ece956f559c681955387.ctex"]
+source_file="res://assets/interactables/Rug 0.2.png"
+dest_files=["res://.godot/imported/Rug 0.2.png-cce6b094382ea544b0c0d9428415fb92.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://7ldj2fkeixgl"]
 
 [ext_resource type="Script" path="res://muki.gd" id="1_b5e0c"]
-[ext_resource type="Texture2D" uid="uid://cacy18h2wad1u" path="res://assets/characters/Rug 0.2.png" id="2_4d7jc"]
+[ext_resource type="Texture2D" uid="uid://cacy18h2wad1u" path="res://assets/interactables/Rug 0.2.png" id="2_4d7jc"]
 [ext_resource type="Texture2D" uid="uid://bmaxorki32xiv" path="res://assets/characters/Muki 0.2.png" id="2_jtyhe"]
 [ext_resource type="Texture2D" uid="uid://cj20q2h0de0ww" path="res://assets/characters/Muki idle sheet.png" id="2_n6lw6"]
 [ext_resource type="PackedScene" uid="uid://cyg03ht766n1j" path="res://characters/muki/shop_item.tscn" id="3_wam8d"]
@@ -122,7 +122,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 5.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_aydnq")
 }, {
 "duration": 3.0,
@@ -142,28 +142,28 @@ animations = [{
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_cfgpl")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3nyl3")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0ko74")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_dq44m")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_dyma2")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vt2nd")
 }, {
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_v5c5m")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_k0gns")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_lhhut")
 }, {
 "duration": 2.0,
@@ -177,13 +177,13 @@ animations = [{
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_yi8mp")
 }, {
-"duration": 1.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_re3nx")
 }, {
-"duration": 1.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ybct1")
 }, {
-"duration": 1.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_plhmp")
 }, {
 "duration": 2.0,
@@ -215,6 +215,8 @@ shape = SubResource("CircleShape2D_gkvaq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4fcxi")
+animation = &"idle"
+frame_progress = 0.0880061
 
 [node name="ShopItem3" parent="." instance=ExtResource("3_wam8d")]
 position = Vector2(11, 18)

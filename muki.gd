@@ -94,7 +94,7 @@ var selected_shop_item: ShopItem = null
 var idle_count = 0
 func _on_animated_sprite_2d_animation_looped() -> void:
 	print('[Muki] increasing count ',idle_count)
-	if idle_count >= 15:
+	if idle_count >= 10:
 		idle_count = 0
 		$AnimatedSprite2D.play("variation"+str(randi_range(1,2)))
 	else:
