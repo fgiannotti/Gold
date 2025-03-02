@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boat3fu6ld88d"
-path="res://.godot/imported/spritesheet_mines_thick.png-48deb85be877cff677ebab0e4dadf769.ctex"
+uid="uid://jwsauoct4lxm"
+path="res://.godot/imported/GreenPotion.png-a838b2e095068314012340c92a94f274.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/spritesheet_mines_thick.png"
-dest_files=["res://.godot/imported/spritesheet_mines_thick.png-48deb85be877cff677ebab0e4dadf769.ctex"]
+source_file="res://assets/items/GreenPotion.png"
+dest_files=["res://.godot/imported/GreenPotion.png-a838b2e095068314012340c92a94f274.ctex"]
 
 [params]
 
