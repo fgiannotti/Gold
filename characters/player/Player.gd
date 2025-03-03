@@ -101,7 +101,6 @@ func play_movement_animation():
 func play_mine_animation():
 	animations.play("mine" + direction_string(self.facing_direction))
 
-## TODO: use animation WIP
 func play_use_animation():
 	animations.play("use" + direction_string(self.facing_direction))
 

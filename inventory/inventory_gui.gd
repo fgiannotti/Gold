@@ -20,7 +20,7 @@ func _ready():
 
 func _on_item_sold(item_slot: InventorySlot):
 	InteractionManager.sell_item(item_slot.item, item_slot.amount)
-
+	
 func _on_inventory_updated():
 	print('[InventoryGUI] inventory updated')
 	update()
