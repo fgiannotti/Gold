@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://7ldj2fkeixgl"]
+[gd_scene load_steps=31 format=3 uid="uid://7ldj2fkeixgl"]
 
 [ext_resource type="Script" path="res://muki.gd" id="1_b5e0c"]
+[ext_resource type="Texture2D" uid="uid://cacy18h2wad1u" path="res://assets/characters/Rug 0.2.png" id="2_4d7jc"]
 [ext_resource type="Texture2D" uid="uid://bmaxorki32xiv" path="res://assets/characters/Muki 0.2.png" id="2_jtyhe"]
+[ext_resource type="Texture2D" uid="uid://cj20q2h0de0ww" path="res://assets/characters/Muki idle sheet.png" id="2_n6lw6"]
 [ext_resource type="PackedScene" uid="uid://cyg03ht766n1j" path="res://characters/muki/shop_item.tscn" id="3_wam8d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gkvaq"]
@@ -23,6 +25,82 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("2_jtyhe")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_aydnq"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxl7u"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbrk5"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmbac"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfgpl"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nyl3"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ko74"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq44m"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyma2"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vt2nd"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5c5m"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0gns"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhhut"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kweby"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yi8mp"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re3nx"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybct1"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(512, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plhmp"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(544, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ngau"]
+atlas = ExtResource("2_n6lw6")
+region = Rect2(576, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_4fcxi"]
 resource_local_to_scene = true
 animations = [{
@@ -42,16 +120,90 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_aydnq")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_rxl7u")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_cbrk5")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_xmbac")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_cfgpl")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_3nyl3")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_0ko74")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_dq44m")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_dyma2")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_vt2nd")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_v5c5m")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_k0gns")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_lhhut")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_kweby")
+}],
+"loop": true,
+"name": &"variation1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_yi8mp")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_re3nx")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_ybct1")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_plhmp")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_3ngau")
+}],
+"loop": true,
+"name": &"variation2",
+"speed": 5.0
 }]
 
 [node name="Muki" type="Node2D"]
 script = ExtResource("1_b5e0c")
 
-[node name="Table" type="Panel" parent="."]
-offset_left = -15.0
+[node name="Table" type="TextureRect" parent="."]
+offset_left = -32.0
 offset_top = 14.0
-offset_right = 15.0
-offset_bottom = 23.0
+offset_right = 48.0
+offset_bottom = 46.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_4d7jc")
 
 [node name="TalkableArea" type="Area2D" parent="."]
 collision_layer = 16
@@ -64,10 +216,14 @@ shape = SubResource("CircleShape2D_gkvaq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4fcxi")
 
+[node name="ShopItem3" parent="." instance=ExtResource("3_wam8d")]
+position = Vector2(11, 18)
+
 [node name="ShopItem2" parent="." instance=ExtResource("3_wam8d")]
-position = Vector2(5, 14)
+position = Vector2(-3, 18)
 
 [node name="ShopItem" parent="." instance=ExtResource("3_wam8d")]
+position = Vector2(-16, 18)
 
 [node name="ShopUI" type="Control" parent="."]
 layout_mode = 3
@@ -84,36 +240,40 @@ offset_bottom = -8.0
 
 [node name="Title" type="RichTextLabel" parent="ShopUI/ItemDetails"]
 layout_mode = 0
-offset_left = 4.0
+offset_left = 2.0
 offset_top = 2.0
-offset_right = 96.0
-offset_bottom = 18.0
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/normal_font_size = 11
+offset_right = 370.0
+offset_bottom = 65.0
+scale = Vector2(0.25, 0.25)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/normal_font_size = 48
 text = "Fire Slime Tears"
 
 [node name="Description" type="RichTextLabel" parent="ShopUI/ItemDetails"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 15.0
-offset_right = 102.0
-offset_bottom = 54.0
+offset_left = 6.0
+offset_top = 18.0
+offset_right = 374.0
+offset_bottom = 182.0
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/normal_font_size = 13
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/normal_font_size = 48
 text = "Heals 50HP. Salty but refreshing."
 
 [node name="Price" type="RichTextLabel" parent="ShopUI/ItemDetails"]
 layout_mode = 0
-offset_left = 65.0
-offset_top = 46.0
-offset_right = 117.0
-offset_bottom = 65.0
+offset_left = 62.0
+offset_top = 47.0
+offset_right = 218.0
+offset_bottom = 107.0
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/normal_font_size = 13
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "10G [img=12x12]res://assets/inventory/coin-basic.png[/img] "
+text = "10G [img=48x48]res://assets/inventory/coin-basic.png[/img] "
 
 [connection signal="body_entered" from="TalkableArea" to="." method="_on_talkable_area_body_entered"]
 [connection signal="body_exited" from="TalkableArea" to="." method="_on_talkable_area_body_exited"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

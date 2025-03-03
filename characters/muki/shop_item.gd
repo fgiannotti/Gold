@@ -7,7 +7,7 @@ var shop_item: ShopItem
 func _ready() -> void:
 	# set_meta("Shop Item Name", "Slime Tears")  # Store the name in metadata
 	add_to_group("shop_items")  # Add this item to the "shop_items" group
-
+	$AnimationPlayer.play("idle")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -21,3 +21,7 @@ func set_shop_item(new_shop_item: ShopItem):
 	shop_item = new_shop_item
 	$Sprite2D.texture = new_shop_item.inventoryItem.texture
 	
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	$AnimationPlayer.play("idle")

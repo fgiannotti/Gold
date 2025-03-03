@@ -6,4 +6,6 @@
 [resource]
 script = ExtResource("1_cdbpw")
 name = "Slime Tears"
+description = "Can you imagine how hard it was to obtain?"
 texture = ExtResource("2_uarn3")
+sell_price = 2

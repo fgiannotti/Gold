@@ -5,5 +5,7 @@
 
 [resource]
 script = ExtResource("1_qxkge")
-name = "ruby"
+name = "Ruby"
+description = "Valuable but not yummy."
 texture = ExtResource("2_x4v7b")
+sell_price = 5
