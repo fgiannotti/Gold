@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://c13svc1h44qeq"]
 
 [ext_resource type="Script" path="res://inventory/inventory_item.gd" id="1_wlien"]
-[ext_resource type="Texture2D" uid="uid://co1fq0ajv84r1" path="res://assets/items/diamond item.png" id="2_l0v2c"]
+[ext_resource type="Texture2D" uid="uid://b644hvn1n5pjn" path="res://assets/items/diamond item 2.0.png" id="2_xcpcu"]
 
 [resource]
 script = ExtResource("1_wlien")
 name = "Diamond"
 description = "The shinier the better"
-texture = ExtResource("2_l0v2c")
+texture = ExtResource("2_xcpcu")
 sell_price = 20
