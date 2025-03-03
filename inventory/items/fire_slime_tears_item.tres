@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://cb82hi16pkyir"]
 
 [ext_resource type="Script" path="res://inventory/inventory_item.gd" id="1_faril"]
-[ext_resource type="Texture2D" uid="uid://7alemcrt2kwi" path="res://assets/shop_items/Fire Slime Tears.png" id="2_n3116"]
+[ext_resource type="Texture2D" uid="uid://bi3va31snagjl" path="res://assets/items/Fire Slime Tears.png" id="2_dg7uo"]
 
 [resource]
 script = ExtResource("1_faril")
 name = "Fire Slime Tears"
 description = "Can you imagine how hot it was to obtain?"
-texture = ExtResource("2_n3116")
+texture = ExtResource("2_dg7uo")
 sell_price = 4
