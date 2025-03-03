@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dphbual415c0v"
-path="res://.godot/imported/Tileset 1.6 Rocky ground + walls.png-cf3beb771ff94739dbc6cafb6705295e.ctex"
+uid="uid://nt1ckd0bht6a"
+path="res://.godot/imported/Tileset 1.7.png-dbf69219b7dbb6c9ac44906d9132bc43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/Tileset 1.6 Rocky ground + walls.png"
-dest_files=["res://.godot/imported/Tileset 1.6 Rocky ground + walls.png-cf3beb771ff94739dbc6cafb6705295e.ctex"]
+source_file="res://assets/tilemap/Tileset 1.7.png"
+dest_files=["res://.godot/imported/Tileset 1.7.png-dbf69219b7dbb6c9ac44906d9132bc43.ctex"]
 
 [params]
 
