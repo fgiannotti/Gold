@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dikvq6ldpm2dy"]
 
-[ext_resource type="Script" path="res://characters/player/HealthBar.gd" id="1_lsd64"]
+[ext_resource type="Script" path="res://characters/player/FoodBar.gd" id="1_lxikp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x2sao"]
 
@@ -13,10 +13,11 @@ content_margin_top = 1.0
 content_margin_right = 1.0
 content_margin_bottom = 1.0
 bg_color = Color(0.100562, 0.100563, 0.100562, 1)
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
+corner_detail = 6
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 shadow_color = Color(0, 0, 0, 0.439216)
 shadow_offset = Vector2(0, 1)
 
@@ -25,36 +26,35 @@ bg_color = Color(0.99195, 0.99195, 0.991949, 1)
 
 [node name="FoodBar" type="ProgressBar"]
 z_index = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -970.0
-offset_top = 71.0
-offset_right = -906.0
-offset_bottom = 77.0
+clip_contents = true
+anchors_preset = -1
+anchor_left = 0.942
+anchor_top = -0.004
+anchor_right = 1.002
+anchor_bottom = 0.013
+offset_left = -1085.18
+offset_top = 2.0
+offset_right = -1077.3
+offset_bottom = -2.424
 grow_horizontal = 0
+theme_override_font_sizes/font_size = 48
 theme_override_styles/background = SubResource("StyleBoxEmpty_x2sao")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qkmm2")
 step = 1.0
+value = 50.0
 show_percentage = false
-script = ExtResource("1_lsd64")
-metadata/_edit_use_anchors_ = true
+script = ExtResource("1_lxikp")
 
 [node name="BackgroundBar" type="ProgressBar" parent="."]
 z_index = -1
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_ut6ve")
 theme_override_styles/fill = SubResource("StyleBoxFlat_kmcss")
 step = 10.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.41
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

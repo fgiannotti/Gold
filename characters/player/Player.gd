@@ -3,13 +3,10 @@ extends CharacterBody2D
 class_name Player
 signal food_updated(value: float)
 
-const SPEED = 120
+const SPEED = Globals.PLAYER_SPEED
 
 const run_speed = 1000
-var hp := 20.0
-var food: float = 100
-var gold: int = 100
-const STEPS_FOR_HUNGER = 100
+const STEPS_FOR_HUNGER = Globals.STEPS_FOR_HUNGER
 var step_count = 0
 
 const moving = false
@@ -111,8 +108,8 @@ func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exi
 		step_count += 1
 		if step_count >= STEPS_FOR_HUNGER:
 			step_count = 0
-			food -= 1
-			emit_signal("food_updated", food)
+			Globals.food -= 1
+			emit_signal("food_updated", Globals.food)
 
 func direction_string(direction: Vector2):
 	if direction == Vector2.LEFT:
@@ -125,12 +122,12 @@ func direction_string(direction: Vector2):
 		return "Down"
 
 func receive_damage(dmg: float):
-	if dmg < self.hp && !is_immune:
-		self.hp -= dmg
-		print("Player recieved damage: ", dmg, " HP: ", hp)
+	if dmg < Globals.health && !is_immune:
+		Globals.health -= dmg
+		print("Player recieved damage: ", dmg, " HP: ", Globals.health)
 		immunity_cooldown.start()
 		is_immune = true
-	elif dmg > self.hp:
+	elif dmg > Globals.health:
 		print("Dead X(")
 	
 

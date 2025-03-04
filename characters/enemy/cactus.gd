@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player and can_attack:
-		body.receive_damage(1)
+		InteractionManager.receive_damage(1)
 		can_attack = false
 		cooldown_timer.start()
 		knockback(body.velocity)

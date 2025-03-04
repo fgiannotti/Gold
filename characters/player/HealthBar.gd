@@ -1,9 +1,10 @@
-extends ProgressBar
+class_name HealthBar extends ProgressBar
 
-@onready var timer = $Timer
 @onready var background_bar = $BackgroundBar
 
-var food = 0
+signal player_died
+
+var health = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -12,36 +13,32 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _process(delta):
-	#print('[fbar] print heal bar', self.food)
-	#print('[fbar] print heal value', self.value)
-	#print('[fbar] print heal bar', self.max_value)
 	pass
 
-func init_food(_food):
-	self.food = _food
-	self.max_value = _food
-	self.value = _food
+func init_health(_health):
+	self.health = _health
+	self.max_value = _health
+	self.value = _health
 	
-	background_bar.max_value = _food
-	background_bar.value = _food
+	background_bar.max_value = _health
+	background_bar.value = _health
 
 
-func _on_timer_timeout():
-	# print('timer timeout')
-	# background_bar.value = self.food
-	pass
-
-func _on_player_food_updated(value):
-	print('[fbar] food bar update called' , value)
-	var prev_food = self.food
+func _on_player_health_updated(value):
+	print('[HealthBar] health bar update called' , value)
+	var prev_health = self.health
 	
 	
-	self.food = min(self.max_value, value)
-	print('[fbar] before if ' , food)
+	self.health = min(self.max_value, value)
+	print('[HealthBar] before if ' , health)
 	# Took damages
-	if food < prev_food:
-		timer.start()
-	else:
-		background_bar.value = self.food
+	background_bar.value = self.health
 
-	self.value = food
+	self.value = health
+
+
+func _on_value_changed(value: float) -> void:
+	if value <= 0:
+		print('[HealthBar] emitting dead')
+		player_died.emit()
+		
