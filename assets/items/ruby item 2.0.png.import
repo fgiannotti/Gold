@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byeuudrx2hykr"
-path="res://.godot/imported/ruby1.png-2b66d0f1c94dd609499a4c6fcfeaf121.ctex"
+uid="uid://c0jajupa6rhv1"
+path="res://.godot/imported/ruby item 2.0.png-d6d017c06c2861ede9cffab3dee1f116.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/minerals/ruby1.png"
-dest_files=["res://.godot/imported/ruby1.png-2b66d0f1c94dd609499a4c6fcfeaf121.ctex"]
+source_file="res://assets/items/ruby item 2.0.png"
+dest_files=["res://.godot/imported/ruby item 2.0.png-d6d017c06c2861ede9cffab3dee1f116.ctex"]
 
 [params]
 

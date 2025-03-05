@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do4oqlr7wk703"
-path="res://.godot/imported/coal.png-a7e6f8dade950661fdc042e86451e8f9.ctex"
+uid="uid://c8iltr745gyeb"
+path="res://.godot/imported/shadow 4.png-918b25eeb5389a07c4074b73f46a0bc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/minerals/coal.png"
-dest_files=["res://.godot/imported/coal.png-a7e6f8dade950661fdc042e86451e8f9.ctex"]
+source_file="res://assets/particles/shadow 4.png"
+dest_files=["res://.godot/imported/shadow 4.png-918b25eeb5389a07c4074b73f46a0bc3.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brfkr5iwse7le"
-path="res://.godot/imported/Tileset 1.7 guides.png-8b000c21dd99da8a151c2a556ef11be8.ctex"
+uid="uid://b40kh8padlbm5"
+path="res://.godot/imported/For of War 1.1.png-d6fa0470e52305084c478e223d99ceb3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/Tileset 1.7 guides.png"
-dest_files=["res://.godot/imported/Tileset 1.7 guides.png-8b000c21dd99da8a151c2a556ef11be8.ctex"]
+source_file="res://assets/GUI/For of War 1.1.png"
+dest_files=["res://.godot/imported/For of War 1.1.png-d6fa0470e52305084c478e223d99ceb3.ctex"]
 
 [params]
 
