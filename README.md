@@ -9,4 +9,4 @@ Mining game using a Backtracking maze generation algorithm called "Recursive Bac
 
 ______________________
 
-![image](https://github.com/fgiannotti/Gold/assets/60185887/7f0e35c8-a823-4070-aaa3-e738caea0ee9)
+![image](https://github.com/user-attachments/assets/23c178ef-6e53-41f0-af47-bb00211e1268)
