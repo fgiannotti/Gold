@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://gold.gd" id="7_8ltli"]
 [ext_resource type="Script" path="res://tilemaps/walls.gd" id="7_okn77"]
 [ext_resource type="PackedScene" uid="uid://kac2vdauu2h7" path="res://inventory/inventory_gui.tscn" id="10_080ne"]
-[ext_resource type="Texture2D" uid="uid://nt1ckd0bht6a" path="res://assets/tilemap/Tileset 1.7.png" id="10_ohoig"]
+[ext_resource type="Texture2D" uid="uid://s1uresq4v3o7" path="res://assets/tilemap/Tileset 1.9.png" id="10_js707"]
 [ext_resource type="PackedScene" uid="uid://dr02y0y7dkdax" path="res://tilemaps/travel_area.tscn" id="13_j7h45"]
 [ext_resource type="PackedScene" uid="uid://7ldj2fkeixgl" path="res://characters/muki/muki.tscn" id="13_lkaff"]
 [ext_resource type="PackedScene" uid="uid://dpp31cx7rrdv8" path="res://dialogue/Dialogue.tscn" id="14_kro1w"]
@@ -195,7 +195,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-32, 14.5, 32, 14.5, 32
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ffy8a"]
-texture = ExtResource("10_ohoig")
+texture = ExtResource("10_js707")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, -24, -18.9883, -24, -19.0039, 32, -32, 32, -32, -32)

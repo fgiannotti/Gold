@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw14n5238ketm"
-path="res://.godot/imported/GRID Tileset 1.7 Rocky ground + walls (1).png-30844208dce9310bda2e968f8b9fb047.ctex"
+uid="uid://cei2a4xsg45vu"
+path="res://.godot/imported/shadow 1.png-580ba6f8aa649be119f1e29be426ba7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/GRID Tileset 1.7 Rocky ground + walls (1).png"
-dest_files=["res://.godot/imported/GRID Tileset 1.7 Rocky ground + walls (1).png-30844208dce9310bda2e968f8b9fb047.ctex"]
+source_file="res://assets/particles/shadow 1.png"
+dest_files=["res://.godot/imported/shadow 1.png-580ba6f8aa649be119f1e29be426ba7f.ctex"]
 
 [params]
 

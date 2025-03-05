@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpn5lcy5fuocw"
-path="res://.godot/imported/coal (1).png-eebbaf00632879767d0efcd87915f954.ctex"
+uid="uid://bfrvvy3wa8h8s"
+path="res://.godot/imported/GainedHealth v3.png-ef15dd0cbe0489713fd1393d26323f43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/minerals/coal (1).png"
-dest_files=["res://.godot/imported/coal (1).png-eebbaf00632879767d0efcd87915f954.ctex"]
+source_file="res://assets/particles/GainedHealth v3.png"
+dest_files=["res://.godot/imported/GainedHealth v3.png-ef15dd0cbe0489713fd1393d26323f43.ctex"]
 
 [params]
 
