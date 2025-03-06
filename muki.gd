@@ -21,9 +21,9 @@ func start_interaction():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$ShopItem.set_shop_item(load( "res://characters/muki/slime_tears_shop_item.tres"))
-	$ShopItem2.set_shop_item(load("res://characters/muki/fire_slime_tears_shop_item.tres"))
-	$ShopItem3.set_shop_item(load("res://characters/muki/fire_slime_tears_shop_item.tres"))
+	$ShopItem.set_shop_item(load("res://characters/muki/health_potion_shop_item.tres"))
+	$ShopItem2.set_shop_item(load("res://characters/muki/red_apple_shop_item.tres"))
+	$ShopItem3.set_shop_item(load("res://characters/muki/red_apple_shop_item.tres"))
 	$ShopUI.hide()
 	var shop_items = get_tree().get_nodes_in_group("shop_items")
 	for item in shop_items:
@@ -93,7 +93,7 @@ var selected_shop_item: ShopItem = null
 # around 10-15 seconds of animations to do a random variation
 var idle_count = 0
 func _on_animated_sprite_2d_animation_looped() -> void:
-	print('[Muki] increasing count ',idle_count)
+	#print('[Muki] increasing count ',idle_count)
 	if idle_count >= 10:
 		idle_count = 0
 		$AnimatedSprite2D.play("variation"+str(randi_range(1,2)))

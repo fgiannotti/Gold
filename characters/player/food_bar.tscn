@@ -21,8 +21,8 @@ expand_margin_bottom = 4.0
 shadow_color = Color(0, 0, 0, 0.439216)
 shadow_offset = Vector2(0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmcss"]
-bg_color = Color(0.99195, 0.99195, 0.991949, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0e3ha"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="FoodBar" type="ProgressBar"]
 z_index = 1
@@ -52,9 +52,13 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_styles/background = SubResource("StyleBoxFlat_ut6ve")
-theme_override_styles/fill = SubResource("StyleBoxFlat_kmcss")
-step = 10.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_0e3ha")
+step = 1.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="value_changed" from="." to="." method="_on_value_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

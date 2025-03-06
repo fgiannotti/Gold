@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://c8vj2qbn8dyjf"]
 
-[ext_resource type="Script" path="res://inventory/inventory_item.gd" id="1_o6so1"]
+[ext_resource type="Script" path="res://inventory/items/inventory_item.gd" id="1_o6so1"]
 [ext_resource type="Texture2D" uid="uid://bl1l77hk0wbgr" path="res://assets/items/Gold 2.0.png" id="2_0yhg6"]
 
 [resource]

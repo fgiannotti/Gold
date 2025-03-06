@@ -25,6 +25,17 @@ func _ready():
 	CollectableAutoloader.spawn_all_collectables()
 	$CanvasLayer/InventoryGUI.show()
 	$SceneTransitioner.process_mode = Node.PROCESS_MODE_ALWAYS
+	Globals.hp_updated.connect(_on_hp_updated)
+	_on_hp_updated(Globals.health)
+	Globals.food_updated.connect(_on_food_updated)
+	_on_food_updated(Globals.food)
+
+func _on_hp_updated(new_hp: float):
+	health_bar.update_health(new_hp)
+
+func _on_food_updated(new_food: int):
+	food_bar.update_food(new_food)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

@@ -12,7 +12,7 @@ func _ready():
 func _on_value_changed(value: float) -> void:
 	print('[FoodBar] changed value ', value)
 	if value <= 0:
-		print('[HealthBar] emitting starved')
+		print('[FoodBar] emitting starved')
 		# TODO: Make starvation happen faster calling singleton
 		player_starved.emit()
 
@@ -27,10 +27,14 @@ func init_food(_food):
 	background_bar.max_value = _food
 	background_bar.value = _food
 
-func _on_player_food_updated(value):
+func update_food(value):
 	print('[FoodBar] food bar update called' , value)
 	var prev_food = self.food
 	
 	self.food = min(self.max_value, value)
-	self.value = food
+	Globals.food = self.food
+	self.value = self.food
+
+
+func _on_timer_timeout() -> void:
 	background_bar.value = self.food

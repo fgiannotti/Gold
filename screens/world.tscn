@@ -629,6 +629,5 @@ color = Color(0, 0, 0, 1)
 [connection signal="player_died" from="CanvasLayer/HealthBar" to="." method="_on_health_bar_player_died"]
 [connection signal="player_starved" from="CanvasLayer/FoodBar" to="." method="_on_food_bar_player_starved"]
 [connection signal="stair_decided" from="TileMap/walls" to="TravelArea" method="_on_walls_stair_decided"]
-[connection signal="food_updated" from="Player" to="CanvasLayer/FoodBar" method="_on_player_food_updated"]
 [connection signal="mouse_entered" from="Player" to="Player" method="_on_mouse_entered"]
 [connection signal="body_entered" from="TravelArea" to="." method="_on_travel_area_body_entered"]

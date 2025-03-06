@@ -1,8 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://b15064hesdf61"]
+[gd_scene load_steps=7 format=3 uid="uid://b15064hesdf61"]
 
 [ext_resource type="Script" path="res://inventory/inventory_slot_gui.gd" id="1_hhod6"]
 [ext_resource type="Texture2D" uid="uid://dxe4hqw0l3fv7" path="res://assets/inventory/inventorySlot.png" id="1_odgjs"]
 [ext_resource type="Script" path="res://inventory/slot_hover.gd" id="3_e3oay"]
+
+[sub_resource type="Animation" id="Animation_le0kt"]
+resource_name = "cooldown"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cooldown:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.207843, 0.207843, 0.207843, 0.34902), Color(0.145098, 0.145098, 0.145098, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2feyv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cooldown:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.14405, 0.14405, 0.14405, 0.258824)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vyxhj"]
+_data = {
+"RESET": SubResource("Animation_2feyv"),
+"cooldown": SubResource("Animation_le0kt")
+}
 
 [node name="Slot" type="Panel"]
 self_modulate = Color(0, 0, 0, 0)
@@ -17,12 +54,29 @@ texture = ExtResource("1_odgjs")
 centered = false
 vframes = 2
 
+[node name="Cooldown" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 98.0
+offset_bottom = 97.0
+color = Color(0.14405, 0.14405, 0.14405, 0.258824)
+
+[node name="Cooldown2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 98.0
+offset_bottom = 97.0
+color = Color(0.145098, 0.145098, 0.145098, 0)
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = -1.0
+offset_left = -5.0
+offset_top = 4.0
 offset_right = 95.0
-offset_bottom = 96.0
+offset_bottom = 104.0
 
 [node name="Panel" type="Panel" parent="CenterContainer"]
 layout_mode = 2
@@ -87,6 +141,11 @@ theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Sell Price: 10G [img=32x32
 ]res://assets/inventory/coin-basic.png[/img] "
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vyxhj")
+}
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

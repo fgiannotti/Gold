@@ -11,4 +11,5 @@ func _process(delta):
 
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER:
+		Globals.restart()
 		get_tree().change_scene_to_file("res://screens/world.tscn")

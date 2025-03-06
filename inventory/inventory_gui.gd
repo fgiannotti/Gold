@@ -17,10 +17,16 @@ func _ready():
 	for i in range(slots.size()):
 		print('[InventoryGUI] connecting slot with item_sold ', i)
 		slots[i].connect("item_sold", _on_item_sold)
+		slots[i].connect("item_clicked", _on_item_clicked)
 
 func _on_item_sold(item_slot: InventorySlot):
 	InteractionManager.sell_item(item_slot.item, item_slot.amount)
-	
+
+func _on_item_clicked(item_slot: InventorySlot):
+	if item_slot.item.has_method("consume"):
+		print("[InventoryGUI] Knows how to consume")
+		InteractionManager.consume_item(item_slot.item)
+
 func _on_inventory_updated():
 	print('[InventoryGUI] inventory updated')
 	update()

@@ -44,6 +44,11 @@ func buy_item(shopItem: ShopItem):
 	Globals.gold -= shopItem.price
 	inventoryGUI.inventory.insert(shopItem.inventoryItem)
 
+func consume_item(inv_item: InventoryItem):
+	print('[InteractionManager] CONSUMING!!')
+	inv_item.consume(player)
+	inventoryGUI.inventory.remove_one(inv_item)
+
 func sell_item(inv_item: InventoryItem, amount: int):
 	print('SELLING ITEMMM: ', inv_item.name)
 	Globals.gold += inv_item.sell_price * amount
@@ -51,8 +56,6 @@ func sell_item(inv_item: InventoryItem, amount: int):
 
 func receive_damage(dmg: float):
 	player.receive_damage(dmg)
-	health_bar.value -= dmg
-		
 	
 func get_player_gold() -> int:
 	return Globals.gold

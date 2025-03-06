@@ -5,6 +5,7 @@ extends Panel
 @onready var label: Label = $CenterContainer/Panel/Label
 
 signal item_sold(item: InventorySlot)
+signal item_clicked(item: InventorySlot)
 
 var on_sell_mode = false
 var mouse_on_item = true
@@ -15,12 +16,26 @@ func set_on_sell_mode(val: bool):
 
 func _ready():
 	$SlotHover.hide()
-
+	$Cooldown.show()
+	$Cooldown.color = "#25252500"
+var consuming_item = false
 func _input(event):
-	if event is InputEventMouseButton:
-		if mouse_on_item == true && on_sell_mode && inventory_item_in_slot:
-			item_sold.emit(self.inventory_item_in_slot)
-			
+	if consuming_item:
+		return
+
+	consuming_item = true
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if mouse_on_item == true && inventory_item_in_slot:
+			if on_sell_mode: 
+				print('[Slot] selling item') 
+				item_sold.emit(self.inventory_item_in_slot)
+			else:
+				print('[Slot] using item') 
+				item_clicked.emit(self.inventory_item_in_slot)
+				$AnimationPlayer.play("cooldown")
+				await $AnimationPlayer.animation_finished
+	consuming_item = false
+
 func update_slot(itemSlot: InventorySlot):
 	if itemSlot.item:
 		background_sprite.frame = 1
@@ -36,6 +51,7 @@ func update_slot(itemSlot: InventorySlot):
 		inventory_item_in_slot = null
 
 func _on_mouse_entered() -> void:
+	print('[Slot] mouse on item ', self.name)
 	mouse_on_item = true
 	if on_sell_mode && inventory_item_in_slot: $SlotHover.show()
 
