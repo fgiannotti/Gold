@@ -153,8 +153,6 @@ target_desired_distance = 1.0
 avoidance_enabled = true
 radius = 25.0
 time_horizon_obstacles = 0.65
-debug_enabled = true
-debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="RecalculateTimer" type="Timer" parent="Navigation"]

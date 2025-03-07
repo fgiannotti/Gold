@@ -216,7 +216,6 @@ shape = SubResource("CircleShape2D_gkvaq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4fcxi")
 animation = &"idle"
-frame_progress = 0.0880061
 
 [node name="ShopItem3" parent="." instance=ExtResource("3_wam8d")]
 position = Vector2(11, 18)

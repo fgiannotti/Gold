@@ -22,6 +22,17 @@ func insert(item: InventoryItem):
 			inventory_updated.emit()
 			return
 
+func remove_one(item: InventoryItem):
+	print('[Inventory] removing one item: ', item.name)
+	for i in range(itemSlots.size()):
+		if itemSlots[i].item == item:
+			itemSlots[i].amount -= 1
+			if itemSlots[i].amount <= 0:
+				itemSlots[i].amount = 0
+				itemSlots[i].item = null
+			inventory_updated.emit()
+			return
+
 func delete(item: InventoryItem):
 	print('[Inventory] deleting item: ', item.name)
 	for i in range(itemSlots.size()):

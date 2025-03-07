@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopItem" load_steps=3 format=3 uid="uid://d0l0kq3vfr6il"]
+
+[ext_resource type="Resource" uid="uid://bus38ur7yogwv" path="res://inventory/items/red_apple.tres" id="1_s7xa7"]
+[ext_resource type="Script" path="res://characters/muki/shop_item_resource.gd" id="2_221h3"]
+
+[resource]
+script = ExtResource("2_221h3")
+inventoryItem = ExtResource("1_s7xa7")
+description = "Recovers 25 hunger."
+price = 30

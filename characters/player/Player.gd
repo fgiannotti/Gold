@@ -1,15 +1,11 @@
 extends CharacterBody2D
 
 class_name Player
-signal food_updated(value: float)
 
-const SPEED = 120
+const SPEED = PlayerManager.PLAYER_SPEED
 
 const run_speed = 1000
-var hp := 20.0
-var food: float = 100
-var gold: int = 100
-const STEPS_FOR_HUNGER = 100
+const STEPS_FOR_HUNGER = PlayerManager.STEPS_FOR_HUNGER
 var step_count = 0
 
 const moving = false
@@ -25,8 +21,8 @@ var facing_direction: Vector2 # Saves last moved direction
 
 
 func _ready():
-	print("player is at ", self.global_position)
-	
+	pass
+
 func _process(delta):
 	var direction = process_direction()
 
@@ -101,7 +97,6 @@ func play_movement_animation():
 func play_mine_animation():
 	animations.play("mine" + direction_string(self.facing_direction))
 
-## TODO: use animation WIP
 func play_use_animation():
 	animations.play("use" + direction_string(self.facing_direction))
 
@@ -112,8 +107,7 @@ func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exi
 		step_count += 1
 		if step_count >= STEPS_FOR_HUNGER:
 			step_count = 0
-			food -= 1
-			emit_signal("food_updated", food)
+			PlayerManager.set_food(PlayerManager.food-1)
 
 func direction_string(direction: Vector2):
 	if direction == Vector2.LEFT:
@@ -126,13 +120,11 @@ func direction_string(direction: Vector2):
 		return "Down"
 
 func receive_damage(dmg: float):
-	if dmg < self.hp && !is_immune:
-		self.hp -= dmg
-		print("Player recieved damage: ", dmg, " HP: ", hp)
+	if !is_immune:
+		PlayerManager.set_health(PlayerManager.health - dmg)
+		print("Player recieved damage: ", dmg, " HP: ", PlayerManager.health)
 		immunity_cooldown.start()
 		is_immune = true
-	elif dmg > self.hp:
-		print("Dead X(")
 	
 
 func _on_timer_timeout() -> void:

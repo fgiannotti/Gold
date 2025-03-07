@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://cyymbmhv6q24e"]
+
+[ext_resource type="Script" path="res://characters/player/HealthBar.gd" id="1_anxwk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0wynx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5yd1"]
+bg_color = Color(0, 0.584039, 0.186169, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hj68"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.100562, 0.100563, 0.100562, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+shadow_color = Color(0, 0, 0, 0.439216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q1mq"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_i3h4v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_x7i5h"]
+resource_name = "drop"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.965936, 1),
+"update": 0,
+"values": [100.0, 60.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8d5sg"]
+_data = {
+"RESET": SubResource("Animation_i3h4v"),
+"drop": SubResource("Animation_x7i5h")
+}
+
+[node name="HealthBar" type="ProgressBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -1067.0
+offset_bottom = -591.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/background = SubResource("StyleBoxEmpty_0wynx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h5yd1")
+value = 50.0
+script = ExtResource("1_anxwk")
+
+[node name="BackgroundBar" type="ProgressBar" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.000236511
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_1hj68")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1q1mq")
+step = 1.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8d5sg")
+}
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

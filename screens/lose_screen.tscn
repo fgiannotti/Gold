@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy3kbjenyh52p"]
+
+[ext_resource type="Script" path="res://screens/retry.gd" id="1_a60an"]
+[ext_resource type="Script" path="res://screens/lose_screen.gd" id="1_easvw"]
+
+[node name="LoseScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_easvw")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = 144.0
+offset_right = -328.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 128
+bbcode_enabled = true
+text = "[shake rate=12.0 level=3 connected=1]You lost.[/shake]"
+
+[node name="Retry" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 336.0
+offset_right = 680.0
+offset_bottom = 448.0
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "Retry?_"
+script = ExtResource("1_a60an")
+
+[node name="Timer" type="Timer" parent="Control/Retry"]
+autostart = true
+
+[connection signal="timeout" from="Control/Retry/Timer" to="Control/Retry" method="_on_timer_timeout"]

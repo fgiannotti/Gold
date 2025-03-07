@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RedApple" load_steps=3 format=3 uid="uid://bus38ur7yogwv"]
+
+[ext_resource type="Script" path="res://inventory/items/red_apple.gd" id="1_iuluu"]
+[ext_resource type="Texture2D" uid="uid://d0jpx4yu5h3md" path="res://assets/items/RedApple.png" id="2_sqpig"]
+
+[resource]
+script = ExtResource("1_iuluu")
+recover_value = 25
+name = "Red Apple"
+description = "Recovers 25 hunger."
+texture = ExtResource("2_sqpig")
+sell_price = 3

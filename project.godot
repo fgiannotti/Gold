@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Gold"
-run/main_scene="res://world.tscn"
+run/main_scene="res://screens/world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,7 @@ MineralAutoloader="*res://collectables/minerals/autoloader.gd"
 CollectableAutoloader="*res://collectables/collectables_autoloader.gd"
 InteractionManager="*res://interaction_manager.gd"
 DialogueManager="*res://dialogue/dialogue_manager.gd"
+PlayerManager="*res://screens/player_manager.gd"
 
 [file_customization]
 

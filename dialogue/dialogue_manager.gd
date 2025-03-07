@@ -22,7 +22,7 @@ func start_dialogue(lines: Array[Dictionary]) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if dialogue_node.is_visible() and event.is_action_pressed("talk"):
+	if dialogue_node!=null and dialogue_node.is_visible() and event.is_action_pressed("talk"):
 		show_next_line()
 
 func show_next_line() -> void:

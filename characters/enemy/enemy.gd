@@ -15,10 +15,7 @@ func _ready() -> void:
 	hp = enemy_data.hp
 
 func _physics_process(delta: float) -> void:
-	
-	
 	update_animation()
-
 	
 func update_animation():
 	
@@ -37,11 +34,8 @@ func update_animation():
 	elif self.velocity.y < 0:
 		animation_player.play("walkUp")
 
-
 func _on_aggro_range_body_entered(body: Node2D) -> void:
 	sprite.texture = self.enemy_data.run_sprite
-
-
 
 func _on_de_aggro_range_body_exited(body: Node2D) -> void:
 	sprite.texture = self.enemy_data.walk_sprite

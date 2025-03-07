@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://cmgod1cixqu6u"]
 
-[ext_resource type="Script" path="res://inventory/inventory_item.gd" id="1_4clsv"]
+[ext_resource type="Script" path="res://inventory/items/inventory_item.gd" id="1_4clsv"]
 [ext_resource type="Texture2D" uid="uid://d2h0338cxpu3o" path="res://assets/items/Raw Iron item 2.0.png" id="2_4pnpq"]
 
 [resource]

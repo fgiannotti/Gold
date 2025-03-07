@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player and can_attack:
-		body.receive_damage(1)
+		InteractionManager.receive_damage(3)
 		can_attack = false
 		cooldown_timer.start()
 		knockback(body.velocity)
@@ -26,6 +26,6 @@ func _on_attack_cooldown_timeout() -> void:
 	can_attack = true
 
 func knockback(player_velocity: Vector2):
-	var knockbackDirection = (player_velocity -enemy.velocity).normalized() * knockbackPower
+	var knockbackDirection = (player_velocity - enemy.velocity).normalized() * knockbackPower
 	enemy.velocity = knockbackDirection
 	enemy.move_and_slide()

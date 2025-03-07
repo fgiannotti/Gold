@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopItem" load_steps=3 format=3 uid="uid://dbo06cft605b3"]
+
+[ext_resource type="Resource" uid="uid://cnanvje1u7wwc" path="res://inventory/items/health_potion.tres" id="1_qibtd"]
+[ext_resource type="Script" path="res://characters/muki/shop_item_resource.gd" id="2_xj5df"]
+
+[resource]
+script = ExtResource("2_xj5df")
+inventoryItem = ExtResource("1_qibtd")
+description = "Heals 10 HP."
+price = 35

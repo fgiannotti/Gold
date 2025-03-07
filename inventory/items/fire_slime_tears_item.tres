@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://cb82hi16pkyir"]
 
-[ext_resource type="Script" path="res://inventory/inventory_item.gd" id="1_faril"]
+[ext_resource type="Script" path="res://inventory/items/inventory_item.gd" id="1_faril"]
 [ext_resource type="Texture2D" uid="uid://bi3va31snagjl" path="res://assets/items/Fire Slime Tears.png" id="2_dg7uo"]
 
 [resource]
