@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 class_name Player
 
-const SPEED = Globals.PLAYER_SPEED
+const SPEED = PlayerManager.PLAYER_SPEED
 
 const run_speed = 1000
-const STEPS_FOR_HUNGER = Globals.STEPS_FOR_HUNGER
+const STEPS_FOR_HUNGER = PlayerManager.STEPS_FOR_HUNGER
 var step_count = 0
 
 const moving = false
@@ -107,7 +107,7 @@ func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exi
 		step_count += 1
 		if step_count >= STEPS_FOR_HUNGER:
 			step_count = 0
-			Globals.set_food(Globals.food-1)
+			PlayerManager.set_food(PlayerManager.food-1)
 
 func direction_string(direction: Vector2):
 	if direction == Vector2.LEFT:
@@ -121,8 +121,8 @@ func direction_string(direction: Vector2):
 
 func receive_damage(dmg: float):
 	if !is_immune:
-		Globals.set_health(Globals.health - dmg)
-		print("Player recieved damage: ", dmg, " HP: ", Globals.health)
+		PlayerManager.set_health(PlayerManager.health - dmg)
+		print("Player recieved damage: ", dmg, " HP: ", PlayerManager.health)
 		immunity_cooldown.start()
 		is_immune = true
 	

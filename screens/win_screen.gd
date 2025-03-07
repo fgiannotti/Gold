@@ -2,7 +2,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Control/Results.text = "Gold obtained: " + str(InteractionManager.get_player_gold())+ "G" + "\n Total time: "+InteractionManager.get_total_time()
+	$Control/Results.text = "Gold obtained: " + str(PlayerManager.gold)+ "G" + "\n Total time: "+InteractionManager.get_total_time()
 	pass # Replace with function body.
 
 

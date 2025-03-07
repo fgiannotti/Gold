@@ -22,7 +22,7 @@ MineralAutoloader="*res://collectables/minerals/autoloader.gd"
 CollectableAutoloader="*res://collectables/collectables_autoloader.gd"
 InteractionManager="*res://interaction_manager.gd"
 DialogueManager="*res://dialogue/dialogue_manager.gd"
-Globals="*res://screens/globals.gd"
+PlayerManager="*res://screens/player_manager.gd"
 
 [file_customization]
 

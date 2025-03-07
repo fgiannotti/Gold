@@ -47,16 +47,13 @@ func change_background_value():
 	if ongoing_animation: return
 	
 	ongoing_animation = true
-	var anim_player = $AnimationPlayer
-	for anim_name in anim_player.get_animation_list():
-		print("Animation:", anim_name)
 	var track_idx = 0
 	var anim = $AnimationPlayer.get_animation("drop") # Fetch first animation
 	if anim:
 		var initial_keyframe_index = 0
-		var from_value = background_bar.value
+		var from_value = background_bar.value # health before dmg 
 		var final_keyframe_index = 1
-		var to_value = self.health
+		var to_value = self.health # health after damage
 		anim.track_set_key_value(track_idx, initial_keyframe_index, from_value)
 		anim.track_set_key_value(track_idx, final_keyframe_index, to_value)
 

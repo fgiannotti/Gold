@@ -29,11 +29,11 @@ func set_health(new_health: float):
 	hp_updated.emit(new_health) 
 
 func set_food(new_food: float):
-	print('[Globals] setting food ', new_food)
+	print('[PlayerManager] setting food ', new_food)
 	self.food = new_food
 	food_updated.emit(new_food) 
 	
 func restart():
-	Globals.food = INITIAL_FOOD
-	Globals.gold = INITIAL_GOLD
-	Globals.health = INITIAL_HEALTH
+	PlayerManager.food = INITIAL_FOOD
+	PlayerManager.gold = INITIAL_GOLD
+	PlayerManager.health = INITIAL_HEALTH

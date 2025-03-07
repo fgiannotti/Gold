@@ -11,8 +11,8 @@ extends Node2D
 var floor = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	food_bar.init_food(Globals.food)
-	health_bar.init_health(Globals.health)
+	food_bar.init_food(PlayerManager.food)
+	health_bar.init_health(PlayerManager.health)
 	DialogueManager.set_dialogue_ui($CanvasLayer/Dialogue)
 	InteractionManager.set_player($Player)
 	InteractionManager.set_inventory($CanvasLayer/InventoryGUI)
@@ -25,14 +25,17 @@ func _ready():
 	CollectableAutoloader.spawn_all_collectables()
 	$CanvasLayer/InventoryGUI.show()
 	$SceneTransitioner.process_mode = Node.PROCESS_MODE_ALWAYS
-	Globals.hp_updated.connect(_on_hp_updated)
-	_on_hp_updated(Globals.health)
-	Globals.food_updated.connect(_on_food_updated)
-	_on_food_updated(Globals.food)
+	PlayerManager.hp_updated.connect(_on_hp_updated)
+	_on_hp_updated(PlayerManager.health)
+	PlayerManager.food_updated.connect(_on_food_updated)
+	_on_food_updated(PlayerManager.food)
 
+
+# Update UI
 func _on_hp_updated(new_hp: float):
 	health_bar.update_health(new_hp)
 
+# Update UI
 func _on_food_updated(new_food: int):
 	food_bar.update_food(new_food)
 
@@ -66,3 +69,7 @@ func _on_health_bar_player_died() -> void:
 
 func _on_food_bar_player_starved() -> void:
 	$SceneTransitioner.trigger_lose()
+
+
+func _on_ladder_area_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

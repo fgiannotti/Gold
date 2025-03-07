@@ -32,7 +32,7 @@ func update_food(value):
 	var prev_food = self.food
 	
 	self.food = min(self.max_value, value)
-	Globals.food = self.food
+	PlayerManager.food = self.food
 	self.value = self.food
 
 

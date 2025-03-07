@@ -41,7 +41,7 @@ func set_inventory(i):
 func buy_item(shopItem: ShopItem):
 	# TODO: Avoid negative money
 	print('BUYING ITEMMM: ', shopItem.inventoryItem.name)
-	Globals.gold -= shopItem.price
+	PlayerManager.gold -= shopItem.price
 	inventoryGUI.inventory.insert(shopItem.inventoryItem)
 
 func consume_item(inv_item: InventoryItem):
@@ -51,20 +51,17 @@ func consume_item(inv_item: InventoryItem):
 
 func sell_item(inv_item: InventoryItem, amount: int):
 	print('SELLING ITEMMM: ', inv_item.name)
-	Globals.gold += inv_item.sell_price * amount
+	PlayerManager.gold += inv_item.sell_price * amount
 	inventoryGUI.inventory.delete(inv_item)
 
 func receive_damage(dmg: float):
 	player.receive_damage(dmg)
-	
-func get_player_gold() -> int:
-	return Globals.gold
+
+var start_time = Time.get_ticks_msec()  # Capture the start time in milliseconds
 
 func get_total_time() -> String:
 	var elapsed = (Time.get_ticks_msec() - start_time) / 1000  # Convert to seconds
 	return format_time(elapsed) # Example Output: "00:05:23"
-
-var start_time = Time.get_ticks_msec()  # Capture the start time in milliseconds
 
 func format_time(seconds: int) -> String:
 	var hours = seconds / 3600
