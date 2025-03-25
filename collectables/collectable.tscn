@@ -2,21 +2,23 @@
 
 [ext_resource type="Script" path="res://collectables/collectable.gd" id="1_lnhni"]
 [ext_resource type="Resource" uid="uid://ca6ofjq7o6pq0" path="res://inventory/items/coal_item.tres" id="2_7yq5t"]
-[ext_resource type="Texture2D" uid="uid://djlvewue6t3v0" path="res://assets/minerals/coal right.png" id="3_58vk8"]
+[ext_resource type="Texture2D" uid="uid://u7lsfir3cl3j" path="res://assets/minerals/coal left.png" id="3_je4vj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0gom"]
-resource_local_to_scene = true
-size = Vector2(13, 20)
+[sub_resource type="CircleShape2D" id="CircleShape2D_yu6xx"]
+radius = 18.0
 
 [node name="Collectable" type="Node2D"]
 script = ExtResource("1_lnhni")
 collectableAsItem = ExtResource("2_7yq5t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_58vk8")
+texture = ExtResource("3_je4vj")
 
 [node name="CollectableArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectableArea"]
-position = Vector2(26, -7)
-shape = SubResource("RectangleShape2D_m0gom")
+[node name="ColShape" type="CollisionShape2D" parent="CollectableArea"]
+position = Vector2(16, -8)
+shape = SubResource("CircleShape2D_yu6xx")
+
+[connection signal="body_entered" from="CollectableArea" to="." method="_on_collectable_area_body_entered"]
+[connection signal="body_exited" from="CollectableArea" to="." method="_on_collectable_area_body_exited"]

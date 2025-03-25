@@ -30,6 +30,12 @@ func collectable_at_tile(tileset_cords: Vector2i) -> Node2D:
 
 	return null
 
+func collectable_at_world_pos(world_cords: Vector2i):
+	var tileset_cords = self.local_to_map(world_cords)
+	print('cords mapped to local ', world_cords, '  in tileset : ', tileset_cords)
+	
+	return collectable_at_tile(tileset_cords)
+	
 func collect_tile(cords: Vector2i):
 	var tileset_cords = self.local_to_map(cords)
 	print('cords mapped to local ', cords, '  in tileset : ', tileset_cords)

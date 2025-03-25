@@ -270,7 +270,13 @@ position = Vector2(0.0360003, 4.68307)
 scale = Vector2(1.14518, 1.0892)
 polygon = PackedVector2Array(-3.84, 6.4, 3.84, 6.4, 3.84, -3.84, -3.84, -3.84)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="InmunityCooldown" type="Timer" parent="."]
 wait_time = 1.5
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="UseCooldown" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="timeout" from="InmunityCooldown" to="." method="_on_inmunity_cooldown_timeout"]
+[connection signal="timeout" from="InmunityCooldown" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="UseCooldown" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="UseCooldown" to="." method="_on_use_cooldown_timeout"]

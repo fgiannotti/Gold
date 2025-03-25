@@ -40,9 +40,15 @@ func set_inventory(i):
 
 func buy_item(shopItem: ShopItem):
 	# TODO: Avoid negative money
+	if player.is_interacting:
+		print('[InteractionManager] Stopped buy because player is interacting with something else')
+		return false
+	player.is_interacting = true
 	print('BUYING ITEMMM: ', shopItem.inventoryItem.name)
 	PlayerManager.gold -= shopItem.price
 	inventoryGUI.inventory.insert(shopItem.inventoryItem)
+	player.use_cooldown.start()
+	return true
 
 func consume_item(inv_item: InventoryItem):
 	print('[InteractionManager] CONSUMING!!')

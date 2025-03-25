@@ -19,7 +19,10 @@ func _process(delta: float) -> void:
 	pass
 
 func collect() -> InventoryItem:
-	print('collect called!!')
+	print('[Collectable] collect called!!')
+	if !player_in_area:
+		print('[Collectable] collect called but player no in area, returning...')
+		return
 	if animations != null: 
 		animations.play(animation_name)
 		await animations.animation_finished
@@ -44,9 +47,11 @@ func facing_down():
 	
 func _on_collectable_area_body_entered(body: Node2D) -> void:
 	if body is Player:
+		print('[Collectable] player in area')
 		player_in_area = true
 
 
 func _on_collectable_area_body_exited(body: Node2D) -> void:
 	if body is Player:
+		print('[Collectable] player left area')
 		player_in_area = false

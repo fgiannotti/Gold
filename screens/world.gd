@@ -51,7 +51,13 @@ func _on_inventory_opened() -> void:
 	# get_tree().paused = true
 	pass
 
-func _on_travel_area_body_entered(_body: Node2D) -> void:
+func _on_health_bar_player_died() -> void:
+	$SceneTransitioner.trigger_lose()
+
+func _on_food_bar_player_starved() -> void:
+	$SceneTransitioner.trigger_lose()
+
+func _on_ladder_area_body_entered(body: Node2D) -> void:
 	floor += 1
 	get_tree().paused = true  # Pauses everything
 	if floor == 3:
@@ -63,13 +69,3 @@ func _on_travel_area_body_entered(_body: Node2D) -> void:
 	$TileMap/walls.restart_maze()
 	await $SceneTransitioner.trigger_unveil_screen()
 	get_tree().paused = false 
-
-func _on_health_bar_player_died() -> void:
-	$SceneTransitioner.trigger_lose()
-
-func _on_food_bar_player_starved() -> void:
-	$SceneTransitioner.trigger_lose()
-
-
-func _on_ladder_area_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
