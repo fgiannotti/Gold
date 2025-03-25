@@ -528,9 +528,9 @@ script = ExtResource("7_egp0i")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 200.0
+offset_left = 107.0
 offset_top = 124.0
-offset_right = 277.0
+offset_right = 184.0
 offset_bottom = 173.0
 grow_horizontal = 0
 scale = Vector2(0.5, 0.5)
@@ -595,7 +595,7 @@ editor_draw_screen = false
 script = ExtResource("15_ltbuh")
 tileMapLayer = NodePath("../../TileMap/walls")
 
-[node name="TravelArea" parent="." instance=ExtResource("16_26qvb")]
+[node name="LadderArea" parent="." instance=ExtResource("16_26qvb")]
 
 [node name="Muki" parent="." instance=ExtResource("17_1bifo")]
 visibility_layer = 3
@@ -628,6 +628,6 @@ color = Color(0, 0, 0, 1)
 [connection signal="opened" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_opened"]
 [connection signal="player_died" from="CanvasLayer/HealthBar" to="." method="_on_health_bar_player_died"]
 [connection signal="player_starved" from="CanvasLayer/FoodBar" to="." method="_on_food_bar_player_starved"]
-[connection signal="stair_decided" from="TileMap/walls" to="TravelArea" method="_on_walls_stair_decided"]
+[connection signal="stair_decided" from="TileMap/walls" to="LadderArea" method="_on_walls_stair_decided"]
 [connection signal="mouse_entered" from="Player" to="Player" method="_on_mouse_entered"]
-[connection signal="body_entered" from="TravelArea" to="." method="_on_travel_area_body_entered"]
+[connection signal="body_entered" from="LadderArea" to="." method="_on_ladder_area_body_entered"]

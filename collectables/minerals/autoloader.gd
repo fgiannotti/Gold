@@ -98,6 +98,7 @@ func spawn_mineral_at_pos(coords: Vector2i, valid_pos: int):
 	var mineral_instance: Node = preload("res://collectables/minerals/mineral.tscn").instantiate()
 	mineral_instance.add_to_group("minerals", true)
 	mineral_instance.mineral_data = minerals_data_dict[mineral_name][valid_pos]
+	mineral_instance.use_collision_shape_from_direction(valid_pos)
 	# print('mineral data: ', mineral_instance.mineral_data.resource_name)
 	collectables_tilemap.spawn_scene_at_tile(coords, mineral_instance)
 	return
