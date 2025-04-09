@@ -2,14 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://bv7h1ae33nhjo" path="res://collectables/collectable.tscn" id="1_s673v"]
 [ext_resource type="Script" path="res://collectables/minerals/mineral.gd" id="2_eg51r"]
+[ext_resource type="Texture2D" uid="uid://7qct1fmoee62" path="res://assets/minerals/coal_top.png" id="3_gu5pp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1o44y"]
-resource_local_to_scene = true
-size = Vector2(13, 20)
-
-[node name="Coal" instance=ExtResource("1_s673v")]
+[node name="Mineral" instance=ExtResource("1_s673v")]
 script = ExtResource("2_eg51r")
 mineral_data = null
 
-[node name="CollisionShape2D" parent="CollectableArea" index="0"]
-shape = SubResource("RectangleShape2D_1o44y")
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_gu5pp")
+
+[node name="CollectableArea" parent="." index="1"]
+collision_layer = 8
+collision_mask = 2
+
+[node name="ColShape" parent="CollectableArea" index="0"]
+position = Vector2(-2, -16)

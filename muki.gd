@@ -41,7 +41,8 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if $ShopUI.is_visible() and event.is_action_pressed("use"):
 		print('[Muki] buying item!!! ', selected_shop_item.inventoryItem.name)
-		InteractionManager.buy_item(selected_shop_item)
+		var success = InteractionManager.buy_item(selected_shop_item)
+		if !success: return
 		delete_related_item(selected_shop_item)
 		$ShopUI.hide()
 		selected_shop_item = null

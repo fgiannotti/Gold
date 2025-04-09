@@ -10,10 +10,10 @@ var step_count = 0
 
 const moving = false
 var is_immune = false
-@onready var is_interacting: bool = false
-
+var is_interacting: bool = false
+@onready var use_cooldown = $UseCooldown
 @onready var animations = $AnimationPlayer
-@onready var immunity_cooldown = $Timer
+@onready var immunity_cooldown = $InmunityCooldown
 
 @export var collectablesLayer: TileMapLayer
 
@@ -39,24 +39,27 @@ func _process(delta):
 		is_interacting = true
 		
 		play_mine_animation()
-		var tile_position = nearest_tile()
-		print('trying to mine nearest tile: ', tile_position)
-		if tile_position:
-			collectablesLayer.collect_tile(tile_position)
+		var world_position = nearest_world_tile()
+		print('trying to mine nearest tile: ', world_position)
+		if world_position:
+			collectablesLayer.collect_tile(world_position)
 		await animations.animation_finished
-		is_interacting = false
+		use_cooldown.start()
 		return
 
 	if Input.is_action_just_pressed("use") && !is_interacting:
 		is_interacting = true
 		
 		play_use_animation()
-		var tile_position = nearest_tile()
-		print('[Player] trying to interact nearest tile: ', tile_position)
-		if tile_position:
-			collectablesLayer.collect_tile(tile_position)
+		var world_position = nearest_world_tile()
+		print('[Player] trying to interact nearest tile: ', world_position)
+		var collectable: Node2D = collectablesLayer.collectable_at_world_pos(world_position)
+		# Code can collect, move all into collectable. Objective]: improve use action
+		print('[Player] got collectable: ', collectable)
+		if world_position && collectable && collectable.has_method("collect"):
+			collectablesLayer.collect_tile(world_position)
 		await animations.animation_finished
-		is_interacting = false
+		use_cooldown.start()
 		return
 
 	if Input.is_action_just_pressed("talk") && !is_interacting:
@@ -74,7 +77,7 @@ func _process(delta):
 		else:
 			animations.stop(true)
 
-func nearest_tile() -> Vector2:
+func nearest_world_tile() -> Vector2:
 	var player_position = position
 	return (player_position + facing_direction).floor()
 
@@ -125,7 +128,10 @@ func receive_damage(dmg: float):
 		print("Player recieved damage: ", dmg, " HP: ", PlayerManager.health)
 		immunity_cooldown.start()
 		is_immune = true
-	
 
-func _on_timer_timeout() -> void:
+func _on_inmunity_cooldown_timeout() -> void:
 	is_immune = false
+
+func _on_use_cooldown_timeout() -> void:
+	is_interacting = false
+	
