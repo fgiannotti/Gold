@@ -22,7 +22,6 @@ var facing_direction: Vector2 # Saves last moved direction
 
 
 func _ready():
-	animations.animation_changed.connect(func(name): print("Animation changed to: ", name))
 	pass
 
 func _process(delta):
@@ -114,7 +113,6 @@ func play_use_animation():
 	animations.play("use" + direction_string(self.facing_direction))
 
 func play_attack_animation():
-	print("Playing animation: attack" + direction_string(self.facing_direction))
 	$AnimationPlayer.play("attack"+ direction_string(self.facing_direction))
 	
 # movement_collides is null when there was no collision
