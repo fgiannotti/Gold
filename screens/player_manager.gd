@@ -1,7 +1,7 @@
 extends Node
 
 const PLAYER_SPEED = 300
-const STEPS_FOR_HUNGER = 200
+const STEPS_FOR_HUNGER = 50
 
 const INITIAL_GOLD: int = 100
 const INITIAL_FOOD: float = 100

@@ -10,6 +10,7 @@ var step_count = 0
 
 const moving = false
 var is_immune = false
+var is_attacking = false
 var is_interacting: bool = false
 @onready var use_cooldown = $UseCooldown
 @onready var animations = $AnimationPlayer
@@ -21,6 +22,7 @@ var facing_direction: Vector2 # Saves last moved direction
 
 
 func _ready():
+	animations.animation_changed.connect(func(name): print("Animation changed to: ", name))
 	pass
 
 func _process(delta):
@@ -34,6 +36,14 @@ func _process(delta):
 	
 	if Input.is_action_pressed("run"): # Corremos con "shift"
 		self.velocity = direction * run_speed
+
+
+	if Input.is_action_just_pressed("attack") and !is_interacting and !is_attacking:
+		is_attacking = true
+		play_attack_animation()
+		await animations.animation_finished
+		is_attacking = false
+		return
 
 	if Input.is_action_pressed("mine"):
 		is_interacting = true
@@ -56,7 +66,7 @@ func _process(delta):
 		var collectable: Node2D = collectablesLayer.collectable_at_world_pos(world_position)
 		# Code can collect, move all into collectable. Objective]: improve use action
 		print('[Player] got collectable: ', collectable)
-		if world_position && collectable && collectable.has_method("collect"):
+		if world_position && collectable && collectable.has_method("collect") && !collectable.is_in_group("minerals"):
 			collectablesLayer.collect_tile(world_position)
 		await animations.animation_finished
 		use_cooldown.start()
@@ -71,7 +81,7 @@ func _process(delta):
 	var movement_intent_exists: bool = direction.x != 0 || direction.y != 0
 	trigger_hunger(movement_collides, movement_intent_exists)
 
-	if !is_interacting:
+	if !is_interacting && !is_attacking:
 		if direction != Vector2(0, 0):
 			play_movement_animation()
 		else:
@@ -103,6 +113,10 @@ func play_mine_animation():
 func play_use_animation():
 	animations.play("use" + direction_string(self.facing_direction))
 
+func play_attack_animation():
+	print("Playing animation: attack" + direction_string(self.facing_direction))
+	$AnimationPlayer.play("attack"+ direction_string(self.facing_direction))
+	
 # movement_collides is null when there was no collision
 func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exists: bool):
 	if !movement_collides and movement_intent_exists and !is_interacting:
@@ -113,6 +127,7 @@ func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exi
 			PlayerManager.set_food(PlayerManager.food-1)
 
 func direction_string(direction: Vector2):
+		
 	if direction == Vector2.LEFT:
 		return "Left"
 	elif direction == Vector2.RIGHT:
@@ -121,6 +136,8 @@ func direction_string(direction: Vector2):
 		return "Up"
 	elif direction == Vector2.DOWN:
 		return "Down"
+
+	return "Down"
 
 func receive_damage(dmg: float):
 	if !is_immune:
@@ -135,3 +152,10 @@ func _on_inmunity_cooldown_timeout() -> void:
 func _on_use_cooldown_timeout() -> void:
 	is_interacting = false
 	
+
+
+func _on_weapon_area_area_entered(area: Area2D) -> void:
+	print("[Player] Weapon touched something....")
+	if area is HurtBox:
+		print("[Player] Sending damage....")
+		area.take_damage(50) 

@@ -8,7 +8,7 @@ signal item_sold(item: InventorySlot)
 signal item_clicked(item: InventorySlot)
 
 var on_sell_mode = false
-var mouse_on_item = true
+var mouse_on_item = false
 var inventory_item_in_slot: InventorySlot = null
 
 func set_on_sell_mode(val: bool):
