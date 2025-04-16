@@ -8,6 +8,7 @@ var wander_destination = Vector2(0,0)
 var speed_variation = 0.3
 var is_chasing = false
 var is_returning = false
+var stopped = false
 var target_node = null
 var home_pos
 
@@ -17,7 +18,7 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
-	
+	if stopped: return
 	if nav_agent.is_navigation_finished():
 		is_returning = false
 		recalc_path()
@@ -74,3 +75,10 @@ func _on_de_aggro_range_body_exited(body: Node2D) -> void:
 func _on_navigation_agent_2d_navigation_finished() -> void:
 	if !is_returning && !is_chasing:
 		set_random_wander_target()
+
+func stop():
+	nav_agent.target_position = enemy.global_position
+	enemy.velocity = Vector2.ZERO
+	stopped = true
+	is_returning = false
+	is_chasing = false

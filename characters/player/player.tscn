@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dwefapskvcvfg"]
+[gd_scene load_steps=23 format=3 uid="uid://dwefapskvcvfg"]
 
 [ext_resource type="Script" path="res://characters/player/Player.gd" id="1_pjfle"]
-[ext_resource type="Texture2D" uid="uid://cpjd5h35rl7tc" path="res://assets/characters/CharacterSheet 2.1.png" id="2_kijah"]
+[ext_resource type="Texture2D" uid="uid://k6mh4c5jcgb4" path="res://assets/characters/CharacterSheet 2.2.png" id="2_oqly7"]
 
 [sub_resource type="Animation" id="Animation_53d14"]
 length = 0.001
@@ -17,9 +17,245 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponArea/WeaponHitBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, 5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponArea/WeaponHitBox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_ycqu0"]
 resource_name = "Run"
+
+[sub_resource type="Animation" id="Animation_ug7ju"]
+resource_name = "attackDown"
+length = 1.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [80, 81, 80]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponArea/WeaponHitBox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponArea/WeaponHitBox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponArea/WeaponHitBox:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 20)]
+}
+
+[sub_resource type="Animation" id="Animation_djo3k"]
+resource_name = "attackLeft"
+length = 1.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [85, 84, 85]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponArea/WeaponHitBox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponArea/WeaponHitBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, 5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponArea/WeaponHitBox:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3vnia"]
+resource_name = "attackRight"
+length = 1.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [89, 88, 89]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponArea/WeaponHitBox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponArea/WeaponHitBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, 5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponArea/WeaponHitBox:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jaq3c"]
+resource_name = "attackUp"
+length = 1.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [92, 93, 92]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponArea/WeaponHitBox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponArea/WeaponHitBox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponArea/WeaponHitBox:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -11)]
+}
 
 [sub_resource type="Animation" id="Animation_pxm6w"]
 resource_name = "mineDown"
@@ -233,6 +469,10 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_53d14"),
 "Run": SubResource("Animation_ycqu0"),
+"attackDown": SubResource("Animation_ug7ju"),
+"attackLeft": SubResource("Animation_djo3k"),
+"attackRight": SubResource("Animation_3vnia"),
+"attackUp": SubResource("Animation_jaq3c"),
 "mineDown": SubResource("Animation_pxm6w"),
 "mineLeft": SubResource("Animation_7krjh"),
 "mineRight": SubResource("Animation_ricny"),
@@ -247,6 +487,9 @@ _data = {
 "walkUp": SubResource("Animation_rr0u6")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkpko"]
+size = Vector2(10, 17)
+
 [node name="Player" type="CharacterBody2D"]
 light_mask = 2
 visibility_layer = 2
@@ -260,7 +503,7 @@ speed_scale = 3.385
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7.62939e-06, 0)
-texture = ExtResource("2_kijah")
+texture = ExtResource("2_oqly7")
 hframes = 4
 vframes = 64
 
@@ -276,7 +519,14 @@ wait_time = 1.5
 [node name="UseCooldown" type="Timer" parent="."]
 wait_time = 1.5
 
+[node name="WeaponArea" type="Area2D" parent="."]
+
+[node name="WeaponHitBox" type="CollisionShape2D" parent="WeaponArea"]
+position = Vector2(11, 5)
+shape = SubResource("RectangleShape2D_gkpko")
+
 [connection signal="timeout" from="InmunityCooldown" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="InmunityCooldown" to="." method="_on_inmunity_cooldown_timeout"]
 [connection signal="timeout" from="UseCooldown" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="UseCooldown" to="." method="_on_use_cooldown_timeout"]
+[connection signal="area_entered" from="WeaponArea" to="." method="_on_weapon_area_area_entered"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://o3xdej4tf14w"]
+[gd_scene load_steps=18 format=3 uid="uid://o3xdej4tf14w"]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_u5pxm"]
 [ext_resource type="Texture2D" uid="uid://d115jhppyj06u" path="res://assets/enemy/Slime1_Walk_full.png" id="2_otv7q"]
 [ext_resource type="Script" path="res://characters/enemy/cactus.gd" id="4_2xob6"]
 [ext_resource type="Script" path="res://characters/enemy/navigation.gd" id="5_4p0sr"]
+[ext_resource type="PackedScene" uid="uid://cwyxg878ngppm" path="res://characters/hurt_box.tscn" id="5_tuj4y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sf84x"]
 radius = 5.09902
@@ -21,6 +22,34 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qavj1"]
+resource_name = "dead"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ue563"]
@@ -94,6 +123,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ygxi4"]
 _data = {
 "RESET": SubResource("Animation_sehqb"),
+"dead": SubResource("Animation_qavj1"),
 "walkDown": SubResource("Animation_ue563"),
 "walkLeft": SubResource("Animation_evajt"),
 "walkRight": SubResource("Animation_2i5tb"),
@@ -108,6 +138,9 @@ radius = 80.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_arhhw"]
 radius = 120.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrq1k"]
+radius = 16.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -175,6 +208,11 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_arhhw")
 debug_color = Color(1.92523e-06, 0.573294, 0.208073, 0.42)
 
+[node name="HurtBox" parent="." instance=ExtResource("5_tuj4y")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_vrq1k")
+
 [connection signal="body_entered" from="Cactus" to="Cactus" method="_on_body_entered"]
 [connection signal="timeout" from="Cactus/AttackCooldown" to="Cactus" method="_on_attack_cooldown_timeout"]
 [connection signal="navigation_finished" from="Navigation/NavigationAgent2D" to="Navigation" method="_on_navigation_agent_2d_navigation_finished"]
@@ -183,3 +221,4 @@ debug_color = Color(1.92523e-06, 0.573294, 0.208073, 0.42)
 [connection signal="body_entered" from="Aggro/AggroRange" to="Navigation" method="_on_aggro_range_body_entered"]
 [connection signal="body_exited" from="Aggro/DeAggroRange" to="." method="_on_de_aggro_range_body_exited"]
 [connection signal="body_exited" from="Aggro/DeAggroRange" to="Navigation" method="_on_de_aggro_range_body_exited"]
+[connection signal="hit" from="HurtBox" to="." method="_on_hurt_box_hit"]
