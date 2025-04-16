@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cq1p6lgvc2fmk" path="res://assets/tilemap/Ladder.png" id="2_i2wy6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ihtm"]
-size = Vector2(32, 32)
 
 [node name="TravelArea" type="Area2D"]
 z_index = 1
