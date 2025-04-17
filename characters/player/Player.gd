@@ -27,7 +27,7 @@ func _process(delta):
 	var direction = process_direction()
 
 	self.velocity = direction * SPEED
-
+	
 	var movement_collides = null
 	if !is_interacting:
 		movement_collides = move_and_collide(self.velocity * delta)

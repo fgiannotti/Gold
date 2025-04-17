@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqp3rsul5sunw"]
+
+[ext_resource type="Script" path="res://tilemaps/fog_of_war.gd" id="1_otq8q"]
+[ext_resource type="Shader" path="res://tilemaps/FogOfWar.gdshader" id="2_druq0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nenym"]
+shader = ExtResource("2_druq0")
+
+[node name="FogOfWar" type="Node2D"]
+top_level = true
+z_index = 4
+script = ExtResource("1_otq8q")
+
+[node name="FogOverlay" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_nenym")
+offset_right = 1154.0
+offset_bottom = 649.0
+stretch_mode = 1

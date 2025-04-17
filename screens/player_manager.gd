@@ -14,6 +14,7 @@ signal food_updated(new_food: float)
 var health: float = INITIAL_HEALTH
 var food: float = INITIAL_FOOD
 var gold: int = INITIAL_GOLD
+var actual_global_position
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,7 +33,11 @@ func set_food(new_food: float):
 	print('[PlayerManager] setting food ', new_food)
 	self.food = new_food
 	food_updated.emit(new_food) 
+
+func set_global_position(position: Vector2):
+	self.actual_global_position = position
 	
+
 func restart():
 	PlayerManager.food = INITIAL_FOOD
 	PlayerManager.gold = INITIAL_GOLD

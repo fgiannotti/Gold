@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://tnse7f1bt8dr"]
+[gd_scene load_steps=58 format=3 uid="uid://tnse7f1bt8dr"]
 
 [ext_resource type="Script" path="res://screens/world.gd" id="1_ffg8k"]
 [ext_resource type="Script" path="res://canvas_layer.gd" id="2_4rb1c"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dr02y0y7dkdax" path="res://tilemaps/travel_area.tscn" id="16_26qvb"]
 [ext_resource type="PackedScene" uid="uid://7ldj2fkeixgl" path="res://characters/muki/muki.tscn" id="17_1bifo"]
 [ext_resource type="Script" path="res://screens/scene_transitioner.gd" id="18_rnrsn"]
+[ext_resource type="PackedScene" uid="uid://dqp3rsul5sunw" path="res://tilemaps/FogOfWar.tscn" id="19_trr4i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3u3d4"]
 bg_color = Color(2.11775e-06, 0.699819, 0.582499, 1)
@@ -623,6 +624,11 @@ offset_bottom = 1440.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="FogOfWar" parent="." instance=ExtResource("19_trr4i")]
+top_level = false
+light_mask = 7
+visibility_layer = 7
 
 [connection signal="closed" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_closed"]
 [connection signal="opened" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_opened"]
