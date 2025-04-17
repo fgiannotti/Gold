@@ -1,14 +1,18 @@
-[gd_scene load_steps=57 format=3 uid="uid://tnse7f1bt8dr"]
+[gd_scene load_steps=61 format=3 uid="uid://tnse7f1bt8dr"]
 
 [ext_resource type="Script" path="res://screens/world.gd" id="1_ffg8k"]
 [ext_resource type="Script" path="res://canvas_layer.gd" id="2_4rb1c"]
 [ext_resource type="PackedScene" uid="uid://dpp31cx7rrdv8" path="res://dialogue/Dialogue.tscn" id="3_c3uln"]
 [ext_resource type="PackedScene" uid="uid://kac2vdauu2h7" path="res://inventory/inventory_gui.tscn" id="4_8e1yq"]
+[ext_resource type="Texture2D" uid="uid://dvb8dqbmmro7c" path="res://assets/GUI/z.png" id="4_v4ugp"]
 [ext_resource type="PackedScene" uid="uid://cyymbmhv6q24e" path="res://characters/player/health_bar.tscn" id="5_injh8"]
 [ext_resource type="PackedScene" uid="uid://dikvq6ldpm2dy" path="res://characters/player/food_bar.tscn" id="6_uaup5"]
 [ext_resource type="Script" path="res://floor.gd" id="7_egp0i"]
+[ext_resource type="Texture2D" uid="uid://cpxla8kj8tl44" path="res://assets/GUI/food.png" id="7_f5ls1"]
 [ext_resource type="Script" path="res://label.gd" id="8_q38jy"]
+[ext_resource type="Texture2D" uid="uid://csebenxeyvlju" path="res://assets/GUI/c.png" id="8_ya4i8"]
 [ext_resource type="Script" path="res://gold.gd" id="9_6bu4l"]
+[ext_resource type="Texture2D" uid="uid://de8mrlqng03jg" path="res://assets/GUI/space.jpg" id="9_gcmjm"]
 [ext_resource type="PackedScene" uid="uid://bv7h1ae33nhjo" path="res://collectables/collectable.tscn" id="10_imk8h"]
 [ext_resource type="Script" path="res://tilemaps/collectables_tilemap.gd" id="11_so6l1"]
 [ext_resource type="Texture2D" uid="uid://nt1ckd0bht6a" path="res://assets/tilemap/Tileset 1.7.png" id="12_iwuv0"]
@@ -461,6 +465,123 @@ offset_left = -128.0
 offset_right = -128.0
 size_flags_vertical = 4
 
+[node name="TopRight" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -478.0
+offset_top = 6.0
+offset_bottom = -0.304016
+grow_horizontal = 0
+
+[node name="HealthBar" parent="CanvasLayer/TopRight" instance=ExtResource("5_injh8")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -346.0
+offset_top = 24.0
+offset_right = 54.0
+offset_bottom = 73.0
+grow_horizontal = 0
+grow_vertical = 1
+scale = Vector2(0.75, 0.75)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+
+[node name="FoodBar" parent="CanvasLayer/TopRight" instance=ExtResource("6_uaup5")]
+clip_contents = false
+custom_minimum_size = Vector2(220, 0)
+layout_direction = 2
+layout_mode = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -346.0
+offset_top = 74.16
+offset_right = 53.92
+offset_bottom = 123.0
+scale = Vector2(0.75, 0.75)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+value = 0.0
+show_percentage = true
+
+[node name="HungerIcon2" type="TextureRect" parent="CanvasLayer/TopRight/FoodBar"]
+z_index = 10
+custom_minimum_size = Vector2(6, 6)
+layout_mode = 1
+anchors_preset = -1
+offset_left = 3.6665
+offset_top = 3.66666
+offset_right = 63.6665
+offset_bottom = 63.6667
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_f5ls1")
+expand_mode = 1
+
+[node name="ControlsGuide" type="PanelContainer" parent="CanvasLayer/TopRight"]
+layout_mode = 0
+offset_left = -34.0
+offset_top = 9.0
+offset_right = 119.0
+offset_bottom = 128.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TopRight/ControlsGuide"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_v4ugp")
+stretch_mode = 2
+
+[node name="Mine" type="Label" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = " Mine"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_ya4i8")
+expand_mode = 1
+
+[node name="use" type="Label" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = " Use
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_gcmjm")
+expand_mode = 1
+
+[node name="Attack" type="Label" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = " Attack
+"
+
 [node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource("4_8e1yq")]
 anchor_left = 1.0
 anchor_top = 0.5
@@ -475,36 +596,6 @@ grow_vertical = 2
 scale = Vector2(0.8, 0.8)
 size_flags_vertical = 4
 metadata/_edit_use_anchors_ = true
-
-[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("5_injh8")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_bottom = 0.0
-offset_left = -344.0
-offset_top = 24.0
-offset_right = 56.0
-offset_bottom = 73.0
-grow_horizontal = 0
-grow_vertical = 1
-scale = Vector2(0.75, 0.75)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-
-[node name="FoodBar" parent="CanvasLayer" instance=ExtResource("6_uaup5")]
-clip_contents = false
-custom_minimum_size = Vector2(220, 0)
-layout_direction = 2
-anchor_left = 1.0
-anchor_bottom = 0.0
-offset_left = -344.0
-offset_top = 74.592
-offset_right = 53.6959
-offset_bottom = 121.0
-scale = Vector2(0.75, 0.75)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-value = 0.0
-show_percentage = true
 
 [node name="Floor" type="Label" parent="CanvasLayer"]
 anchors_preset = 1
@@ -529,9 +620,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = 107.0
-offset_top = 124.0
+offset_top = 135.0
 offset_right = 184.0
-offset_bottom = 173.0
+offset_bottom = 184.0
 grow_horizontal = 0
 scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 48
@@ -550,7 +641,7 @@ grow_horizontal = 0
 scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "test2"
+text = "gold"
 script = ExtResource("9_6bu4l")
 
 [node name="TileMap" type="Node" parent="."]
@@ -612,6 +703,7 @@ libraries = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="SceneTransitioner"]
+visible = false
 z_index = 99
 anchors_preset = 15
 anchor_right = 1.0
@@ -624,10 +716,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[connection signal="player_died" from="CanvasLayer/TopRight/HealthBar" to="." method="_on_health_bar_player_died"]
+[connection signal="player_starved" from="CanvasLayer/TopRight/FoodBar" to="." method="_on_food_bar_player_starved"]
 [connection signal="closed" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_closed"]
 [connection signal="opened" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_opened"]
-[connection signal="player_died" from="CanvasLayer/HealthBar" to="." method="_on_health_bar_player_died"]
-[connection signal="player_starved" from="CanvasLayer/FoodBar" to="." method="_on_food_bar_player_starved"]
 [connection signal="stair_decided" from="TileMap/walls" to="LadderArea" method="_on_walls_stair_decided"]
 [connection signal="mouse_entered" from="Player" to="Player" method="_on_mouse_entered"]
 [connection signal="body_entered" from="LadderArea" to="." method="_on_ladder_area_body_entered"]

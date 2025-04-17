@@ -80,7 +80,7 @@ func _process(delta):
 	var movement_intent_exists: bool = direction.x != 0 || direction.y != 0
 	trigger_hunger(movement_collides, movement_intent_exists)
 
-	if !is_interacting && !is_attacking:
+	if !is_interacting && !is_attacking && !is_immune:
 		if direction != Vector2(0, 0):
 			play_movement_animation()
 		else:
@@ -112,8 +112,12 @@ func play_mine_animation():
 func play_use_animation():
 	animations.play("use" + direction_string(self.facing_direction))
 
+func play_hit_animation():
+	print("playing hit"+ direction_string(self.facing_direction))
+	animations.play("hit" + direction_string(self.facing_direction))
+
 func play_attack_animation():
-	$AnimationPlayer.play("attack"+ direction_string(self.facing_direction))
+	animations.play("attack"+ direction_string(self.facing_direction))
 	
 # movement_collides is null when there was no collision
 func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exists: bool):
@@ -141,6 +145,7 @@ func receive_damage(dmg: float):
 	if !is_immune:
 		PlayerManager.set_health(PlayerManager.health - dmg)
 		print("Player recieved damage: ", dmg, " HP: ", PlayerManager.health)
+		play_hit_animation()
 		immunity_cooldown.start()
 		is_immune = true
 

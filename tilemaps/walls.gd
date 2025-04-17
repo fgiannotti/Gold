@@ -1,4 +1,4 @@
-extends TileMapLayer
+class_name Walls extends TileMapLayer
 
 signal stair_decided(stair_position_in_world: Vector2i)
 signal maze_rebuilt()
@@ -332,6 +332,17 @@ func place_borders(visited_maze):
 	# pared izq
 	for i in MAZE_HEIGHT:
 		visited_maze[i][0] = 1
+
+func global_pos_inside_room(global_pos: Vector2)-> bool:
+	var tilemap_pos = self.to_local(global_pos)
+	for pos in positions_open_room:
+		if pos == tilemap_pos:
+			return true
+		
+	return false
+
+func get_random_room_pos_to_global()->Vector2:
+	return self.to_global(self.positions_open_room.pick_random())
 
 const ROOM_AMOUNT = 1
 

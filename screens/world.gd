@@ -1,13 +1,13 @@
 extends Node2D
 
-@onready var food_bar = $CanvasLayer/FoodBar
-@onready var health_bar = $CanvasLayer/HealthBar
+@onready var food_bar = $CanvasLayer/TopRight/FoodBar
+@onready var health_bar = $CanvasLayer/TopRight/HealthBar
 '''
 @onready var name_label = $NinePatchRect/NameLabel
 @onready var text_label = $NinePatchRect/TextLabel
 @onready var ninepatch_rect = $NinePatchRect
 '''
-
+@onready var walls: Walls = $TileMap/walls
 var floor = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,7 +29,19 @@ func _ready():
 	_on_hp_updated(PlayerManager.health)
 	PlayerManager.food_updated.connect(_on_food_updated)
 	_on_food_updated(PlayerManager.food)
+	reroll_muki_position_until_valid()
 
+# this avoids having muki and collectables on the same tile
+func reroll_muki_position_until_valid():
+	var choosing_pos = true
+	while choosing_pos:
+		var valid_pos = walls.get_random_room_pos_to_global()
+		var collectable: Node2D = $TileMap/collectables.collectable_at_world_pos(valid_pos)
+		print('[World] got pos and collectable ', valid_pos, collectable)
+		if !collectable || collectable.is_in_group("minerals"):
+			print('[World] Setting muki in ', valid_pos)
+			$Muki.global_position = valid_pos
+			choosing_pos = false
 
 # Update UI
 func _on_hp_updated(new_hp: float):
