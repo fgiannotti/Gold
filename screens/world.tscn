@@ -4,15 +4,15 @@
 [ext_resource type="Script" path="res://canvas_layer.gd" id="2_4rb1c"]
 [ext_resource type="PackedScene" uid="uid://dpp31cx7rrdv8" path="res://dialogue/Dialogue.tscn" id="3_c3uln"]
 [ext_resource type="PackedScene" uid="uid://kac2vdauu2h7" path="res://inventory/inventory_gui.tscn" id="4_8e1yq"]
-[ext_resource type="Texture2D" uid="uid://dvb8dqbmmro7c" path="res://assets/GUI/z.png" id="4_v4ugp"]
 [ext_resource type="PackedScene" uid="uid://cyymbmhv6q24e" path="res://characters/player/health_bar.tscn" id="5_injh8"]
 [ext_resource type="PackedScene" uid="uid://dikvq6ldpm2dy" path="res://characters/player/food_bar.tscn" id="6_uaup5"]
 [ext_resource type="Script" path="res://floor.gd" id="7_egp0i"]
 [ext_resource type="Texture2D" uid="uid://cpxla8kj8tl44" path="res://assets/GUI/food.png" id="7_f5ls1"]
+[ext_resource type="Texture2D" uid="uid://2u8hys0wgy28" path="res://assets/GUI/Zkey.png" id="7_qpdut"]
 [ext_resource type="Script" path="res://label.gd" id="8_q38jy"]
-[ext_resource type="Texture2D" uid="uid://csebenxeyvlju" path="res://assets/GUI/c.png" id="8_ya4i8"]
+[ext_resource type="Texture2D" uid="uid://ny21oxgfihn7" path="res://assets/GUI/CKey.png" id="8_r207x"]
 [ext_resource type="Script" path="res://gold.gd" id="9_6bu4l"]
-[ext_resource type="Texture2D" uid="uid://de8mrlqng03jg" path="res://assets/GUI/space.jpg" id="9_gcmjm"]
+[ext_resource type="Texture2D" uid="uid://dxbpuqhstx7gp" path="res://assets/GUI/SpaceKey.png" id="9_krvba"]
 [ext_resource type="PackedScene" uid="uid://bv7h1ae33nhjo" path="res://collectables/collectable.tscn" id="10_imk8h"]
 [ext_resource type="Script" path="res://tilemaps/collectables_tilemap.gd" id="11_so6l1"]
 [ext_resource type="Texture2D" uid="uid://nt1ckd0bht6a" path="res://assets/tilemap/Tileset 1.7.png" id="12_iwuv0"]
@@ -542,7 +542,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("4_v4ugp")
+texture = ExtResource("7_qpdut")
 stretch_mode = 2
 
 [node name="Mine" type="Label" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -557,23 +557,25 @@ layout_mode = 2
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("8_ya4i8")
+texture = ExtResource("8_r207x")
 expand_mode = 1
 
 [node name="use" type="Label" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
+size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 24
 text = " Use
 "
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(64, 32)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("9_gcmjm")
+texture = ExtResource("9_krvba")
 expand_mode = 1
 
 [node name="Attack" type="Label" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer/HBoxContainer2"]
