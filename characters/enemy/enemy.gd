@@ -36,19 +36,30 @@ func update_animation():
 
 func _on_aggro_range_body_entered(body: Node2D) -> void:
 	sprite.texture = self.enemy_data.run_sprite
+	$Aggro/AggroRange/ExclamationMark.show()
+	$Aggro/AggroRange/AggroMarkTimer.start()
 
 func _on_de_aggro_range_body_exited(body: Node2D) -> void:
 	sprite.texture = self.enemy_data.walk_sprite
+	$Aggro/AggroRange/ExclamationMark.hide()
 
-
-func _on_hurt_box_hit(damage_amount: int) -> void:
+func _on_hurt_box_hit(damage_direction:Vector2, damage_amount: int) -> void:
 	print("[Enemy] took damage ", damage_amount, self.hp)
 	self.hp -= damage_amount
 	if self.hp <= 0:
 		print("[Enemy] trigger death")
 		trigger_death()
+		return
+	$Effects.play("hurt")
+	var player_atk_knockback_power = 4000 # for now hardcoded here
+	$Cactus.knockback(damage_direction, player_atk_knockback_power)
+	
 
 func trigger_death():
 	$Navigation.stop()
 	$AnimationPlayer.play("dead")
 	await $AnimationPlayer.animation_finished
+	self.queue_free()
+
+func _on_aggro_mark_timer_timeout() -> void:
+	$Aggro/AggroRange/ExclamationMark.hide()

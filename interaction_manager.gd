@@ -52,8 +52,8 @@ func buy_item(shopItem: ShopItem):
 
 func consume_item(inv_item: InventoryItem):
 	print('[InteractionManager] CONSUMING!!')
-	inv_item.consume(player)
-	inventoryGUI.inventory.remove_one(inv_item)
+	var consumed = inv_item.consume(player)
+	if consumed: inventoryGUI.inventory.remove_one(inv_item)
 
 func sell_item(inv_item: InventoryItem, amount: int):
 	print('SELLING ITEMMM: ', inv_item.name)

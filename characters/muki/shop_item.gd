@@ -20,8 +20,6 @@ func _on_interactable_area_body_entered(body: Node2D) -> void:
 func set_shop_item(new_shop_item: ShopItem):
 	shop_item = new_shop_item
 	$Sprite2D.texture = new_shop_item.inventoryItem.texture
-	
-
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	$AnimationPlayer.play("idle")

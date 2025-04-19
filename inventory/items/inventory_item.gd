@@ -7,5 +7,5 @@ class_name InventoryItem
 @export var texture: Texture2D
 @export var sell_price: int
 
-func consume(player: Player) -> void:
-	pass # Implemented by each item
+func consume(player: Player) -> bool:
+	return false # Implemented by each item

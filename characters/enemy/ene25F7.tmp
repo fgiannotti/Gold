@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://o3xdej4tf14w"]
+[gd_scene load_steps=19 format=3 uid="uid://o3xdej4tf14w"]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_u5pxm"]
 [ext_resource type="Texture2D" uid="uid://d115jhppyj06u" path="res://assets/enemy/Slime1_Walk_full.png" id="2_otv7q"]
@@ -11,8 +11,31 @@
 radius = 5.09902
 
 [sub_resource type="Animation" id="Animation_sehqb"]
-length = 0.15
-step = 0.01
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_qavj1"]
 resource_name = "dead"
@@ -28,23 +51,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_2xp8i"]
-resource_name = "hurt"
-length = 0.2
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.15, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 0, 0, 0.984314), Color(1, 1, 1, 0), Color(1, 0.00784314, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ue563"]
@@ -119,7 +125,6 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_sehqb"),
 "dead": SubResource("Animation_qavj1"),
-"hurt": SubResource("Animation_2xp8i"),
 "walkDown": SubResource("Animation_ue563"),
 "walkLeft": SubResource("Animation_evajt"),
 "walkRight": SubResource("Animation_2i5tb"),
@@ -223,11 +228,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_vrq1k")
-
-[node name="Effects" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ygxi4")
-}
 
 [connection signal="body_entered" from="Cactus" to="Cactus" method="_on_body_entered"]
 [connection signal="timeout" from="Cactus/AttackCooldown" to="Cactus" method="_on_attack_cooldown_timeout"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpjd5h35rl7tc"
-path="res://.godot/imported/CharacterSheet 2.1.png-a1ebb80784e6d7f36af9365c9be0b314.ctex"
+uid="uid://ny21oxgfihn7"
+path="res://.godot/imported/CKey.png-bd52050978462ac03695733a296a1b07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/CharacterSheet 2.1.png"
-dest_files=["res://.godot/imported/CharacterSheet 2.1.png-a1ebb80784e6d7f36af9365c9be0b314.ctex"]
+source_file="res://assets/GUI/CKey.png"
+dest_files=["res://.godot/imported/CKey.png-bd52050978462ac03695733a296a1b07.ctex"]
 
 [params]
 

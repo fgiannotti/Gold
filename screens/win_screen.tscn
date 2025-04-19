@@ -12,10 +12,10 @@ grow_vertical = 2
 script = ExtResource("1_3ekxa")
 
 [node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_bottom = 7.776
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 1

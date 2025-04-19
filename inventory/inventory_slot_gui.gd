@@ -53,7 +53,7 @@ func update_slot(itemSlot: InventorySlot):
 func _on_mouse_entered() -> void:
 	print('[Slot] mouse on item ', self.name)
 	mouse_on_item = true
-	if on_sell_mode && inventory_item_in_slot: $SlotHover.show()
+	if inventory_item_in_slot: $SlotHover.show()
 
 func _on_mouse_exited() -> void:
 	mouse_on_item = false
