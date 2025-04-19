@@ -1,7 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://dwefapskvcvfg"]
+[gd_scene load_steps=31 format=3 uid="uid://dwefapskvcvfg"]
 
 [ext_resource type="Script" path="res://characters/player/Player.gd" id="1_pjfle"]
-[ext_resource type="Texture2D" uid="uid://k6mh4c5jcgb4" path="res://assets/characters/CharacterSheet 2.2.png" id="2_oqly7"]
+[ext_resource type="Texture2D" uid="uid://dvem64v3fhdbi" path="res://assets/characters/CharacterSheet 2.4.png" id="2_o2gjc"]
 
 [sub_resource type="Animation" id="Animation_53d14"]
 length = 0.001
@@ -107,7 +107,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 20)]
+"values": [Vector2(0, 18)]
 }
 
 [sub_resource type="Animation" id="Animation_djo3k"]
@@ -148,7 +148,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-11, 5)]
+"values": [Vector2(-13, 5)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -201,7 +201,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(11, 5)]
+"values": [Vector2(13, 5)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -495,6 +495,78 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_6ggar"]
+resource_name = "walkHurtDown"
+length = 2.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [130, 129, 130, 131]
+}
+
+[sub_resource type="Animation" id="Animation_mhgv3"]
+resource_name = "walkHurtLeft"
+length = 2.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [132, 133, 134, 135]
+}
+
+[sub_resource type="Animation" id="Animation_nqdvt"]
+resource_name = "walkHurtRight"
+length = 2.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [136, 137, 138, 139]
+}
+
+[sub_resource type="Animation" id="Animation_ctmp1"]
+resource_name = "walkHurtUp"
+length = 2.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [140, 141, 142, 143]
+}
+
 [sub_resource type="Animation" id="Animation_08hab"]
 resource_name = "walkLeft"
 length = 2.0
@@ -570,17 +642,23 @@ _data = {
 "useRight": SubResource("Animation_wibb7"),
 "useUp": SubResource("Animation_xqs85"),
 "walkDown": SubResource("Animation_bvgju"),
+"walkHurtDown": SubResource("Animation_6ggar"),
+"walkHurtLeft": SubResource("Animation_mhgv3"),
+"walkHurtRight": SubResource("Animation_nqdvt"),
+"walkHurtUp": SubResource("Animation_ctmp1"),
 "walkLeft": SubResource("Animation_08hab"),
 "walkRight": SubResource("Animation_limra"),
 "walkUp": SubResource("Animation_rr0u6")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkpko"]
-size = Vector2(10, 17)
+size = Vector2(31.9375, 24)
 
 [node name="Player" type="CharacterBody2D"]
 light_mask = 2
 visibility_layer = 2
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_pjfle")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -591,7 +669,7 @@ speed_scale = 3.385
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7.62939e-06, 0)
-texture = ExtResource("2_oqly7")
+texture = ExtResource("2_o2gjc")
 hframes = 4
 vframes = 64
 frame = 30
@@ -600,7 +678,7 @@ frame = 30
 top_level = true
 position = Vector2(0.0360003, 4.68307)
 scale = Vector2(1.14518, 1.0892)
-polygon = PackedVector2Array(-3.84, 6.4, 3.84, 6.4, 3.84, -3.84, -3.84, -3.84)
+polygon = PackedVector2Array(-3.84, 6.4, 3.84, 6.4, 3.46146, -11.6444, -3.84, -11.6444)
 
 [node name="InmunityCooldown" type="Timer" parent="."]
 wait_time = 1.5
@@ -609,7 +687,7 @@ wait_time = 1.5
 wait_time = 1.5
 
 [node name="WeaponArea" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 6
 collision_mask = 4
 
 [node name="WeaponHitBox" type="CollisionShape2D" parent="WeaponArea"]
@@ -617,8 +695,8 @@ position = Vector2(11, 5)
 shape = SubResource("RectangleShape2D_gkpko")
 disabled = true
 
-[connection signal="timeout" from="InmunityCooldown" to="." method="_on_inmunity_cooldown_timeout"]
 [connection signal="timeout" from="InmunityCooldown" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="UseCooldown" to="." method="_on_use_cooldown_timeout"]
+[connection signal="timeout" from="InmunityCooldown" to="." method="_on_inmunity_cooldown_timeout"]
 [connection signal="timeout" from="UseCooldown" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="UseCooldown" to="." method="_on_use_cooldown_timeout"]
 [connection signal="area_entered" from="WeaponArea" to="." method="_on_weapon_area_area_entered"]

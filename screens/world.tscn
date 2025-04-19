@@ -581,7 +581,7 @@ expand_mode = 1
 [node name="Attack" type="Label" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = " Attack
+text = "Attack
 "
 
 [node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource("4_8e1yq")]
@@ -646,6 +646,19 @@ bbcode_enabled = true
 text = "gold"
 script = ExtResource("9_6bu4l")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -309.0
+offset_right = 71.0
+offset_bottom = 97.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/normal_font_size = 48
+text = "Objective: Reach D3"
+
 [node name="TileMap" type="Node" parent="."]
 script = SubResource("GDScript_xh1te")
 
@@ -673,7 +686,6 @@ z_index = 2
 position = Vector2(144, 81)
 scale = Vector2(1.25, 1.25)
 disable_mode = 2
-collision_layer = 2
 floor_constant_speed = true
 floor_block_on_wall = false
 collectablesLayer = NodePath("../TileMap/collectables")

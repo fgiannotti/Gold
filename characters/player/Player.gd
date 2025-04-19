@@ -80,11 +80,15 @@ func _process(delta):
 	var movement_intent_exists: bool = direction.x != 0 || direction.y != 0
 	trigger_hunger(movement_collides, movement_intent_exists)
 
-	if !is_interacting && !is_attacking && !is_immune:
+	if !is_interacting && !is_attacking:
 		if direction != Vector2(0, 0):
-			play_movement_animation()
+			if is_immune:
+				play_hurt_movement_animation()
+			else:
+				play_movement_animation()
 		else:
-			animations.stop(true)
+			if !is_immune: # so that hurt animation plays
+				animations.stop(true)
 
 func nearest_world_tile() -> Vector2:
 	var player_position = position
@@ -105,6 +109,9 @@ func process_direction():
 
 func play_movement_animation():
 	animations.play("walk" + direction_string(self.facing_direction))
+	
+func play_hurt_movement_animation():
+	animations.play("walkHurt" + direction_string(self.facing_direction))
 
 func play_mine_animation():
 	animations.play("mine" + direction_string(self.facing_direction))
@@ -161,4 +168,4 @@ func _on_weapon_area_area_entered(area: Area2D) -> void:
 	print("[Player] Weapon touched something....")
 	if area is HurtBox:
 		print("[Player] Sending damage....")
-		area.take_damage(50) 
+		area.take_damage(self.velocity, 50) 
