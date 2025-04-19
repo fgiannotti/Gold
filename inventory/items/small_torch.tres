@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://dad2p0ojcych1"]
+
+[ext_resource type="Script" path="res://inventory/items/inventory_item.gd" id="1_70ho5"]
+[ext_resource type="Texture2D" uid="uid://bup45iycoyy6b" path="res://assets/items/SmallTorch.png" id="2_lihli"]
+
+[resource]
+script = ExtResource("1_70ho5")
+name = "Small Torch"
+description = "It emits a very weak light."
+texture = ExtResource("2_lihli")
+sell_price = 20

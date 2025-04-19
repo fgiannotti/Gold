@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://hq4dn84nq07t"]
+
+[ext_resource type="Script" path="res://inventory/items/inventory_item.gd" id="1_gplus"]
+[ext_resource type="Texture2D" uid="uid://bcoh6p7pntii6" path="res://assets/items/BadApple.png" id="2_0dfi3"]
+
+[resource]
+script = ExtResource("1_gplus")
+name = "Red Apple"
+description = "A Red Apple? Looks kinda grungy."
+texture = ExtResource("2_0dfi3")
+sell_price = 5
