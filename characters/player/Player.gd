@@ -53,7 +53,8 @@ func _process(delta):
 		if world_position:
 			collectablesLayer.collect_tile(world_position)
 		await animations.animation_finished
-		use_cooldown.start()
+		# use_cooldown.start()
+		is_interacting = false
 		return
 
 	if Input.is_action_just_pressed("use") && !is_interacting:
@@ -88,7 +89,7 @@ func _process(delta):
 				play_movement_animation()
 		else:
 			if !is_immune: # so that hurt animation plays
-				animations.stop(true)
+				play_idle_animation()
 
 func nearest_world_tile() -> Vector2:
 	var player_position = position
@@ -109,6 +110,9 @@ func process_direction():
 
 func play_movement_animation():
 	animations.play("walk" + direction_string(self.facing_direction))
+	
+func play_idle_animation():
+	animations.play("idle" + direction_string(self.facing_direction))
 	
 func play_hurt_movement_animation():
 	animations.play("walkHurt" + direction_string(self.facing_direction))
