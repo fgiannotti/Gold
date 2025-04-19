@@ -61,6 +61,5 @@ func trigger_death():
 	await $AnimationPlayer.animation_finished
 	self.queue_free()
 
-
 func _on_aggro_mark_timer_timeout() -> void:
 	$Aggro/AggroRange/ExclamationMark.hide()

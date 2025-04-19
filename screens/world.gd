@@ -39,9 +39,10 @@ func reroll_muki_position_until_valid():
 		var collectable: Node2D = $TileMap/collectables.collectable_at_world_pos(valid_pos)
 		print('[World] got pos and collectable ', valid_pos, collectable)
 		if !collectable || collectable.is_in_group("minerals"):
-			print('[World] Setting muki in ', valid_pos)
-			$Muki.global_position = valid_pos
-			choosing_pos = false
+			if walls.global_pos_inside_room(valid_pos):
+				print('[World] Setting muki in ', valid_pos)
+				$Muki.global_position = valid_pos
+				choosing_pos = false
 
 # Update UI
 func _on_hp_updated(new_hp: float):

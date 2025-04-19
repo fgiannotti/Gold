@@ -49,11 +49,15 @@ func _process(delta):
 		
 		play_mine_animation()
 		var world_position = nearest_world_tile()
-		print('trying to mine nearest tile: ', world_position)
-		if world_position:
-			collectablesLayer.collect_tile(world_position)
+		var collectable: Node2D = collectablesLayer.mineral_at_world_pos(world_position)
+		print('trying to mine nearest tile: ', world_position, 'collectable ', collectable)
+		if world_position && collectable && collectable.is_in_group("minerals"):
+			if player_facing_mineral(collectable):
+				collectablesLayer.mine_tile(world_position)
+			else:
+				print("[Player] Not facing mineral, abort collect")
 		await animations.animation_finished
-		# use_cooldown.start()
+		# use_cooldown.start() not working properly
 		is_interacting = false
 		return
 
@@ -69,7 +73,8 @@ func _process(delta):
 		if world_position && collectable && collectable.has_method("collect") && !collectable.is_in_group("minerals"):
 			collectablesLayer.collect_tile(world_position)
 		await animations.animation_finished
-		use_cooldown.start()
+		is_interacting = false
+		# use_cooldown.start()
 		return
 
 	if Input.is_action_just_pressed("talk") && !is_interacting:
@@ -90,6 +95,24 @@ func _process(delta):
 		else:
 			if !is_immune: # so that hurt animation plays
 				play_idle_animation()
+
+'''# values set from binary mapping
+const SOUTH_POS = 0
+const EAST_POS  = 1
+const NORTH_POS = 2
+const WEST_POS  = 3'''
+func player_facing_mineral(mineral: Mineral):
+	var direction = self.direction_string(facing_direction)
+	if mineral.is_in_group("minerals_0") && direction == "Down":
+		return true
+	if mineral.is_in_group("minerals_1") && direction == "Right":
+		return true
+	if mineral.is_in_group("minerals_2") && direction == "Up":
+		return true
+	if mineral.is_in_group("minerals_3") && direction == "Left":
+		return true
+	print("[Player] Player direction is " + direction + " But mineral groups are: " + str(mineral.get_groups()))
+	return false
 
 func nearest_world_tile() -> Vector2:
 	var player_position = position
@@ -140,7 +163,6 @@ func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exi
 			PlayerManager.set_food(PlayerManager.food-1)
 
 func direction_string(direction: Vector2):
-		
 	if direction == Vector2.LEFT:
 		return "Left"
 	elif direction == Vector2.RIGHT:
@@ -165,8 +187,6 @@ func _on_inmunity_cooldown_timeout() -> void:
 
 func _on_use_cooldown_timeout() -> void:
 	is_interacting = false
-	
-
 
 func _on_weapon_area_area_entered(area: Area2D) -> void:
 	print("[Player] Weapon touched something....")
