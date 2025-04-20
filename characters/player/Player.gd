@@ -74,7 +74,7 @@ func _process(delta):
 			collectablesLayer.collect_tile(world_position)
 		await animations.animation_finished
 		is_interacting = false
-		# use_cooldown.start()
+		#use_cooldown.start()
 		return
 
 	if Input.is_action_just_pressed("talk") && !is_interacting:
@@ -179,6 +179,11 @@ func receive_damage(dmg: float):
 		PlayerManager.set_health(PlayerManager.health - dmg)
 		print("Player recieved damage: ", dmg, " HP: ", PlayerManager.health)
 		play_hit_animation()
+		
+		# Reset interactions or attacks if damaged
+		is_interacting = false
+		is_attacking = false
+		
 		immunity_cooldown.start()
 		is_immune = true
 

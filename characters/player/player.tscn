@@ -757,7 +757,6 @@ polygon = PackedVector2Array(-3.52434, 6.71771, 3.46146, 6.71771, 3.46146, -7.97
 wait_time = 1.5
 
 [node name="UseCooldown" type="Timer" parent="."]
-wait_time = 4.0
 
 [node name="WeaponArea" type="Area2D" parent="."]
 collision_layer = 6

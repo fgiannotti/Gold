@@ -18,6 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+var collected = false
 func collect() -> InventoryItem:
 	print('[Collectable] collect called!!')
 	if !player_in_area:
@@ -26,6 +27,10 @@ func collect() -> InventoryItem:
 	if animations != null: 
 		animations.play(animation_name)
 		await animations.animation_finished
+	if collected:
+		return null
+	collected = true
+
 	queue_free()
 	return collectableAsItem
 
