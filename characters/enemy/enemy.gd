@@ -58,7 +58,8 @@ func _on_hurt_box_hit(damage_direction:Vector2, damage_amount: int) -> void:
 func trigger_death():
 	$Navigation.stop()
 	$AnimationPlayer.play("dead")
-	await $AnimationPlayer.animation_finished
+	var death_time = $AnimationPlayer.current_animation_length
+	await get_tree().create_timer(death_time+1).timeout
 	self.queue_free()
 
 func _on_aggro_mark_timer_timeout() -> void:

@@ -22,7 +22,7 @@ func spawn_scene_at_tile(tile_coords: Vector2i, instance: Node):
 func mineral_at_tile(tileset_cords: Vector2i) -> Node2D:
 	# Convert the tilemap coordinates to world position
 	var world_position = map_to_local(tileset_cords)
-
+	# TODO: Optimize this
 	for child in get_children():
 		# Check if the child is a Node2D and its position matches the world position
 		
@@ -38,7 +38,8 @@ func collectable_at_tile(tileset_cords: Vector2i) -> Node2D:
 
 	for child in get_children():
 		# Check if the child is a Node2D and its position matches the world position
-		print("[CollectablesTilemap] found children on position ", child)
+		# TODO: Optimize this
+		# print("[CollectablesTilemap] found children on position ", child)
 		if child is Node2D and !child.is_in_group("minerals") and child.position == world_position:
 			return child
 

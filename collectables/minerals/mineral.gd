@@ -20,7 +20,9 @@ func collect() -> InventoryItem:
 	if !player_in_area:
 		print('[Mineral] collect called but player no in area, returning...')
 		return
-
+	if collected:
+		return null
+	collected = true
 	queue_free()
 	return mineral_data.collectableAsItem
 
