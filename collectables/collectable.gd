@@ -18,7 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-var 	collected = false
+var collected = false
 func collect() -> InventoryItem:
 	print('[Collectable] collect called!!')
 	if !player_in_area:
