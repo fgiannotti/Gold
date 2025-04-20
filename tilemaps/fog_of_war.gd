@@ -1,8 +1,8 @@
 extends Node2D
 
 @export var map_size: Vector2i = Vector2i(1280, 1280)
-@export var cell_size: int = 32
-@export var reveal_radius: int = 1
+@export var cell_size: int = 1
+@export var reveal_radius: int = 60
 
 var fog_texture: ImageTexture
 var fog_image: Image
@@ -39,6 +39,8 @@ func update_fog(position: Vector2):
 
 	for x in range(-reveal_radius * 2, reveal_radius * 2 + 1):
 		for y in range(-reveal_radius * 2, reveal_radius * 2 + 1):
+			if(Vector2i(x,y).length() > reveal_radius ):
+				continue
 			var pos = center_cell + Vector2i(x, y)
 			var pixel_pos = pos * cell_size
 
@@ -53,7 +55,7 @@ func update_fog(position: Vector2):
 
 						if in_vision:
 							# 🔹 Guarda lo que había antes en la imagen explorada
-							explored_image.set_pixel(px, py, get_world_pixel_color(px, py) * 0.5)  
+							explored_image.set_pixel(px, py, explored_fog_color())  
 							# 🔹 Hacer el área completamente visible
 							fog_image.set_pixel(px, py, Color(0, 0, 0, 0))
 							updated = true
@@ -65,6 +67,6 @@ func update_fog(position: Vector2):
 	if updated:
 		fog_texture.set_image(fog_image)
 
-func get_world_pixel_color(x: int, y: int) -> Color:
+func explored_fog_color() -> Color:
 	# 📸 Aquí puedes obtener el color real del mapa en esas coordenadas (ajustar según tu mapa)
-	return Color(1.0, 1.0, 1.0, 1.0)  # 🔴 CAMBIAR: Aquí deberías obtener el color real del terreno
+	return Color(0.5, 0.5, 0.5, 0.5)  # 🔴 CAMBIAR: Aquí deberías obtener el color real del terreno
