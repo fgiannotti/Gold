@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co1fq0ajv84r1"
-path="res://.godot/imported/diamond item.png-14abc642484942d1a5e53cf9fdeaf03a.ctex"
+uid="uid://dyj1i22r2uxvw"
+path="res://.godot/imported/3stones.png-6d98a001aac515a3891c370881b76391.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/diamond item.png"
-dest_files=["res://.godot/imported/diamond item.png-14abc642484942d1a5e53cf9fdeaf03a.ctex"]
+source_file="res://assets/interactables/3stones.png"
+dest_files=["res://.godot/imported/3stones.png-6d98a001aac515a3891c370881b76391.ctex"]
 
 [params]
 

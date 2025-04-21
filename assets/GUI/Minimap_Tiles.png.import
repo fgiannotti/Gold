@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp8lcaw8ypcsl"
-path="res://.godot/imported/gold item.png-e1868d3934054362461e962bb838b9fe.ctex"
+uid="uid://120w4go85arj"
+path="res://.godot/imported/Minimap_Tiles.png-b544a9b69d30eb8485520934af60bfe4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/gold item.png"
-dest_files=["res://.godot/imported/gold item.png-e1868d3934054362461e962bb838b9fe.ctex"]
+source_file="res://assets/GUI/Minimap_Tiles.png"
+dest_files=["res://.godot/imported/Minimap_Tiles.png-b544a9b69d30eb8485520934af60bfe4.ctex"]
 
 [params]
 
