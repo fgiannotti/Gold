@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="EnergyBar" load_steps=3 format=3 uid="uid://d0mmt7belh72e"]
 
-[ext_resource type="Script" path="res://inventory/items/red_apple.gd" id="1_ex1gx"]
+[ext_resource type="Script" path="res://inventory/items/energy_bar.gd" id="1_r4hb2"]
 [ext_resource type="Texture2D" uid="uid://bhxflic8h2vk" path="res://assets/items/EnergyBar.png" id="2_7cv8g"]
 
 [resource]
-script = ExtResource("1_ex1gx")
+script = ExtResource("1_r4hb2")
 recover_value = 35
 name = "Energy Bar"
 description = "Recovers 35 hunger. Full of carbs and sugar!"
