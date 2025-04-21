@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://d2nnxsr1a7cjt"]
 
 [ext_resource type="Script" path="res://inventory/items/inventory_item.gd" id="1_turgv"]
-[ext_resource type="Texture2D" uid="uid://bqim30ocyfjgb" path="res://assets/items/Raw Steak.png" id="2_63yw2"]
+[ext_resource type="Texture2D" uid="uid://b66nqcay3xnvd" path="res://assets/items/Cooked Steak.png" id="2_scyi7"]
 
 [resource]
 script = ExtResource("1_turgv")
-name = "Raw Steak"
-description = "A raw piece of steak. "
-texture = ExtResource("2_63yw2")
+name = "Cooked Steak"
+description = "A perfectly cooked piece of steak. Recovers 50 hunger."
+texture = ExtResource("2_scyi7")
 sell_price = 15

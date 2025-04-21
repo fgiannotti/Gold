@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_gplus")
 name = "Red Apple"
-description = "A Red Apple? Looks kinda grungy."
+description = "Recovers 25 hunger?"
 texture = ExtResource("2_0dfi3")
 sell_price = 5

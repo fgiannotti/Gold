@@ -768,13 +768,13 @@ position = Vector2(11, 5)
 shape = SubResource("RectangleShape2D_gkpko")
 disabled = true
 
-[node name="ForOfWar1_1" type="Sprite2D" parent="."]
+[node name="FogOfWarpng" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, 4)
 texture = ExtResource("3_5o4r5")
 
-[connection signal="timeout" from="InmunityCooldown" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="InmunityCooldown" to="." method="_on_inmunity_cooldown_timeout"]
-[connection signal="timeout" from="UseCooldown" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="InmunityCooldown" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="UseCooldown" to="." method="_on_use_cooldown_timeout"]
+[connection signal="timeout" from="UseCooldown" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="WeaponArea" to="." method="_on_weapon_area_area_entered"]
