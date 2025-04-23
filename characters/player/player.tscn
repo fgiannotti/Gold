@@ -767,7 +767,7 @@ position = Vector2(11, 5)
 shape = SubResource("RectangleShape2D_gkpko")
 disabled = true
 
-[node name="ForOfWar1_1" type="Sprite2D" parent="."]
+[node name="FogOfWarpng" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, 4)
 texture = ExtResource("3_5o4r5")

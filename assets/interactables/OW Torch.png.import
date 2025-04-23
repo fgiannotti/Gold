@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8raab33gwbra"
-path="res://.godot/imported/raw iron item.png-e7e047ef538bc53a13ca4caebbd5e4f1.ctex"
+uid="uid://mrvwn5g0rfxh"
+path="res://.godot/imported/OW Torch.png-1f5cf06e612cddb48e9be615242057c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/raw iron item.png"
-dest_files=["res://.godot/imported/raw iron item.png-e7e047ef538bc53a13ca4caebbd5e4f1.ctex"]
+source_file="res://assets/interactables/OW Torch.png"
+dest_files=["res://.godot/imported/OW Torch.png-1f5cf06e612cddb48e9be615242057c2.ctex"]
 
 [params]
 
