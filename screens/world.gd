@@ -16,7 +16,7 @@ func _ready():
 	DialogueManager.set_dialogue_ui($CanvasLayer/Dialogue)
 	InteractionManager.set_player($Player)
 	InteractionManager.set_inventory($CanvasLayer/InventoryGUI)
-	InteractionManager.set_health_bar($CanvasLayer/HealthBar)
+	InteractionManager.set_health_bar($CanvasLayer/TopRight/HealthBar)
 	MineralAutoloader.walls_tilemap = $TileMap/walls
 	MineralAutoloader.collectables_tilemap = $TileMap/collectables
 	MineralAutoloader.spawn_all_minerals()
