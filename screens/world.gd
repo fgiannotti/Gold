@@ -1,13 +1,16 @@
 extends Node2D
 
-@onready var food_bar = $CanvasLayer/TopRight/FoodBar
-@onready var health_bar = $CanvasLayer/TopRight/HealthBar
+@onready var food_bar = $CanvasLayer/TopRight/VBoxContainer/MarginContainer/FoodBar
+@onready var health_bar = $CanvasLayer/TopRight/VBoxContainer/MarginContainer2/HealthBar
 '''
 @onready var name_label = $NinePatchRect/NameLabel
 @onready var text_label = $NinePatchRect/TextLabel
 @onready var ninepatch_rect = $NinePatchRect
 '''
 @onready var walls: Walls = $TileMap/walls
+
+var artifact : PackedScene = preload("res://artifacts/artifact.tscn")
+
 var floor = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,6 +46,22 @@ func reroll_muki_position_until_valid():
 				print('[World] Setting muki in ', valid_pos)
 				$Muki.global_position = valid_pos
 				choosing_pos = false
+'''
+# To debug stuff
+
+var creating = false
+func _input(event):
+	creating = true
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		print('creating stuff')
+		var art: Artifact = artifact.instantiate()
+		art.create(load("res://artifacts/sword_artifact.tres"))
+		$CanvasLayer/Artifacts/GridContainer.add_child(art)
+	get_tree().create_timer(2).timeout
+	creating = false
+
+'''
+
 
 # Update UI
 func _on_hp_updated(new_hp: float):

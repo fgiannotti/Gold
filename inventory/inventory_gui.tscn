@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c8qpnrytxh4k" path="res://assets/inventory/InventoryRect.png" id="1_6e1mp"]
 [ext_resource type="Script" path="res://inventory/inventory_gui.gd" id="1_qg40m"]
-[ext_resource type="PackedScene" uid="uid://b15064hesdf61" path="res://inventory/inventorySlot.tscn" id="2_fygbv"]
+[ext_resource type="PackedScene" uid="uid://b15064hesdf61" path="res://inventory/slots/inventorySlot.tscn" id="2_fygbv"]
 [ext_resource type="Texture2D" uid="uid://lbsj2ujx75eb" path="res://assets/inventory/coin-basic.png" id="4_c7c18"]
 
 [node name="InventoryGUI" type="Control"]

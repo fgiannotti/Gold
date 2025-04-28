@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_o6so1")
 name = "Gold"
-description = "What everyone wants. Don't worry, you can make coins from this."
+description = "What everyone wants. Don't worry, you can make coins from this.What everyone wants. Don't worry, you can make coins from this."
 texture = ExtResource("2_0yhg6")
 sell_price = 1
