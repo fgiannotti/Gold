@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ArtifactInfo" load_steps=3 format=3 uid="uid://dg8kuvgk3b6os"]
+
+[ext_resource type="Script" path="res://artifacts/artifact_info.gd" id="1_o6wdr"]
+[ext_resource type="Texture2D" uid="uid://o5acp5ec3p22" path="res://assets/items/Sword.png" id="2_yq056"]
+
+[resource]
+script = ExtResource("1_o6wdr")
+title = "Sword"
+description = "+5 atk"
+texture = ExtResource("2_yq056")

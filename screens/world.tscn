@@ -17,7 +17,9 @@
 [ext_resource type="Script" path="res://tilemaps/collectables_tilemap.gd" id="11_so6l1"]
 [ext_resource type="Script" path="res://tilemaps/walls.gd" id="13_2icqk"]
 [ext_resource type="PackedScene" uid="uid://dwefapskvcvfg" path="res://characters/player/player.tscn" id="14_kdm5g"]
+[ext_resource type="PackedScene" uid="uid://drmdsicgij17d" path="res://artifacts/artifact.tscn" id="14_x0b2x"]
 [ext_resource type="Script" path="res://characters/player/Camera2D.gd" id="15_ltbuh"]
+[ext_resource type="Resource" uid="uid://dg8kuvgk3b6os" path="res://artifacts/sword_artifact.tres" id="15_ydqft"]
 [ext_resource type="PackedScene" uid="uid://dr02y0y7dkdax" path="res://tilemaps/travel_area.tscn" id="16_26qvb"]
 [ext_resource type="Texture2D" uid="uid://s1uresq4v3o7" path="res://assets/tilemap/Tileset 1.9.png" id="16_rhnn5"]
 [ext_resource type="PackedScene" uid="uid://7ldj2fkeixgl" path="res://characters/muki/muki.tscn" id="17_1bifo"]
@@ -500,44 +502,45 @@ layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -478.0
-offset_top = 6.0
-offset_bottom = -0.304016
+offset_left = -472.0
 grow_horizontal = 0
 
-[node name="HealthBar" parent="CanvasLayer/TopRight" instance=ExtResource("5_injh8")]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TopRight"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_bottom = 0.0
-offset_left = -346.0
-offset_top = 24.0
-offset_right = 54.0
-offset_bottom = 73.0
-grow_horizontal = 0
-grow_vertical = 1
-scale = Vector2(0.75, 0.75)
+anchors_preset = -1
+offset_right = 471.0
+offset_bottom = 142.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/TopRight/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="HealthBar" parent="CanvasLayer/TopRight/VBoxContainer/MarginContainer2" instance=ExtResource("5_injh8")]
+layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 
-[node name="FoodBar" parent="CanvasLayer/TopRight" instance=ExtResource("6_uaup5")]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TopRight/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="FoodBar" parent="CanvasLayer/TopRight/VBoxContainer/MarginContainer" instance=ExtResource("6_uaup5")]
 clip_contents = false
 custom_minimum_size = Vector2(220, 0)
 layout_direction = 2
-layout_mode = 1
-anchor_left = 1.0
-anchor_bottom = 0.0
-offset_left = -346.0
-offset_top = 74.16
-offset_right = 53.92
-offset_bottom = 123.0
-scale = Vector2(0.75, 0.75)
+layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 value = 0.0
 show_percentage = true
 
-[node name="HungerIcon2" type="TextureRect" parent="CanvasLayer/TopRight/FoodBar"]
+[node name="HungerIcon2" type="TextureRect" parent="CanvasLayer/TopRight/VBoxContainer/MarginContainer/FoodBar"]
 z_index = 10
 custom_minimum_size = Vector2(6, 6)
 layout_mode = 1
@@ -551,15 +554,21 @@ texture = ExtResource("7_f5ls1")
 expand_mode = 1
 
 [node name="ControlsGuide" type="PanelContainer" parent="CanvasLayer/TopRight"]
-layout_mode = 0
-offset_left = -34.0
-offset_top = 9.0
-offset_right = 119.0
-offset_bottom = 128.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.339
+anchor_right = -0.339
+offset_left = 0.00801086
+offset_top = 16.0
+offset_right = 142.008
+offset_bottom = 136.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TopRight/ControlsGuide"]
 layout_mode = 2
-theme_override_constants/margin_left = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TopRight/ControlsGuide/MarginContainer"]
 layout_mode = 2
@@ -633,10 +642,10 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -212.0
-offset_top = 160.0
-offset_right = -132.0
-offset_bottom = 240.0
+offset_left = -239.0
+offset_top = 176.0
+offset_right = -159.0
+offset_bottom = 256.0
 grow_horizontal = 0
 scale = Vector2(0.5, 0.5)
 theme_override_constants/outline_size = 10
@@ -652,9 +661,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = 107.0
-offset_top = 135.0
+offset_top = 145.0
 offset_right = 184.0
-offset_bottom = 184.0
+offset_bottom = 194.0
 grow_horizontal = 0
 scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 48
@@ -665,29 +674,49 @@ script = ExtResource("8_q38jy")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -152.0
-offset_top = 168.0
-offset_right = 168.0
-offset_bottom = 232.0
+offset_left = -174.0
+offset_top = 181.0
+offset_right = 146.0
+offset_bottom = 245.0
 grow_horizontal = 0
 scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "gold"
 script = ExtResource("9_6bu4l")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 5
+[node name="Objective" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -309.0
-offset_right = 71.0
-offset_bottom = 97.0
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -97.0
+offset_right = 190.0
 grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_font_sizes/normal_font_size = 48
 text = "Objective: Reach D3"
+
+[node name="Artifacts" type="PanelContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = -1
+anchor_left = 0.028
+anchor_right = 0.028
+offset_left = -0.256001
+offset_top = 16.0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Artifacts"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+columns = 12
+
+[node name="BaseSword" parent="CanvasLayer/Artifacts/GridContainer" instance=ExtResource("14_x0b2x")]
+layout_mode = 2
+artifact = ExtResource("15_ydqft")
 
 [node name="TileMap" type="Node" parent="."]
 script = SubResource("GDScript_xh1te")
@@ -760,8 +789,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[connection signal="player_died" from="CanvasLayer/TopRight/HealthBar" to="." method="_on_health_bar_player_died"]
-[connection signal="player_starved" from="CanvasLayer/TopRight/FoodBar" to="." method="_on_food_bar_player_starved"]
+[connection signal="player_died" from="CanvasLayer/TopRight/VBoxContainer/MarginContainer2/HealthBar" to="." method="_on_health_bar_player_died"]
+[connection signal="player_starved" from="CanvasLayer/TopRight/VBoxContainer/MarginContainer/FoodBar" to="." method="_on_food_bar_player_starved"]
 [connection signal="closed" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_closed"]
 [connection signal="opened" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_opened"]
 [connection signal="stair_decided" from="TileMap/walls" to="LadderArea" method="_on_walls_stair_decided"]

@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://drmdsicgij17d"]
+
+[ext_resource type="Script" path="res://artifacts/artifact.gd" id="1_t6g2m"]
+[ext_resource type="Texture2D" uid="uid://o5acp5ec3p22" path="res://assets/items/Sword.png" id="2_mt40w"]
+
+[node name="Artifact" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 2
+layout_mode = 3
+offset_right = 424.0
+offset_bottom = 341.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_t6g2m")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("2_mt40w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.058
+anchor_top = 0.204
+anchor_right = 0.058
+anchor_bottom = 0.204
+offset_left = -1.372
+offset_top = 65.083
+offset_right = 306.818
+offset_bottom = 486.257
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+z_index = 4
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/normal_font_size = 36
+text = "Sword"
+fit_content = true
+
+[node name="Description" type="RichTextLabel" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/normal_font_size = 36
+text = "+5 Attack
+very long descriptiooooon"
+fit_content = true
+
+[connection signal="mouse_entered" from="TextureRect" to="." method="_on_texture_rect_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect" to="." method="_on_texture_rect_mouse_exited"]
