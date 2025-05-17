@@ -4,6 +4,8 @@ extends TextureRect
 @export var fog_color := Color(0, 0, 0, 1)
 @export var explored_color := Color8(0, 0, 0, 150)
 
+var world_size = Vector2i(1280, 1280)
+# 1 means explored, 0 means unexplored, world size
 var exploration_texture: ImageTexture
 var mask_size = 164
 var radial_mask: Image = Image.create(mask_size, mask_size, false, Image.FORMAT_RGBA8)
@@ -11,19 +13,11 @@ var radial_mask: Image = Image.create(mask_size, mask_size, false, Image.FORMAT_
 @onready var player = get_parent().get_node("Player")
 
 func _ready():
-	# 1) Full-world exploration map
-	var world_size = Vector2i(1280, 1280)
-	var img = Image.create(world_size.x, world_size.y, false, Image.FORMAT_RGBA8)
-	img.fill(Color(0, 0, 0, 0))
-	exploration_texture = ImageTexture.create_from_image(img)
+	exploration_texture = ImageTexture.create_from_image(world_size_transparent_image())
 	generate_radial_mask()
 
-	# 3) Fog layer & shader setup
-	var fog_img = Image.create(world_size.x, world_size.y, false, Image.FORMAT_RGBA8)
-	fog_img.fill(fog_color)
-	texture = ImageTexture.create_from_image(fog_img)
+	texture = ImageTexture.create_from_image(black_fog_image())
 
-	# 4) Initialize shader parameters
 	material.set_shader_parameter("sight_radius", sight_radius)
 	material.set_shader_parameter("fog_color", fog_color)
 	material.set_shader_parameter("explored_color", explored_color)
@@ -75,3 +69,13 @@ func generate_radial_mask():
 			
 			# Set pixel with white color and calculated opacity
 			radial_mask.set_pixel(x, y, Color(1, 1, 1, final_opacity))
+
+func world_size_transparent_image():
+	var img = Image.create(world_size.x, world_size.y, false, Image.FORMAT_RGBA8)
+	img.fill(Color(0, 0, 0, 0))
+	return img
+
+func black_fog_image():
+	var img = Image.create(world_size.x, world_size.y, false, Image.FORMAT_RGBA8)
+	img.fill(fog_color)
+	return img
