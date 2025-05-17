@@ -24,10 +24,10 @@ func collect() -> InventoryItem:
 	if !player_in_area:
 		print('[Collectable] collect called but player no in area, returning...')
 		return
-	if animations != null: 
+	if animations.get_animation(animation_name): 
 		animations.play(animation_name)
 		await animations.animation_finished
-	if collected:
+	if collected: # avoid concurrent collections
 		return null
 	collected = true
 

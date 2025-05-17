@@ -14,7 +14,7 @@ mineral_data = null
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_gu5pp")
 
-[node name="CollectableArea" parent="." index="1"]
+[node name="CollectableArea" parent="." index="2"]
 collision_layer = 8
 collision_mask = 2
 

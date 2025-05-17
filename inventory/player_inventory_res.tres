@@ -1,8 +1,48 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=3 format=3 uid="uid://bwp0r2rbrwfkf"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=14 format=3 uid="uid://bwp0r2rbrwfkf"]
 
-[ext_resource type="Script" path="res://inventory/slots/inventory_slot.gd" id="1_enl84"]
+[ext_resource type="Script" path="res://inventory/slots/inventory_slot.gd" id="1_6o0s6"]
+[ext_resource type="Resource" path="res://inventory/items/energy_bar.tres" id="2_j3s1w"]
+[ext_resource type="Resource" uid="uid://cnanvje1u7wwc" path="res://inventory/items/health_potion.tres" id="3_7gtp1"]
 [ext_resource type="Script" path="res://inventory/inventory.gd" id="4_v5cwj"]
+
+[sub_resource type="Resource" id="Resource_y3twp"]
+script = ExtResource("1_6o0s6")
+item = ExtResource("2_j3s1w")
+amount = 1
+
+[sub_resource type="Resource" id="Resource_7fal2"]
+script = ExtResource("1_6o0s6")
+item = ExtResource("3_7gtp1")
+amount = 1
+
+[sub_resource type="Resource" id="Resource_2qk25"]
+script = ExtResource("1_6o0s6")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_e5knf"]
+script = ExtResource("1_6o0s6")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_hmfo5"]
+script = ExtResource("1_6o0s6")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_5p0uh"]
+script = ExtResource("1_6o0s6")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_hg06s"]
+script = ExtResource("1_6o0s6")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_667d3"]
+script = ExtResource("1_6o0s6")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_4ob85"]
+script = ExtResource("1_6o0s6")
+amount = 0
 
 [resource]
 script = ExtResource("4_v5cwj")
-itemSlots = Array[ExtResource("1_enl84")]([])
+itemSlots = Array[ExtResource("1_6o0s6")]([SubResource("Resource_y3twp"), SubResource("Resource_7fal2"), SubResource("Resource_2qk25"), SubResource("Resource_e5knf"), SubResource("Resource_hmfo5"), SubResource("Resource_5p0uh"), SubResource("Resource_hg06s"), SubResource("Resource_667d3"), SubResource("Resource_4ob85")])

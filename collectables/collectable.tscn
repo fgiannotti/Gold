@@ -14,6 +14,8 @@ collectableAsItem = ExtResource("2_7yq5t")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_je4vj")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
 [node name="CollectableArea" type="Area2D" parent="."]
 
 [node name="ColShape" type="CollisionShape2D" parent="CollectableArea"]

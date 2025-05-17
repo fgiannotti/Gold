@@ -30,10 +30,12 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fnn6y"]
 shader = ExtResource("23_4o4oe")
 shader_parameter/player_pos = null
-shader_parameter/radius = null
+shader_parameter/texture_size = null
 shader_parameter/fog_color = null
 shader_parameter/explored_color = null
-shader_parameter/texture_size = null
+shader_parameter/sight_radius = null
+shader_parameter/blur_edge = 2.0
+shader_parameter/explored_blur = 0.7
 
 [sub_resource type="ImageTexture" id="ImageTexture_rjkn3"]
 
@@ -475,10 +477,10 @@ custom_minimum_size = Vector2(1280, 1280)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -76.0
-offset_top = -431.0
-offset_right = 1204.0
-offset_bottom = 849.0
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 1274.0
+offset_bottom = 1268.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
