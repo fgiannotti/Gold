@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_d4fl5")
 name = "Ruby"
-description = "asdddd"
+description = "Shiny"
 texture = ExtResource("2_ghshj")
 sell_price = 0

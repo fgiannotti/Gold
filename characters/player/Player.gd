@@ -198,3 +198,15 @@ func _on_weapon_area_area_entered(area: Area2D) -> void:
 	if area is HurtBox:
 		print("[Player] Sending damage....")
 		area.take_damage(self.velocity, 50) 
+
+
+func _on_visibility_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		print('[Player] setting body visible to true ', body)
+		body.visible = true
+
+
+func _on_visibility_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		print('[Player] setting body visible to true ', body)
+		body.visible = false

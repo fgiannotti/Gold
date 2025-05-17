@@ -51,7 +51,7 @@ func _on_hurt_box_hit(damage_direction:Vector2, damage_amount: int) -> void:
 		trigger_death()
 		return
 	$Effects.play("hurt")
-	var player_atk_knockback_power = 4000 # for now hardcoded here
+	var player_atk_knockback_power = 2000 # for now hardcoded here
 	$Cactus.knockback(damage_direction, player_atk_knockback_power)
 	
 

@@ -1,62 +1,81 @@
-# fog_of_war.gd (adjuntar al TextureRect hijo de World)
 extends TextureRect
 
-@export var exploration_radius := 50.0  # Radio en tiles
+@export var sight_radius := 70.0
 @export var fog_color := Color(0, 0, 0, 1)
-@export var explored_color := Color(0.3, 0.3, 0.3, 0.8)
+@export var explored_color := Color8(0, 0, 0, 150)
 
-@onready var player = get_parent().get_node("Player")  # Ajusta esta ruta
-@onready var world = get_parent()
+var world_size = Vector2i(1280, 1280)
+# 1 means explored, 0 means unexplored, world size
+var exploration_texture: ImageTexture
+var mask_size = 164
+var radial_mask: Image = Image.create(mask_size, mask_size, false, Image.FORMAT_RGBA8)
 
-var fog_texture : ImageTexture
-var exploration_texture : ImageTexture
+@onready var player = get_parent().get_node("Player")
 
 func _ready():
-	# 1. Configurar tamaño para cubrir TODO el mundo
-	var texture_size = Vector2i(1280, 1280)  # Resolución fija (ajustable)
+	exploration_texture = ImageTexture.create_from_image(world_size_transparent_image())
+	generate_radial_mask()
 
-	
-	# 2. Crear texturas
-	var fog_image = Image.create(texture_size.x, texture_size.y, false, Image.FORMAT_RGBA8)
-	fog_image.fill(fog_color)
-	fog_texture = ImageTexture.create_from_image(fog_image)
-	
-	var explore_image = Image.create(texture_size.x, texture_size.y, false, Image.FORMAT_RGBA8)
-	explore_image.fill(Color(0, 0, 0, 0))
-	exploration_texture = ImageTexture.create_from_image(explore_image)
-	
-	# 3. Configurar material
-	var shader_material = ShaderMaterial.new()
-	shader_material.shader = load("res://screens/FOW.gdshader")
-	shader_material.set_shader_parameter("exploration_texture", exploration_texture)
-	shader_material.set_shader_parameter("fog_color", fog_color)
-	shader_material.set_shader_parameter("explored_color", explored_color)
-	shader_material.set_shader_parameter("texture_size", texture_size)
-	material = shader_material
-	texture = fog_texture
+	texture = ImageTexture.create_from_image(black_fog_image())
 
-func _process(delta):
-	if player:
-		update_fog(player.global_position)
+	material.set_shader_parameter("sight_radius", sight_radius)
+	material.set_shader_parameter("fog_color", fog_color)
+	material.set_shader_parameter("explored_color", explored_color)
+	material.set_shader_parameter("texture_size", Vector2(world_size.x, world_size.y))
 
-func update_fog(player_pos):
-	var local_pos = (player_pos - global_position) / scale
-	var explore_img = exploration_texture.get_image()
-	var new_explore = Image.create(explore_img.get_width(), explore_img.get_height(), false, Image.FORMAT_RGBA8)
-	new_explore.copy_from(explore_img)
-	update_explore_img(Vector2i(local_pos), new_explore)
+	position = Vector2.ZERO
+	size = world_size
 
-	exploration_texture.update(new_explore)
-	print('sending player_pos ', local_pos, 'texture ',   exploration_texture.get_size())
-	
-	material.set_shader_parameter("player_pos", local_pos)
+func _process(_delta):
+	if not player:
+		return
+	stamp_gradient_at(player.global_position)
+
+func stamp_gradient_at(global_pos: Vector2):
+	var local = (global_pos - global_position) / scale
+	var img = exploration_texture.get_image()
+	var msize = radial_mask.get_width()
+	var dest = Vector2i(local.x - msize / 2, local.y - msize / 2)
+	# Blend your precomputed mask_image into the exploration map
+	img.blend_rect(radial_mask,
+				   Rect2i(0, 0, msize, msize),
+				   dest)
+	exploration_texture.update(img)
+
+	# Update shader so the circle follows you
+	material.set_shader_parameter("player_pos", local)
 	material.set_shader_parameter("exploration_texture", exploration_texture)
-	material.set_shader_parameter("radius", exploration_radius)
 
-func update_explore_img(center: Vector2i, explore_img: Image):
-	for x in range(center.x - exploration_radius, center.x + exploration_radius + 1):
-		for y in range(center.y - exploration_radius, center.y + exploration_radius + 1):
-			if x >= 0 and y >= 0 and x < explore_img.get_width() and y < explore_img.get_height():
-				if Vector2(x - center.x, y - center.y).length() <= exploration_radius:
-					explore_img.set_pixel(x, y, explored_color)  # Usar blanco para marca de exploración
+func generate_radial_mask():
+	# Define the mask properties
+	var mask_radius = mask_size / 2
+	var center = Vector2(mask_radius, mask_radius)
 	
+	# Generate the gradient by setting each pixel's opacity
+	for x in range(mask_size):
+		for y in range(mask_size):
+			# Calculate distance from current pixel to the center
+			var distance_to_center = Vector2(x, y).distance_to(center)
+			
+			# Convert to a percentage of the radius (0.0 = center, 1.0 = edge)
+			var distance_percent = distance_to_center / mask_radius
+			
+			# Create opacity gradient (1.0 at center, 0.0 at edges)
+			# 1 means explored, 0 means unexplored, numbers in between are a blend
+			var opacity = 1.0 - distance_percent
+			
+			# Ensure opacity stays within valid range
+			var final_opacity = clamp(opacity, 0.0, 1.0)
+			
+			# Set pixel with white color and calculated opacity
+			radial_mask.set_pixel(x, y, Color(1, 1, 1, final_opacity))
+
+func world_size_transparent_image():
+	var img = Image.create(world_size.x, world_size.y, false, Image.FORMAT_RGBA8)
+	img.fill(Color(0, 0, 0, 0))
+	return img
+
+func black_fog_image():
+	var img = Image.create(world_size.x, world_size.y, false, Image.FORMAT_RGBA8)
+	img.fill(fog_color)
+	return img
