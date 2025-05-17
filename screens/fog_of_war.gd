@@ -2,7 +2,7 @@ extends TextureRect
 
 @export var sight_radius := 70.0
 @export var fog_color := Color(0, 0, 0, 1)
-@export var explored_color := Color(0.3, 0.3, 0.3, 0.8)
+@export var explored_color := Color8(0, 0, 0, 150)
 
 var exploration_texture: ImageTexture
 var mask_size = 164
