@@ -17,16 +17,16 @@ uniform float explored_blur = 0.7;     // How soft the explored area edges are
 void fragment() {
     // Convert UV coordinates to world pixel coordinates
     vec2 pixel_pos = UV * texture_size;
-    
+
     // Calculate how far this pixel is from the player
     float distance_from_player = distance(pixel_pos, player_pos);
-    
+
     // Get this pixel's exploration data from the exploration map
     vec4 explore_data = texture(exploration_texture, UV);
     bool has_been_explored = explore_data.a > 0.0;
-    
+
     // ===== VISIBILITY ZONES =====
-    
+
     // ZONE 1: VISIBLE AREA - Currently in player's sight
     if (distance_from_player <= sight_radius - blur_edge) {
         // Fully transparent - player can see everything

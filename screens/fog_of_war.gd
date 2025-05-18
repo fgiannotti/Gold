@@ -4,7 +4,7 @@ extends TextureRect
 @export var fog_color := Color(0, 0, 0, 1)
 @export var explored_color := Color8(0, 0, 0, 150)
 
-var world_size = Vector2i(1280, 1280)
+var world_size = Vector2i(1344, 1344)
 # 1 means explored, 0 means unexplored, world size
 var exploration_texture: ImageTexture
 var mask_size = 164

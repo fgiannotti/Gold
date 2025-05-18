@@ -10,7 +10,7 @@ func _ready():
 	limit_left = 0
 	limit_right = worldSizeInPx.x
 	limit_bottom = worldSizeInPx.y
-	
+	print("[Camera2D] limit bottom: ", limit_bottom, " limit_right: ", limit_right)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
