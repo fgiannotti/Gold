@@ -32,22 +32,73 @@ func _ready():
 	_on_hp_updated(PlayerManager.health)
 	PlayerManager.food_updated.connect(_on_food_updated)
 	_on_food_updated(PlayerManager.food)
-	reroll_muki_position_until_valid()
+	reroll_position_until_in_open_room($Muki)
+	place_on_room_ceiling($Forge)
 
-# this avoids having muki and collectables on the same tile
-func reroll_muki_position_until_valid():
+# Places a node on a tile with ROOM_CEILING value
+func place_on_room_ceiling(node: Node2D):
+	if walls.rooms.size() == 0:
+		print('[World] No rooms found, using fallback method')
+		reroll_position_until_in_open_room(node)
+		return
+	
+	# Get a random room
+	var random_room = walls.rooms[randi() % walls.rooms.size()]
+	
+	# Get ceiling positions for this room
+	var ceiling_positions = []
+	for x in range(random_room.position.x + 1, random_room.width_line_finish):
+		ceiling_positions.append(Vector2i(x, random_room.position.y))
+	
+	if ceiling_positions.size() > 0:
+		# Pick a random ceiling position
+		var random_pos = ceiling_positions[randi() % ceiling_positions.size()]
+		# Convert to global position
+		var global_pos = walls.map_to_local(random_pos)
+		# Check if there's a collectable there
+		var collectable = $TileMap/collectables.collectable_at_tile(random_pos)
+		
+		# If no collectable, place the forge
+		if !collectable:
+			print('[World] Setting Forge on ROOM_CEILING at position ', global_pos)
+			node.global_position = global_pos
+		else:
+			# If there's a collectable, try another room
+			print('[World] Collectable found at ceiling position, trying another room')
+			place_on_room_ceiling(node)
+	else:
+		print('[World] No ceiling positions found in selected room, using fallback method')
+		reroll_position_until_in_open_room(node)
+
+# this avoids having the node and collectables on the same tile
+func reroll_position_until_in_open_room(node: Node2D):
 	var choosing_pos = true
-	while choosing_pos:
+	var max_attempts = 20
+	var attempt_count = 0
+	
+	while choosing_pos and attempt_count < max_attempts:
+		attempt_count += 1
 		var valid_pos = walls.get_random_room_pos_to_global()
 		var collectable: Node2D = $TileMap/collectables.collectable_at_world_pos(valid_pos)
-		print('[World] got pos and collectable ', valid_pos, collectable)
-		if !collectable || collectable.is_in_group("minerals"):
-			if walls.global_pos_inside_room(valid_pos):
-				print('[World] Setting muki in ', valid_pos)
-				$Muki.global_position = valid_pos
-				choosing_pos = false
-'''
+		print('[World] attempt %d: pos=%s, collectable=%s' % [attempt_count, valid_pos, collectable])
+		
+		if (!collectable || collectable.is_in_group("minerals")) and walls.global_pos_inside_room(valid_pos):
+			print('[World] Setting node in ', valid_pos)
+			node.global_position = valid_pos
+			choosing_pos = false
+	
+	# If we couldn't find a position after maximum attempts, use a fallback
+	if choosing_pos:
+		print('[World] Could not find valid position after %d attempts, using fallback' % max_attempts)
+		# Fallback: just find a valid room position without checking for collectables
+		var positions = walls.positions_open_room
+		if positions.size() > 0:
+			var fallback_pos = walls.to_global(positions[randi() % positions.size()])
+			print('[World] Fallback position: ', fallback_pos)
+			node.global_position = fallback_pos
+
 # To debug stuff
+'''
 
 var creating = false
 func _input(event):
@@ -59,7 +110,6 @@ func _input(event):
 		$CanvasLayer/Artifacts/GridContainer.add_child(art)
 	get_tree().create_timer(2).timeout
 	creating = false
-
 '''
 
 
