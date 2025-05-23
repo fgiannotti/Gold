@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d076f1grcynww"
-path="res://.godot/imported/DestinyChains.png-d6a0dd6cf8d678da3b6dfc260b0306e3.ctex"
+uid="uid://bo6puctwu6wr6"
+path="res://.godot/imported/ButcherKnife.png-d50dcea981ea27c841d507246b2c307b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/DestinyChains.png"
-dest_files=["res://.godot/imported/DestinyChains.png-d6a0dd6cf8d678da3b6dfc260b0306e3.ctex"]
+source_file="res://assets/items/relics/ButcherKnife.png"
+dest_files=["res://.godot/imported/ButcherKnife.png-d50dcea981ea27c841d507246b2c307b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqydjn6sc87c8"
-path="res://.godot/imported/MinersCharm2.png-4a2b2ac28343e8e04d9a79699afe932f.ctex"
+uid="uid://dbadqcoigv1aa"
+path="res://.godot/imported/Iron Valiance.png-3a6b4198786d005142f660e1a7bba548.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/MinersCharm2.png"
-dest_files=["res://.godot/imported/MinersCharm2.png-4a2b2ac28343e8e04d9a79699afe932f.ctex"]
+source_file="res://assets/items/relics/Iron Valiance.png"
+dest_files=["res://.godot/imported/Iron Valiance.png-3a6b4198786d005142f660e1a7bba548.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo6puctwu6wr6"
-path="res://.godot/imported/ButcherKnife.png-37be62134c6878320e1e1474b7dd82e5.ctex"
+uid="uid://636srf46wq8w"
+path="res://.godot/imported/Miner's Charm.png-c27fc3870bdfc92f39910ef7f5ecbb23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/ButcherKnife.png"
-dest_files=["res://.godot/imported/ButcherKnife.png-37be62134c6878320e1e1474b7dd82e5.ctex"]
+source_file="res://assets/items/relics/Miner's Charm.png"
+dest_files=["res://.godot/imported/Miner's Charm.png-c27fc3870bdfc92f39910ef7f5ecbb23.ctex"]
 
 [params]
 

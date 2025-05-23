@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di8np45c5ii4t"
-path="res://.godot/imported/Luminescent Gem2.png-c43e6d744be1d0cd6ce79bac441e8362.ctex"
+uid="uid://cqydjn6sc87c8"
+path="res://.godot/imported/MinersCharm2.png-600d8a26972fe2219f6cb48544a434b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/Luminescent Gem2.png"
-dest_files=["res://.godot/imported/Luminescent Gem2.png-c43e6d744be1d0cd6ce79bac441e8362.ctex"]
+source_file="res://assets/items/relics/MinersCharm2.png"
+dest_files=["res://.godot/imported/MinersCharm2.png-600d8a26972fe2219f6cb48544a434b6.ctex"]
 
 [params]
 

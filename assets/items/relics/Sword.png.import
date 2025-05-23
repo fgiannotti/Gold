@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj82wjgbha8ei"
-path="res://.godot/imported/BarbedWire.png-dd8ea5eaf7404751fec90f26c93fb21d.ctex"
+uid="uid://o5acp5ec3p22"
+path="res://.godot/imported/Sword.png-8315b8162cb5bac1c633b6086ddae270.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/BarbedWire.png"
-dest_files=["res://.godot/imported/BarbedWire.png-dd8ea5eaf7404751fec90f26c93fb21d.ctex"]
+source_file="res://assets/items/relics/Sword.png"
+dest_files=["res://.godot/imported/Sword.png-8315b8162cb5bac1c633b6086ddae270.ctex"]
 
 [params]
 

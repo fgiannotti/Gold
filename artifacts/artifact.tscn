@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://drmdsicgij17d"]
 
 [ext_resource type="Script" path="res://artifacts/artifact.gd" id="1_t6g2m"]
-[ext_resource type="Texture2D" uid="uid://vqaahkfmrg35" path="res://assets/items/Sword2.png" id="2_gbwx2"]
+[ext_resource type="Texture2D" uid="uid://vqaahkfmrg35" path="res://assets/items/relics/Sword2.png" id="2_gbwx2"]
 
 [node name="Artifact" type="Control"]
 custom_minimum_size = Vector2(64, 64)

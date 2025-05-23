@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgfibl00ncg1f"
-path="res://.godot/imported/LadderSonar.png-ded2a7bd597596b461fdcdcda8c46374.ctex"
+uid="uid://d076f1grcynww"
+path="res://.godot/imported/DestinyChains.png-837273950c5fa7b409fc879d363fac5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/LadderSonar.png"
-dest_files=["res://.godot/imported/LadderSonar.png-ded2a7bd597596b461fdcdcda8c46374.ctex"]
+source_file="res://assets/items/relics/DestinyChains.png"
+dest_files=["res://.godot/imported/DestinyChains.png-837273950c5fa7b409fc879d363fac5f.ctex"]
 
 [params]
 

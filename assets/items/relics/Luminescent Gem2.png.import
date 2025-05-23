@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwnkosrbq8lpd"
-path="res://.godot/imported/Long Stick2.png-2e7b295b7aa0b610ef075202a90c52a7.ctex"
+uid="uid://di8np45c5ii4t"
+path="res://.godot/imported/Luminescent Gem2.png-b04f0e5cd90baf9038fcd06060c2877b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/Long Stick2.png"
-dest_files=["res://.godot/imported/Long Stick2.png-2e7b295b7aa0b610ef075202a90c52a7.ctex"]
+source_file="res://assets/items/relics/Luminescent Gem2.png"
+dest_files=["res://.godot/imported/Luminescent Gem2.png-b04f0e5cd90baf9038fcd06060c2877b.ctex"]
 
 [params]
 

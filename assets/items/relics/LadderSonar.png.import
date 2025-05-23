@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dibm33uhy5knu"
-path="res://.godot/imported/ButcherKnife2.png-0ffba778cdaa917e54eb61413f75a383.ctex"
+uid="uid://bgfibl00ncg1f"
+path="res://.godot/imported/LadderSonar.png-7cd743cd0164615b78923de8ca12696d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/ButcherKnife2.png"
-dest_files=["res://.godot/imported/ButcherKnife2.png-0ffba778cdaa917e54eb61413f75a383.ctex"]
+source_file="res://assets/items/relics/LadderSonar.png"
+dest_files=["res://.godot/imported/LadderSonar.png-7cd743cd0164615b78923de8ca12696d.ctex"]
 
 [params]
 

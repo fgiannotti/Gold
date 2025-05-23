@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbqc14kl3qn1y"
-path="res://.godot/imported/EmptySaladBowl2.png-52004b31876a8a0c5c5af153b09a2845.ctex"
+uid="uid://cusglbusuox3w"
+path="res://.godot/imported/adrenaline anklets.png-c03dbcb17a67f3d8376b803b37f40dac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/EmptySaladBowl2.png"
-dest_files=["res://.godot/imported/EmptySaladBowl2.png-52004b31876a8a0c5c5af153b09a2845.ctex"]
+source_file="res://assets/items/relics/adrenaline anklets.png"
+dest_files=["res://.godot/imported/adrenaline anklets.png-c03dbcb17a67f3d8376b803b37f40dac.ctex"]
 
 [params]
 
