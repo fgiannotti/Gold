@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2b6op05xljru"
-path="res://.godot/imported/Luminescent Gem.png-2fe6c4ab54f5e1b0266ffea55b35a14f.ctex"
+uid="uid://dibm33uhy5knu"
+path="res://.godot/imported/ButcherKnife2.png-ad120054e03f38eed8eeb6cd00d982f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/Luminescent Gem.png"
-dest_files=["res://.godot/imported/Luminescent Gem.png-2fe6c4ab54f5e1b0266ffea55b35a14f.ctex"]
+source_file="res://assets/items/relics/ButcherKnife2.png"
+dest_files=["res://.godot/imported/ButcherKnife2.png-ad120054e03f38eed8eeb6cd00d982f6.ctex"]
 
 [params]
 

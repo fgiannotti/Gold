@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Inventory" load_steps=14 format=3 uid="uid://bwp0r2rbrwfkf"]
 
 [ext_resource type="Script" path="res://inventory/slots/inventory_slot.gd" id="1_6o0s6"]
-[ext_resource type="Resource" path="res://inventory/items/energy_bar.tres" id="2_j3s1w"]
+[ext_resource type="Resource" uid="uid://d0mmt7belh72e" path="res://inventory/items/energy_bar.tres" id="2_j3s1w"]
 [ext_resource type="Resource" uid="uid://cnanvje1u7wwc" path="res://inventory/items/health_potion.tres" id="3_7gtp1"]
 [ext_resource type="Script" path="res://inventory/inventory.gd" id="4_v5cwj"]
 

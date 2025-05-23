@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kejb8vx5ynyi"
-path="res://.godot/imported/Carbonized Soul.png-86164c9728e63218826323a0bd6517dc.ctex"
+uid="uid://bj82wjgbha8ei"
+path="res://.godot/imported/BarbedWire.png-ba308a7cd7d9ff0834c751d0dcb26dba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/Carbonized Soul.png"
-dest_files=["res://.godot/imported/Carbonized Soul.png-86164c9728e63218826323a0bd6517dc.ctex"]
+source_file="res://assets/items/relics/BarbedWire.png"
+dest_files=["res://.godot/imported/BarbedWire.png-ba308a7cd7d9ff0834c751d0dcb26dba.ctex"]
 
 [params]
 

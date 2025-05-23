@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o5acp5ec3p22"
-path="res://.godot/imported/Sword.png-bb3dc58a6bc75e0f021e2e9b2a52a73b.ctex"
+uid="uid://bgfibl00ncg1f"
+path="res://.godot/imported/LadderSonar.png-7cd743cd0164615b78923de8ca12696d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/Sword.png"
-dest_files=["res://.godot/imported/Sword.png-bb3dc58a6bc75e0f021e2e9b2a52a73b.ctex"]
+source_file="res://assets/items/relics/LadderSonar.png"
+dest_files=["res://.godot/imported/LadderSonar.png-7cd743cd0164615b78923de8ca12696d.ctex"]
 
 [params]
 
