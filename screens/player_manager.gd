@@ -1,6 +1,6 @@
 extends Node
 
-const PLAYER_SPEED = 200
+const PLAYER_SPEED = 500
 const STEPS_FOR_HUNGER = 50
 
 const INITIAL_GOLD: int = 100

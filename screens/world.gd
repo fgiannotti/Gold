@@ -33,42 +33,80 @@ func _ready():
 	PlayerManager.food_updated.connect(_on_food_updated)
 	_on_food_updated(PlayerManager.food)
 	reroll_position_until_in_open_room($Muki)
+	await get_tree().process_frame
+	print("[WORLD] Total children in collectables after spawn: ", $TileMap/collectables.get_child_count())
+	
 	place_on_room_ceiling($Forge)
 
 # Places a node on a tile with ROOM_CEILING value
 func place_on_room_ceiling(node: Node2D):
+	print("\n\n[FORGE_DEBUG] ========== STARTING FORGE PLACEMENT ==========")
+	
 	if walls.rooms.size() == 0:
-		print('[World] No rooms found, using fallback method')
+		print('[FORGE_DEBUG] No rooms found, using fallback method')
 		reroll_position_until_in_open_room(node)
 		return
 	
-	# Get a random room
-	var random_room = walls.rooms[randi() % walls.rooms.size()]
+	# STEP 1: Get all mineral positions in WORLD coordinates
+	var mineral_world_positions = []
 	
-	# Get ceiling positions for this room
-	var ceiling_positions = []
+	print("[FORGE_DEBUG] Scanning all children in collectables:")
+	for child in $TileMap/collectables.get_children():
+		if child is Node2D:
+			print("[FORGE_DEBUG]   • Found: " + child.name + " at position: " + str(child.position) + 
+				  " [Groups: " + str(child.get_groups()) + "]")
+			mineral_world_positions.append(child.position)
+	
+	# STEP 2: Get all ceiling positions
+	var random_room = walls.rooms[0] # Use first room consistently for debugging
+	
+	print("[FORGE_DEBUG] Using room at position: " + str(random_room.position) + 
+		  ", top_gate: " + str(random_room.top_gate) + 
+		  ", width finish: " + str(random_room.width_line_finish))
+	
+	var ceiling_world_positions = []
 	for x in range(random_room.position.x + 1, random_room.width_line_finish):
-		ceiling_positions.append(Vector2i(x, random_room.position.y))
+		if x != random_room.top_gate.y: # gates are inverted
+			var tilemap_pos = Vector2(x, random_room.position.y)
+			var world_pos = walls.map_to_local(tilemap_pos)
+			ceiling_world_positions.append({"tilemap": tilemap_pos, "world": world_pos})
+			print("[FORGE_DEBUG]   • Ceiling position: tilemap=" + str(tilemap_pos) + 
+				  ", world=" + str(world_pos))
 	
-	if ceiling_positions.size() > 0:
-		# Pick a random ceiling position
-		var random_pos = ceiling_positions[randi() % ceiling_positions.size()]
-		# Convert to global position
-		var global_pos = walls.map_to_local(random_pos)
-		# Check if there's a collectable there
-		var collectable = $TileMap/collectables.collectable_at_tile(random_pos)
+	# STEP 3: Find a ceiling position that is FAR from any mineral
+	print("[FORGE_DEBUG] Checking for available ceiling positions...")
+	var available_positions = []
+	var SAFE_DISTANCE = 32 # Use a VERY large distance to be sure
+	
+	for ceiling_pos in ceiling_world_positions:
+		var is_occupied = false
+		for mineral_pos in mineral_world_positions:
+			var distance = ceiling_pos.world.distance_to(mineral_pos)
+			print("[FORGE_DEBUG]   • Distance from " + str(ceiling_pos.world) + 
+				  " to mineral at " + str(mineral_pos) + ": " + str(distance))
+			
+			if distance < SAFE_DISTANCE:
+				print("[FORGE_DEBUG]     - TOO CLOSE! Position is occupied")
+				is_occupied = true
+				break
 		
-		# If no collectable, place the forge
-		if !collectable:
-			print('[World] Setting Forge on ROOM_CEILING at position ', global_pos)
-			node.global_position = global_pos
-		else:
-			# If there's a collectable, try another room
-			print('[World] Collectable found at ceiling position, trying another room')
-			place_on_room_ceiling(node)
+		if not is_occupied:
+			print("[FORGE_DEBUG]     + AVAILABLE! Adding to available positions")
+			available_positions.append(ceiling_pos)
+	
+	# STEP 4: Choose a position and place the forge
+	if available_positions.size() > 0:
+		var chosen_pos = available_positions[randi() % available_positions.size()]
+		
+		print("[FORGE_DEBUG] Setting Forge at world position: " + str(chosen_pos.world) + 
+			  " (tilemap: " + str(chosen_pos.tilemap) + ")")
+		
+		node.global_position = chosen_pos.world
 	else:
-		print('[World] No ceiling positions found in selected room, using fallback method')
+		print("[FORGE_DEBUG] No available ceiling positions, using fallback method")
 		reroll_position_until_in_open_room(node)
+	
+	print("[FORGE_DEBUG] ========== FORGE PLACEMENT COMPLETE ==========\n\n")
 
 # this avoids having the node and collectables on the same tile
 func reroll_position_until_in_open_room(node: Node2D):
@@ -80,21 +118,21 @@ func reroll_position_until_in_open_room(node: Node2D):
 		attempt_count += 1
 		var valid_pos = walls.get_random_room_pos_to_global()
 		var collectable: Node2D = $TileMap/collectables.collectable_at_world_pos(valid_pos)
-		print('[World] attempt %d: pos=%s, collectable=%s' % [attempt_count, valid_pos, collectable])
+		print('[reroll_position_until_in_open_room] attempt %d: pos=%s, collectable=%s' % [attempt_count, valid_pos, collectable])
 		
 		if (!collectable || collectable.is_in_group("minerals")) and walls.global_pos_inside_room(valid_pos):
-			print('[World] Setting node in ', valid_pos)
+			print('[reroll_position_until_in_open_room] Setting node in ', valid_pos)
 			node.global_position = valid_pos
 			choosing_pos = false
 	
 	# If we couldn't find a position after maximum attempts, use a fallback
 	if choosing_pos:
-		print('[World] Could not find valid position after %d attempts, using fallback' % max_attempts)
+		print('[reroll_position_until_in_open_room] Could not find valid position after %d attempts, using fallback' % max_attempts)
 		# Fallback: just find a valid room position without checking for collectables
 		var positions = walls.positions_open_room
 		if positions.size() > 0:
 			var fallback_pos = walls.to_global(positions[randi() % positions.size()])
-			print('[World] Fallback position: ', fallback_pos)
+			print('[reroll_position_until_in_open_room] Fallback position: ', fallback_pos)
 			node.global_position = fallback_pos
 
 # To debug stuff

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://vctj1ma2bc1l"]
+[gd_scene load_steps=11 format=3 uid="uid://vctj1ma2bc1l"]
 
 [ext_resource type="Script" path="res://interactables/forge.gd" id="1_mgjg0"]
 [ext_resource type="Texture2D" uid="uid://dlphh7owj40lc" path="res://assets/interactables/furnance.png" id="1_qtjr3"]
@@ -39,9 +39,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cdjtt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tl5n"]
+size = Vector2(20, 14.7304)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_esx4f"]
+radius = 13.0384
+
 [node name="Forge" type="Node2D"]
 visibility_layer = 3
-position = Vector2(16, 15)
 script = ExtResource("1_mgjg0")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
@@ -49,15 +56,20 @@ z_index = 1
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_eerri")
 
-[node name="Area2D" type="Area2D" parent="."]
-z_index = 1
-collision_layer = 9
-collision_mask = 2
-priority = 1
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-top_level = true
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 z_index = 3
-position = Vector2(16, 4)
+position = Vector2(0, -16)
+collision_layer = 16
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_cdjtt")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 3
+position = Vector2(0, 3.77206)
 scale = Vector2(0.953947, 0.845588)
-polygon = PackedVector2Array(-6.26552, -8.36957, 6.31379, -8.36957, 11.5552, -3.63913, 11.5552, 11.7348, -10.4586, 11.7348, -10.4586, -4.82174, -6.26552, -8.36957)
+shape = SubResource("RectangleShape2D_0tl5n")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_esx4f")

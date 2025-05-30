@@ -20,27 +20,21 @@ func spawn_scene_at_tile(tile_coords: Vector2i, instance: Node):
 	add_child.call_deferred(instance)  # Add as a child to the TileMapLayer
 
 func mineral_at_tile(tileset_cords: Vector2i) -> Node2D:
-	# Convert the tilemap coordinates to world position
-	var world_position = map_to_local(tileset_cords)
-	# TODO: Optimize this
-	for child in get_children():
-		# Check if the child is a Node2D and its position matches the world position
-		
-		if child.position == world_position:
-			print("[CollectablesTilemap] lf mineral Found children on position ", child)
-			return child
+	var collectable = collectable_at_tile(tileset_cords)
+	if collectable and collectable.is_in_group("minerals"):
+		return collectable
 
 	return null
 
 func collectable_at_tile(tileset_cords: Vector2i) -> Node2D:
 	# Convert the tilemap coordinates to world position
 	var world_position = map_to_local(tileset_cords)
+	# Define a small tolerance for position comparisons
+	var position_tolerance = 128.0  # pixels
 
 	for child in get_children():
-		# Check if the child is a Node2D and its position matches the world position
-		# TODO: Optimize this
-		# print("[CollectablesTilemap] found children on position ", child)
-		if child is Node2D and !child.is_in_group("minerals") and child.position == world_position:
+		# Check if the child is a Node2D and its position is close enough to the world position
+		if child is Node2D and child.position.distance_to(world_position) < position_tolerance:
 			return child
 
 	return null
