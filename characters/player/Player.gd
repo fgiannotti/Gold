@@ -65,13 +65,25 @@ func _process(delta):
 		is_interacting = true
 		
 		play_use_animation()
-		var world_position = nearest_world_tile()
-		print('[Player] trying to interact nearest tile: ', world_position)
-		var collectable: Node2D = collectablesLayer.collectable_at_world_pos(world_position)
-		# Code can collect, move all into collectable. Objective]: improve use action
-		print('[Player] got collectable: ', collectable)
-		if world_position && collectable && collectable.has_method("collect") && !collectable.is_in_group("minerals"):
-			collectablesLayer.collect_tile(world_position)
+		
+		# First check for forge interactions
+		var forge_used = false
+		var forge_nodes = get_tree().get_nodes_in_group("forges")
+		for forge in forge_nodes:
+			if forge.has_method("can_be_used") and forge.can_be_used():
+				forge_used = forge.use_forge()
+				break
+		
+		# If no forge was used, check for collectables
+		if not forge_used:
+			var world_position = nearest_world_tile()
+			print('[Player] trying to interact nearest tile: ', world_position)
+			var collectable: Node2D = collectablesLayer.collectable_at_world_pos(world_position)
+			# Code can collect, move all into collectable. Objective]: improve use action
+			print('[Player] got collectable: ', collectable)
+			if world_position && collectable && collectable.has_method("collect") && !collectable.is_in_group("minerals"):
+				collectablesLayer.collect_tile(world_position)
+		
 		await animations.animation_finished
 		is_interacting = false
 		#use_cooldown.start()
