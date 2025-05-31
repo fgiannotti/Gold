@@ -261,63 +261,63 @@ func place_rooms(maze: Array, visited_maze: Array):
 # j == x
 # i == y
 
-func fill_maze_from_room(maze, visited_maze, room1):
-	var height_line_finish: float = room1.height_line_finish
-	var width_line_finish: float = room1.width_line_finish
+func fill_maze_from_room(maze, visited_maze, room):
+	var height_line_finish: float = room.height_line_finish
+	var width_line_finish: float = room.width_line_finish
 	
-	print("width_line_finish ", width_line_finish, " position_x ", room1.position.x)
-	print("height_line_finish ", height_line_finish, " position_y ", room1.position.y)
-	maze[room1.position.y][room1.position.x] = ROOM_TOP_LEFT
-	maze[room1.position.y][width_line_finish] = ROOM_TOP_RIGHT
-	maze[height_line_finish][room1.position.x] = ROOM_BOTTOM_LEFT
+	print("width_line_finish ", width_line_finish, " position_x ", room.position.x)
+	print("height_line_finish ", height_line_finish, " position_y ", room.position.y)
+	maze[room.position.y][room.position.x] = ROOM_TOP_LEFT
+	maze[room.position.y][width_line_finish] = ROOM_TOP_RIGHT
+	maze[height_line_finish][room.position.x] = ROOM_BOTTOM_LEFT
 	maze[height_line_finish][width_line_finish] = ROOM_BOTTOM_RIGHT
 
 	# Left/Right Borders
-	for y in range(room1.position.y + 1, height_line_finish):
-		maze[y][room1.position.x] = ROOM_LEFT_WALL
+	for y in range(room.position.y + 1, height_line_finish):
+		maze[y][room.position.x] = ROOM_LEFT_WALL
 		maze[y][width_line_finish] = ROOM_RIGHT_WALL
 		
-	for x in range(room1.position.x + 1, width_line_finish):
-		maze[room1.position.y][x] = ROOM_CEILING
+	for x in range(room.position.x + 1, width_line_finish):
+		maze[room.position.y][x] = ROOM_CEILING
 		maze[height_line_finish][x] = ROOM_FLOOR
 	
 	
-	for x in range(room1.position.x + 1, width_line_finish):
-		for y in range(room1.position.y + 1, height_line_finish):
+	for x in range(room.position.x + 1, width_line_finish):
+		for y in range(room.position.y + 1, height_line_finish):
 				maze[y][x] = ROOM_OPEN
 				positions_open_room.append(self.map_to_local(Vector2(x, y)))
 	#assign stair
-	if (room1.has_stair):
+	if (room.has_stair):
 		var rng = RandomNumberGenerator.new()
-		var int_random_x = rng.randi_range(room1.position.x + 1, width_line_finish - 1)
-		var int_random_y = rng.randi_range(room1.position.y + 1, height_line_finish - 1)
+		var int_random_x = rng.randi_range(room.position.x + 1, width_line_finish - 1)
+		var int_random_y = rng.randi_range(room.position.y + 1, height_line_finish - 1)
 		#maze[intRandomY][intRandomX] = STAIR_DOWN
 		#Antes la Linea de arriba ponia la escalera desde el Tile Set
 		stair_position_in_tilemap = Vector2(int_random_x, int_random_y)
 		print('######### Spawn Stair ###############', stair_position_in_tilemap)
 
 	# print("iterating to fill gates for room...")
-	for x in range(room1.position.x, width_line_finish + 1):
-		for y in range(room1.position.y, height_line_finish + 1):
+	for x in range(room.position.x, width_line_finish + 1):
+		for y in range(room.position.y, height_line_finish + 1):
 			visited_maze[y][x] = 1
 			var cell = Vector2(y, x)
-			if cell == room1.top_gate:
+			if cell == room.top_gate:
 				# print('setting top room door as unvisited ', x, y)
 				visited_maze[y][x] = 0
 				maze[y][x] = TOP_CLOSED
-			if cell == room1.bottom_gate:
+			if cell == room.bottom_gate:
 				# print('setting bottom room door as unvisited ', x, y)
 				visited_maze[y][x] = 0
 				maze[y][x] = DOWN_CLOSED
-			if cell == room1.left_gate:
+			if cell == room.left_gate:
 				# print('setting left room door as unvisited ', x, y)
 				visited_maze[y][x] = 0
 				maze[y][x] = LEFT_CLOSED
-			if cell == room1.right_gate:
+			if cell == room.right_gate:
 				# print('setting right room door as unvisited ', x, y)
 				visited_maze[y][x] = 0
 				maze[y][x] = RIGHT_CLOSED
-	rooms.append(room1)
+	rooms.append(room)
 
 func place_borders(visited_maze):
 	# techito
@@ -395,10 +395,10 @@ class Room:
 		self.bottom_gate = Vector2(self.height_line_finish, round((self.position.x + self.width_line_finish + 1) / 2))
 		if (self.bottom_gate.x >= MAZE_HEIGHT - 2):
 			self.bottom_gate = Vector2(-1, -1)
-		print("left_gate ", left_gate)
-		print("right_gate ", right_gate)
-		print("bottom_gate ", bottom_gate)
-		print("top_gate ", top_gate)
+		print("[room] left_gate ", left_gate)
+		print("[room] right_gate ", right_gate)
+		print("[room] bottom_gate ", bottom_gate)
+		print("[room] top_gate ", top_gate)
 		for x in range(self.position.x, width_line_finish + 1):
 			for y in range(self.position.y, height_line_finish + 1):
 				room_tiles.append(Vector2(y, x))

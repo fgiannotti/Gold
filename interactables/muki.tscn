@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://7ldj2fkeixgl"]
 
-[ext_resource type="Script" path="res://muki.gd" id="1_b5e0c"]
+[ext_resource type="Script" path="res://interactables/muki.gd" id="1_b5e0c"]
 [ext_resource type="Texture2D" uid="uid://cacy18h2wad1u" path="res://assets/interactables/Rug 0.2.png" id="2_4d7jc"]
 [ext_resource type="Texture2D" uid="uid://bmaxorki32xiv" path="res://assets/characters/Muki 0.2.png" id="2_jtyhe"]
 [ext_resource type="Texture2D" uid="uid://cj20q2h0de0ww" path="res://assets/characters/Muki idle sheet.png" id="2_n6lw6"]
