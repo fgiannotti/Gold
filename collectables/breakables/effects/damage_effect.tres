@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DamageEffect" load_steps=2 format=3 uid="uid://ciolovjeplkrj"]
+
+[ext_resource type="Script" path="res://collectables/breakables/effects/damage_effect.gd" id="1_damage"]
+
+
+[resource]
+script = ExtResource("1_damage")
+effect_name = "Explosive Trap"
+effect_description = "Deals 15 damage to the player"
+damage_amount = 15.0 
