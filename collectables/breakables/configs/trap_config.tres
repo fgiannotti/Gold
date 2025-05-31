@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BreakableConfig" load_steps=3 format=3 uid="uid://diyenxo45trb8"]
+
+[ext_resource type="Script" path="res://collectables/breakable_config.gd" id="1_trap_config"]
+[ext_resource type="Texture2D" uid="uid://u7lsfir3cl3j" path="res://assets/minerals/coal left.png" id="2_trap_texture"]
+[ext_resource type="Resource" uid="uid://ciolovjeplkrj" path="res://collectables/breakables/effects/damage_effect.tres" id="3_trap_effect"]
+
+
+[resource]
+script = ExtResource("1_trap_config")
+texture = ExtResource("2_trap_texture")
+modulate_color = Color(1, 0.5, 0.5, 1)
+sprite_frame = 0
+drop_chance = 0.0
+collectableAsItem = null
+effects = Array[InteractableEffect]([ExtResource("3_trap_effect")])
+break_animation_name = "explode"
+break_animation_duration = 0.3
+config_name = "Explosive Trap"
+config_description = "A dangerous trap that explodes when attacked" 

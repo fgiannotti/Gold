@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxqxb0t7qimr8"]
+
+[ext_resource type="Script" path="res://collectables/breakable_interactable.gd" id="1_ktm0k"]
+[ext_resource type="Resource" uid="uid://bpotconfig123" path="res://collectables/breakables/configs/box_config.tres" id="2_ixy4s"]
+[ext_resource type="Texture2D" uid="uid://clr677l8vxlx7" path="res://assets/interactables/box1.png" id="3_p8tb0"]
+[ext_resource type="PackedScene" uid="uid://cwyxg878ngppm" path="res://characters/hurt_box.tscn" id="4_ftsi2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_abc123"]
+radius = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_def456"]
+radius = 20.0
+
+[node name="BreakableInteractable" type="Node2D"]
+script = ExtResource("1_ktm0k")
+config = ExtResource("2_ixy4s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_p8tb0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollectableArea" type="Area2D" parent="."]
+
+[node name="ColShape" type="CollisionShape2D" parent="CollectableArea"]
+position = Vector2(16, -8)
+shape = SubResource("CircleShape2D_abc123")
+
+[node name="HurtBox" parent="." instance=ExtResource("4_ftsi2")]
+collision_layer = 4
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_def456")
+
+[connection signal="body_entered" from="CollectableArea" to="." method="_on_collectable_area_body_entered"]
+[connection signal="body_exited" from="CollectableArea" to="." method="_on_collectable_area_body_exited"]
