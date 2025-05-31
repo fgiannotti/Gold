@@ -26,6 +26,9 @@ func _ready():
 	CollectableAutoloader.walls_tilemap = $TileMap/walls
 	CollectableAutoloader.collectables_tilemap = $TileMap/collectables
 	CollectableAutoloader.spawn_all_collectables()
+	BreakablesAutoloader.walls_tilemap = $TileMap/walls
+	BreakablesAutoloader.collectables_tilemap = $TileMap/collectables
+	BreakablesAutoloader.spawn_all_breakables()
 	$CanvasLayer/InventoryGUI.show()
 	$SceneTransitioner.process_mode = Node.PROCESS_MODE_ALWAYS
 	PlayerManager.hp_updated.connect(_on_hp_updated)

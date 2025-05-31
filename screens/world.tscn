@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://tnse7f1bt8dr"]
+[gd_scene load_steps=68 format=3 uid="uid://tnse7f1bt8dr"]
 
 [ext_resource type="Script" path="res://screens/world.gd" id="1_ffg8k"]
 [ext_resource type="Script" path="res://canvas_layer.gd" id="2_4rb1c"]
@@ -27,7 +27,6 @@
 [ext_resource type="Shader" path="res://screens/FOW.gdshader" id="23_4o4oe"]
 [ext_resource type="Script" path="res://screens/fog_of_war.gd" id="24_a64l6"]
 [ext_resource type="PackedScene" uid="uid://vctj1ma2bc1l" path="res://interactables/forge.tscn" id="26_he1ja"]
-[ext_resource type="PackedScene" uid="uid://cxqxb0t7qimr8" path="res://collectables/breakables/breakable_interactable.tscn" id="28_q38h6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fnn6y"]
 shader = ExtResource("23_4o4oe")
@@ -793,9 +792,6 @@ offset_bottom = 1440.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
-
-[node name="BreakableInteractable" parent="." instance=ExtResource("28_q38h6")]
-position = Vector2(283, 84)
 
 [connection signal="player_died" from="CanvasLayer/TopRight/VBoxContainer/MarginContainer2/HealthBar" to="." method="_on_health_bar_player_died"]
 [connection signal="player_starved" from="CanvasLayer/TopRight/VBoxContainer/MarginContainer/FoodBar" to="." method="_on_food_bar_player_starved"]
