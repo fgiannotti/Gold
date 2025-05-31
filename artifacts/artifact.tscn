@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://drmdsicgij17d"]
 
 [ext_resource type="Script" path="res://artifacts/artifact.gd" id="1_t6g2m"]
-[ext_resource type="Texture2D" uid="uid://o5acp5ec3p22" path="res://assets/items/Sword.png" id="2_mt40w"]
+[ext_resource type="Texture2D" uid="uid://vqaahkfmrg35" path="res://assets/items/relics/Sword2.png" id="2_gbwx2"]
 
 [node name="Artifact" type="Control"]
 custom_minimum_size = Vector2(64, 64)
@@ -21,7 +21,7 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 48.0
 offset_bottom = 48.0
-texture = ExtResource("2_mt40w")
+texture = ExtResource("2_gbwx2")
 
 [node name="ArtifactLevel" type="Panel" parent="TextureRect"]
 visible = false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbadqcoigv1aa"
-path="res://.godot/imported/Iron Valiance.png-13973a45aab47a590b1afb10e2ea7d63.ctex"
+uid="uid://dbqc14kl3qn1y"
+path="res://.godot/imported/EmptySaladBowl2.png-89263a6f69f58eeddf32f0aa7c2f841c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/Iron Valiance.png"
-dest_files=["res://.godot/imported/Iron Valiance.png-13973a45aab47a590b1afb10e2ea7d63.ctex"]
+source_file="res://assets/items/relics/EmptySaladBowl2.png"
+dest_files=["res://.godot/imported/EmptySaladBowl2.png-89263a6f69f58eeddf32f0aa7c2f841c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wvluehxq06gj"
-path="res://.godot/imported/Long Stick.png-be13e4444ac7f1bfd06078a6d6fd4e43.ctex"
+uid="uid://udtht4ygci1r"
+path="res://.godot/imported/HeartOfGold.png-12de978d9dc65f674dfef6871d1bfccc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/Long Stick.png"
-dest_files=["res://.godot/imported/Long Stick.png-be13e4444ac7f1bfd06078a6d6fd4e43.ctex"]
+source_file="res://assets/items/relics/HeartOfGold.png"
+dest_files=["res://.godot/imported/HeartOfGold.png-12de978d9dc65f674dfef6871d1bfccc.ctex"]
 
 [params]
 
