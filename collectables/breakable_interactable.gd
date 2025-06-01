@@ -80,6 +80,9 @@ func break_interactable():
 	is_broken = true
 	print("[BreakableInteractable] Breaking!")
 	
+	# Track the breakable destruction
+	GameStats.breakable_destroyed()
+	
 	# Play break animation if it exists
 	var anim_name = config.break_animation_name if config else "break"
 	if animations and animations.has_animation(anim_name):
@@ -108,6 +111,9 @@ func handle_item_drop():
 	var chance = config.drop_chance if config else 1.0
 	
 	if item and randf() <= chance:
+		# Track item collection
+		GameStats.item_collected()
+		
 		# Use InteractionManager to access the inventory (same pattern as other systems)
 		if InteractionManager.inventoryGUI:
 			InteractionManager.inventoryGUI.add_item(item)

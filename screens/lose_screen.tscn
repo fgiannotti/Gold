@@ -8,17 +8,17 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1152.0
-offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_easvw")
 
 [node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 1
@@ -27,35 +27,98 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.1, 0, 0, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+[node name="LoseText" type="RichTextLabel" parent="Control"]
+custom_minimum_size = Vector2(800, 120)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 200.0
-offset_top = 144.0
-offset_right = -328.0
-offset_bottom = -360.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -292.0
+offset_right = 400.0
+offset_bottom = -172.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 128
+theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
-text = "[shake rate=12.0 level=3 connected=1]You lost.[/shake]"
+text = "[center][shake rate=8.0 level=5][color=red]💀 GAME OVER 💀[/color][/shake][/center]"
+
+[node name="FailureReason" type="RichTextLabel" parent="Control"]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -312.0
+offset_top = -180.0
+offset_right = 316.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 42
+bbcode_enabled = true
+text = "[center][color=orange]💀 DEATH BY COMBAT[/color][/center]"
+
+[node name="StatsSummary" type="RichTextLabel" parent="Control"]
+custom_minimum_size = Vector2(900, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -108.0
+offset_right = 452.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center][color=yellow]📊 FINAL STATISTICS[/color][/center]"
+fit_content = true
 
 [node name="Retry" type="RichTextLabel" parent="Control"]
-layout_mode = 0
-offset_left = 360.0
-offset_top = 336.0
-offset_right = 680.0
-offset_bottom = 448.0
-theme_override_font_sizes/normal_font_size = 80
+custom_minimum_size = Vector2(600, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = 276.0
+offset_right = 608.0
+offset_bottom = 356.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Retry?_"
+text = "[center][color=white][pulse freq=1.0]Press [color=yellow]ENTER[/color] to try again[/pulse][/center]"
 script = ExtResource("1_a60an")
 
 [node name="Timer" type="Timer" parent="Control/Retry"]
 autostart = true
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 380.0
+offset_right = 200.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
 [connection signal="timeout" from="Control/Retry/Timer" to="Control/Retry" method="_on_timer_timeout"]

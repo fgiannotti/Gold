@@ -24,41 +24,80 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.05, 0.05, 0.15, 1)
 
 [node name="WinText" type="RichTextLabel" parent="Control"]
-custom_minimum_size = Vector2(496, 144)
+custom_minimum_size = Vector2(800, 120)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -248.0
-offset_top = -72.0
-offset_right = 248.0
-offset_bottom = 72.0
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 128
+theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
-text = "You won!!"
+text = "[center][wave amp=30 freq=2.0][color=gold]🎉 VICTORY! 🎉[/color][/wave][/center]"
 
 [node name="Results" type="RichTextLabel" parent="Control"]
-custom_minimum_size = Vector2(680, 200)
+custom_minimum_size = Vector2(900, 400)
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -340.0
-offset_top = 260.0
-offset_right = 340.0
-offset_bottom = 100.0
+offset_left = -448.0
+offset_top = -196.0
+offset_right = 560.0
+offset_bottom = 308.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 80
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Gold obtained: 15G
-Total time: 00:35:15"
+text = "[center][color=lime]DUNGEON CONQUERED![/color][/center]"
+fit_content = true
+
+[node name="StatsContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 320.0
+offset_right = 200.0
+offset_bottom = 420.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = 450.0
+offset_right = 300.0
+offset_bottom = 550.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ContinueHint" type="RichTextLabel" parent="Control/ButtonsContainer"]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center][color=white][pulse freq=1.0]Press [color=yellow]ENTER[/color] to play again[/pulse][/center]
+[center][color=gray]Press [color=yellow]ESC[/color] to quit[/color][/center]"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

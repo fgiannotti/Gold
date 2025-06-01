@@ -24,6 +24,7 @@ BreakablesAutoloader="*res://collectables/breakables/breakables_autoloader.gd"
 InteractionManager="*res://interaction_manager.gd"
 DialogueManager="*res://dialogue/dialogue_manager.gd"
 PlayerManager="*res://screens/player_manager.gd"
+GameStats="*res://screens/game_stats.gd"
 
 [file_customization]
 
