@@ -9,6 +9,20 @@ extends Node
 var breakable_interactable_scene: PackedScene = preload("res://collectables/breakables/breakable_interactable.tscn")
 var box_config: BreakableConfig = preload("res://collectables/breakables/configs/box_config.tres")
 
+# Pool of possible items to drop
+var possible_items = [
+	preload("res://inventory/items/diamond_item.tres"),
+	preload("res://inventory/items/gold_item.tres"),
+	preload("res://inventory/items/iron_item.tres"),
+	preload("res://inventory/items/coal_item.tres"),
+	preload("res://inventory/items/energy_bar.tres"),
+	preload("res://inventory/items/health_potion.tres")
+]
+
+# Pool of possible effects (including no effect)
+var damage_effect = preload("res://collectables/breakables/effects/damage_effect.tres")
+var healing_effect = preload("res://collectables/breakables/effects/healing_effect.tres")
+
 const TARGET_BREAKABLE_COUNT = 40
 var rng = RandomNumberGenerator.new()
 
@@ -58,11 +72,47 @@ func get_random_room_position() -> Vector2:
 	# Get a random position from the open room positions
 	return walls_tilemap.get_random_room_pos_to_global()
 
+func randomize_breakable_contents(breakable_instance) -> void:
+	"""Randomly assign item and effects to the breakable"""
+	
+	# Create a copy of the config to modify
+	var config_copy = BreakableConfig.new()
+	config_copy.texture = box_config.texture
+	config_copy.modulate_color = box_config.modulate_color
+	config_copy.sprite_frame = box_config.sprite_frame
+	config_copy.break_animation_name = box_config.break_animation_name
+	config_copy.break_animation_duration = box_config.break_animation_duration
+	config_copy.config_name = box_config.config_name
+	config_copy.config_description = box_config.config_description
+	
+	# Randomly choose an item to drop (80% chance to drop something)
+	if rng.randf() < 0.8:
+		config_copy.collectableAsItem = possible_items[rng.randi() % possible_items.size()]
+		config_copy.drop_chance = rng.randf_range(0.6, 1.0)  # Random drop chance between 60-100%
+	else:
+		config_copy.collectableAsItem = null
+		config_copy.drop_chance = 0.0
+	
+	# Randomly choose effects (30% chance for damage, 20% chance for healing, 50% no effect)
+	var effect_roll = rng.randf()
+	if effect_roll < 0.3:  # 30% chance for damage
+		config_copy.effects.append(damage_effect)
+		print('[BreakablesAutoloader] Box will cause damage')
+	elif effect_roll < 0.5:  # 20% chance for healing 
+		config_copy.effects.append(healing_effect)
+		print('[BreakablesAutoloader] Box will heal player')
+	else:  # 50% chance for no effect
+		# config_copy.effects = []
+		print('[BreakablesAutoloader] Box has no special effects')
+	
+	# Apply the randomized config
+	breakable_instance.config = config_copy
+
 func spawn_breakable_at_position(tilemap_coords: Vector2i) -> bool:
 	var breakable_instance = breakable_interactable_scene.instantiate()
 	
-	# Apply the box configuration
-	breakable_instance.config = box_config
+	# Randomize the contents of this breakable
+	randomize_breakable_contents(breakable_instance)
 	
 	# Add to breakables group for easy cleanup
 	breakable_instance.add_to_group("breakables", true)
@@ -70,7 +120,10 @@ func spawn_breakable_at_position(tilemap_coords: Vector2i) -> bool:
 	# Spawn using the collectables tilemap system
 	collectables_tilemap.spawn_scene_at_tile(tilemap_coords, breakable_instance)
 	
-	print('[BreakablesAutoloader] Spawned breakable at tilemap coords: ', tilemap_coords)
+	var item_name = "nothing"
+	if breakable_instance.config.collectableAsItem:
+		item_name = breakable_instance.config.collectableAsItem.name
+	print('[BreakablesAutoloader] Spawned breakable with item: ', item_name, ' at tilemap coords: ', tilemap_coords)
 	return true 
 
 func is_position_valid(world_position: Vector2) -> bool:
