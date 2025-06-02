@@ -172,15 +172,21 @@ func _on_inventory_opened() -> void:
 	pass
 
 func _on_health_bar_player_died() -> void:
+	# Store inventory count before transitioning to avoid freed object access
+	PlayerManager.store_final_inventory_count()
 	$SceneTransitioner.trigger_lose()
 
 func _on_food_bar_player_starved() -> void:
+	# Store inventory count before transitioning to avoid freed object access
+	PlayerManager.store_final_inventory_count()
 	$SceneTransitioner.trigger_lose()
 
 func _on_ladder_area_body_entered(body: Node2D) -> void:
 	floor += 1
 	get_tree().paused = true  # Pauses everything
 	if floor == 3:
+		# Store inventory count before transitioning to avoid freed object access
+		PlayerManager.store_final_inventory_count()
 		$SceneTransitioner.trigger_win()
 		return
 

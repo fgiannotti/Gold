@@ -783,10 +783,10 @@ collision_mask = 4
 position = Vector2(1, 2)
 shape = SubResource("CircleShape2D_3brrl")
 
-[connection signal="timeout" from="InmunityCooldown" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="InmunityCooldown" to="." method="_on_inmunity_cooldown_timeout"]
-[connection signal="timeout" from="UseCooldown" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="InmunityCooldown" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="UseCooldown" to="." method="_on_use_cooldown_timeout"]
+[connection signal="timeout" from="UseCooldown" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="WeaponArea" to="." method="_on_weapon_area_area_entered"]
 [connection signal="body_entered" from="VisibilityArea" to="." method="_on_visibility_area_body_entered"]
 [connection signal="body_exited" from="VisibilityArea" to="." method="_on_visibility_area_body_exited"]

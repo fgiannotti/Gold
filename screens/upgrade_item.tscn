@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd22ns3fdr78u"]
+
+[ext_resource type="Script" path="res://screens/upgrade_item.gd" id="1_f8h9x"]
+
+[node name="UpgradeItem" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 120)
+script = ExtResource("1_f8h9x")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="IconContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="IconMargin" type="MarginContainer" parent="HBoxContainer/IconContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="UpgradeIcon" type="TextureRect" parent="HBoxContainer/IconContainer/IconMargin"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Upgrade Name"
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Upgrade description goes here"
+autowrap_mode = 3
+
+[node name="CostContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CostLabel" type="Label" parent="HBoxContainer/VBoxContainer/CostContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "100G + 5M"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/CostContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 16
+
+[node name="BuyButton" type="Button" parent="HBoxContainer/VBoxContainer/CostContainer/MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "BUY"
