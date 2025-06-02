@@ -156,7 +156,7 @@ func restart_game():
 	await tween.finished
 	
 	PlayerManager.restart()
-	get_tree().change_scene_to_file("res://screens/world.tscn")
+	get_tree().change_scene_to_file("res://screens/meta_game_screen.tscn")
 
 func quit_to_menu():
 	# This would go to a main menu if you have one
