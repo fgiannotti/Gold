@@ -26,6 +26,9 @@ func _ready():
 	CollectableAutoloader.walls_tilemap = $TileMap/walls
 	CollectableAutoloader.collectables_tilemap = $TileMap/collectables
 	CollectableAutoloader.spawn_all_collectables()
+	BreakablesAutoloader.walls_tilemap = $TileMap/walls
+	BreakablesAutoloader.collectables_tilemap = $TileMap/collectables
+	BreakablesAutoloader.spawn_all_breakables()
 	$CanvasLayer/InventoryGUI.show()
 	$SceneTransitioner.process_mode = Node.PROCESS_MODE_ALWAYS
 	PlayerManager.hp_updated.connect(_on_hp_updated)
@@ -53,8 +56,7 @@ func place_on_room_ceiling(node: Node2D):
 	print("[FORGE_DEBUG] Scanning all children in collectables:")
 	for child in $TileMap/collectables.get_children():
 		if child is Node2D:
-			print("[FORGE_DEBUG]   • Found: " + child.name + " at position: " + str(child.position) + 
-				  " [Groups: " + str(child.get_groups()) + "]")
+			# print("[FORGE_DEBUG]   • Found: " + child.name + " at position: " + str(child.position) +  " [Groups: " + str(child.get_groups()) + "]")
 			mineral_world_positions.append(child.position)
 	
 	# STEP 2: Get all ceiling positions
@@ -70,8 +72,7 @@ func place_on_room_ceiling(node: Node2D):
 			var tilemap_pos = Vector2(x, random_room.position.y)
 			var world_pos = walls.map_to_local(tilemap_pos)
 			ceiling_world_positions.append({"tilemap": tilemap_pos, "world": world_pos})
-			print("[FORGE_DEBUG]   • Ceiling position: tilemap=" + str(tilemap_pos) + 
-				  ", world=" + str(world_pos))
+			print("[FORGE_DEBUG]   • Ceiling position: tilemap=" + str(tilemap_pos) + ", world=" + str(world_pos))
 	
 	# STEP 3: Find a ceiling position that is FAR from any mineral
 	print("[FORGE_DEBUG] Checking for available ceiling positions...")
@@ -82,8 +83,7 @@ func place_on_room_ceiling(node: Node2D):
 		var is_occupied = false
 		for mineral_pos in mineral_world_positions:
 			var distance = ceiling_pos.world.distance_to(mineral_pos)
-			print("[FORGE_DEBUG]   • Distance from " + str(ceiling_pos.world) + 
-				  " to mineral at " + str(mineral_pos) + ": " + str(distance))
+			#print("[FORGE_DEBUG]   • Distance from " + str(ceiling_pos.world) +  " to mineral at " + str(mineral_pos) + ": " + str(distance))
 			
 			if distance < SAFE_DISTANCE:
 				print("[FORGE_DEBUG]     - TOO CLOSE! Position is occupied")
@@ -91,7 +91,7 @@ func place_on_room_ceiling(node: Node2D):
 				break
 		
 		if not is_occupied:
-			print("[FORGE_DEBUG]     + AVAILABLE! Adding to available positions")
+			# print("[FORGE_DEBUG]     + AVAILABLE! Adding to available positions")
 			available_positions.append(ceiling_pos)
 	
 	# STEP 4: Choose a position and place the forge

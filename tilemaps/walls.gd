@@ -413,6 +413,7 @@ func restart_maze() -> void:
 	_ready() # Regenerate maze
 	MineralAutoloader.respawn_minerals()
 	CollectableAutoloader.respawn_collectables()
+	BreakablesAutoloader.respawn_breakables()
 
 func flip_dict(dict: Dictionary) -> Dictionary:
 	var flipped_dict = {}

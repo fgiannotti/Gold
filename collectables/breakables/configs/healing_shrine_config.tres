@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BreakableConfig" load_steps=4 format=3 uid="uid://cp6vf4gvughom"]
+
+[ext_resource type="Script" path="res://collectables/breakable_config.gd" id="1_heal_config"]
+[ext_resource type="Texture2D" uid="uid://cjwakvgdmw81e" path="res://assets/interactables/ChestSheet 0.5.png" id="2_heal_texture"]
+[ext_resource type="Resource" uid="uid://ca6ofjq7o6pq0" path="res://inventory/items/coal_item.tres" id="3_heal_item"]
+[ext_resource type="Resource" uid="uid://bheal123ef456" path="res://collectables/breakables/effects/healing_effect.tres" id="4_heal_effect"]
+
+
+[resource]
+script = ExtResource("1_heal_config")
+texture = ExtResource("2_heal_texture")
+modulate_color = Color(0.5, 1, 0.5, 1)
+sprite_frame = 1
+drop_chance = 0.6
+collectableAsItem = ExtResource("3_heal_item")
+effects = Array[InteractableEffect]([ExtResource("4_heal_effect")])
+break_animation_name = "break"
+break_animation_duration = 0.7
+config_name = "Healing Shrine"
+config_description = "A shrine that heals the player and sometimes drops items" 

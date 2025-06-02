@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="BreakableConfig" load_steps=7 format=3 uid="uid://bpotconfig123"]
+
+[ext_resource type="Resource" uid="uid://c13svc1h44qeq" path="res://inventory/items/diamond_item.tres" id="1_ek8op"]
+[ext_resource type="Script" path="res://collectables/breakables/interactable_effect.gd" id="2_x411s"]
+[ext_resource type="Script" path="res://collectables/breakables/effects/damage_effect.gd" id="3_vsqq7"]
+[ext_resource type="Script" path="res://collectables/breakable_config.gd" id="4_s6ag2"]
+[ext_resource type="Texture2D" uid="uid://clr677l8vxlx7" path="res://assets/interactables/box1.png" id="5_6tbv8"]
+
+[sub_resource type="Resource" id="Resource_gb3p3"]
+script = ExtResource("3_vsqq7")
+damage_amount = 10.0
+effect_name = "Base Effect"
+effect_description = "Does something when triggered"
+
+[resource]
+script = ExtResource("4_s6ag2")
+texture = ExtResource("5_6tbv8")
+modulate_color = Color(1, 1, 1, 1)
+sprite_frame = 0
+drop_chance = 0.8
+collectableAsItem = ExtResource("1_ek8op")
+effects = Array[ExtResource("2_x411s")]([SubResource("Resource_gb3p3")])
+break_animation_name = "break"
+break_animation_duration = 0.5
+config_name = "Treasure Pot"
+config_description = "A pot that contains valuable items"

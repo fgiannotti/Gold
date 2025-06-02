@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HealingEffect" load_steps=2 format=3 uid="uid://bheal123ef456"]
+
+[ext_resource type="Script" path="res://collectables/breakables/effects/healing_effect.gd" id="1_healing"]
+
+
+[resource]
+script = ExtResource("1_healing")
+effect_name = "Small Healing"
+effect_description = "Restores 20 health to the player"
+heal_amount = 20.0 
