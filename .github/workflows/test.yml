@@ -1,0 +1,126 @@
+# GitHub Actions workflow for Godot Gold Game tests
+# Runs tests automatically on push and pull requests
+
+name: 🧪 Test Suite
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  # Main test job
+  test-suite:
+    name: 🧪 Run Test Suite
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🎮 Setup Godot
+      id: setup-godot
+      run: |
+        # Define Godot version and download URL
+        GODOT_VERSION="4.3"
+        GODOT_URL="https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip"
+        
+        # Create directory and download Godot
+        mkdir -p godot
+        cd godot
+        
+        echo "📦 Downloading Godot ${GODOT_VERSION}..."
+        wget -q -O godot.zip "${GODOT_URL}"
+        unzip -q godot.zip
+        chmod +x Godot_v${GODOT_VERSION}-stable_linux.x86_64
+        
+        # Create symlink for easier access
+        ln -s "Godot_v${GODOT_VERSION}-stable_linux.x86_64" godot
+        cd ..
+        
+        echo "✅ Godot ${GODOT_VERSION} installed successfully"
+        
+    - name: 🔍 Verify Godot installation
+      run: |
+        echo "🔍 Checking Godot version..."
+        ./godot/godot --version
+        
+    - name: 🧪 Run test suite
+      run: |
+        echo "🧪 Starting Gold Game Test Suite..."
+        echo "=================================================="
+        
+        # Run tests in headless mode
+        ./godot/godot --headless --script tests/test_runner.gd
+        
+        echo "✅ Test suite completed!"
+        
+    - name: 📊 Upload test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: |
+          test_results.xml
+          *.log
+        retention-days: 7
+
+  # Project validation job
+  validate-project:
+    name: 🔍 Validate Project Structure
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🔍 Check required files
+      run: |
+        echo "🔍 Validating project structure..."
+        
+        # Check core files
+        test -f "project.godot" || (echo "❌ project.godot not found" && exit 1)
+        test -f "tests/test_runner.gd" || (echo "❌ test_runner.gd not found" && exit 1)
+        
+        # Check test files
+        test -f "tests/test_basic.gd" || (echo "❌ test_basic.gd not found" && exit 1)
+        test -f "tests/test_game_stats.gd" || (echo "❌ test_game_stats.gd not found" && exit 1)
+        test -f "tests/test_player_manager.gd" || (echo "❌ test_player_manager.gd not found" && exit 1)
+        test -f "tests/test_meta_game.gd" || (echo "❌ test_meta_game.gd not found" && exit 1)
+        test -f "tests/test_breakable_config.gd" || (echo "❌ test_breakable_config.gd not found" && exit 1)
+        test -f "tests/test_collectable.gd" || (echo "❌ test_collectable.gd not found" && exit 1)
+        test -f "tests/test_maze.gd" || (echo "❌ test_maze.gd not found" && exit 1)
+        test -f "tests/test_data_validation.gd" || (echo "❌ test_data_validation.gd not found" && exit 1)
+        
+        echo "✅ Project structure validation passed!"
+
+  # Optional: Compatibility test with different Godot version
+  test-compatibility:
+    name: 🔄 Compatibility Test (Godot 4.2)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.event_name == 'schedule'
+    continue-on-error: true
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🎮 Setup Godot 4.2
+      run: |
+        # Setup Godot 4.2 for compatibility testing
+        GODOT_VERSION="4.2.2"
+        GODOT_URL="https://github.com/godotengine/godot/releases/download/4.2.2-stable/Godot_v4.2.2-stable_linux.x86_64.zip"
+        
+        mkdir -p godot
+        cd godot
+        wget -q -O godot.zip "${GODOT_URL}"
+        unzip -q godot.zip
+        chmod +x Godot_v${GODOT_VERSION}-stable_linux.x86_64
+        ln -s "Godot_v${GODOT_VERSION}-stable_linux.x86_64" godot
+        cd ..
+        
+    - name: 🧪 Run compatibility tests
+      run: |
+        echo "🧪 Running compatibility tests with Godot 4.2..."
+        ./godot/godot --headless --script tests/test_runner.gd || echo "⚠️ Some tests may fail on Godot 4.2" 

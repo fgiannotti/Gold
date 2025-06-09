@@ -4,3 +4,8 @@
 .tmp
 .vscode
 */*.tmp
+
+# CI/CD related files
+godot/
+test_results.xml
+*.log
