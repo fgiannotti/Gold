@@ -46,6 +46,13 @@ jobs:
         echo "🔍 Checking Godot version..."
         ./godot/godot --version
         
+    - name: 📦 Import project resources
+      run: |
+        echo "📦 Importing project resources..."
+        # Import the project to generate .godot folder and import resources
+        ./godot/godot --headless --import
+        echo "✅ Project resources imported successfully"
+        
     - name: 🧪 Run test suite
       run: |
         echo "🧪 Starting Gold Game Test Suite..."
@@ -123,4 +130,7 @@ jobs:
     - name: 🧪 Run compatibility tests
       run: |
         echo "🧪 Running compatibility tests with Godot 4.2..."
+        # Import project first
+        ./godot/godot --headless --import
+        # Then run tests
         ./godot/godot --headless --script tests/test_runner.gd || echo "⚠️ Some tests may fail on Godot 4.2" 

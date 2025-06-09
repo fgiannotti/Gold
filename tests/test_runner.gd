@@ -124,11 +124,11 @@ func print_summary():
 	if failed_tests == 0:
 		print("🎉 All tests passed!")
 		# Exit with success code for CI/CD
-		get_tree().quit(0)
+		self.quit(0)
 	else:
 		print("⚠️  Some tests failed. Please review.")
 		# Exit with failure code for CI/CD
-		get_tree().quit(1)
+		self.quit(1)
 
 # Base Test Class
 class BaseTest:
