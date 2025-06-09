@@ -29,8 +29,8 @@ func mineral_at_tile(tileset_cords: Vector2i) -> Node2D:
 func collectable_at_tile(tileset_cords: Vector2i) -> Node2D:
 	# Convert the tilemap coordinates to world position
 	var world_position = map_to_local(tileset_cords)
-	# Define a small tolerance for position comparisons
-	var position_tolerance = 128.0  # pixels
+	# Define a small tolerance for position comparisons - reduced from 128.0 to 32.0
+	var position_tolerance = 32.0  # pixels
 
 	for child in get_children():
 		# Check if the child is a Node2D and its position is close enough to the world position
