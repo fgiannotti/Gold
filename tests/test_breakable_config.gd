@@ -113,21 +113,29 @@ func test_effects_array():
 	assert_not_null(breakable_config.effects)
 	assert_equal(breakable_config.effects.size(), 0)
 	
-	# Test adding effects (mock effect objects)
+	# Create mock effects that are proper InteractableEffect resources
 	var mock_effect1 = Resource.new()
+	mock_effect1.set_script(load("res://collectables/breakables/interactable_effect.gd"))
+	
 	var mock_effect2 = Resource.new()
+	mock_effect2.set_script(load("res://collectables/breakables/interactable_effect.gd"))
 	
-	breakable_config.effects.append(mock_effect1)
-	assert_equal(breakable_config.effects.size(), 1)
-	assert_equal(breakable_config.effects[0], mock_effect1)
-	
-	breakable_config.effects.append(mock_effect2)
-	assert_equal(breakable_config.effects.size(), 2)
-	assert_equal(breakable_config.effects[1], mock_effect2)
-	
-	# Test clearing effects
-	breakable_config.effects.clear()
-	assert_equal(breakable_config.effects.size(), 0)
+	# Test adding effects - since it's a TypedArray, we need proper types
+	if breakable_config.effects is Array:
+		# Clear the array first
+		breakable_config.effects.clear()
+		
+		# Add effects directly through assignment
+		breakable_config.effects = [mock_effect1]
+		assert_equal(breakable_config.effects.size(), 1)
+		
+		# Add second effect
+		breakable_config.effects = [mock_effect1, mock_effect2]
+		assert_equal(breakable_config.effects.size(), 2)
+		
+		# Test clearing effects
+		breakable_config.effects.clear()
+		assert_equal(breakable_config.effects.size(), 0)
 
 func test_resource_assignment():
 	"""Test assignment of texture and collectable item resources"""

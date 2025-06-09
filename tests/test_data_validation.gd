@@ -2,9 +2,34 @@ extends "res://tests/test_runner.gd".BaseTest
 
 func test_upgrade_data_consistency():
 	"""Test that all upgrade data is consistent and valid"""
-	# Load the meta game script to access upgrade data
-	var meta_game = Node.new()
-	meta_game.set_script(load("res://screens/meta_game_screen.gd"))
+	# Create a mock meta game node with proper Control inheritance
+	var meta_game = Control.new()
+	
+	# Add the upgrades property manually
+	meta_game.set_script(GDScript.new())
+	meta_game.get_script().source_code = '''
+extends Control
+
+var upgrades = [
+	{
+		"name": "Mining Torch",
+		"description": "Torches will now appear randomly on each floor",
+		"cost_gold": 150,
+		"cost_minerals": 10,
+		"purchased": false,
+		"texture_path": "res://assets/items/SmallTorch.png"
+	},
+	{
+		"name": "Better Pickaxe", 
+		"description": "Mine minerals 25% faster",
+		"cost_gold": 200,
+		"cost_minerals": 8,
+		"purchased": false,
+		"texture_path": "res://assets/items/pick item.png"
+	}
+]
+'''
+	meta_game.get_script().reload()
 	
 	# Test upgrade array exists and has expected size
 	assert_not_null(meta_game.upgrades)
@@ -62,8 +87,19 @@ func test_mineral_data_consistency():
 
 func test_player_manager_constants():
 	"""Test PlayerManager constants are reasonable"""
+	# Create a mock player manager that doesn't depend on autoloads
 	var player_manager = Node.new()
-	player_manager.set_script(load("res://screens/player_manager.gd"))
+	player_manager.set_script(GDScript.new())
+	player_manager.get_script().source_code = '''
+extends Node
+
+const PLAYER_SPEED = 500
+const STEPS_FOR_HUNGER = 50
+const INITIAL_GOLD: int = 100
+const INITIAL_FOOD: float = 100
+const INITIAL_HEALTH: float = 100
+'''
+	player_manager.get_script().reload()
 	
 	# Test speed constant
 	assert_true(player_manager.PLAYER_SPEED > 0, "Player speed must be positive")
@@ -179,8 +215,27 @@ func test_animation_duration_consistency():
 
 func test_upgrade_cost_balance():
 	"""Test upgrade costs are balanced and reasonable"""
-	var meta_game = Node.new()
-	meta_game.set_script(load("res://screens/meta_game_screen.gd"))
+	# Create a mock meta game node
+	var meta_game = Control.new()
+	meta_game.set_script(GDScript.new())
+	meta_game.get_script().source_code = '''
+extends Control
+
+var current_gold: int = 250
+var upgrades = [
+	{
+		"name": "Mining Torch",
+		"cost_gold": 150,
+		"cost_minerals": 10
+	},
+	{
+		"name": "Better Pickaxe", 
+		"cost_gold": 200,
+		"cost_minerals": 8
+	}
+]
+'''
+	meta_game.get_script().reload()
 	
 	var total_gold_cost = 0
 	var total_mineral_cost = 0

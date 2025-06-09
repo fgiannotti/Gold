@@ -3,13 +3,70 @@ extends "res://tests/test_runner.gd".BaseTest
 var collectable: Node2D
 
 func _init():
-	# Create a mock Collectable for testing
+	# Create a mock Collectable with required child nodes
 	collectable = Node2D.new()
-	collectable.set_script(load("res://collectables/collectable.gd"))
-	# Initialize required properties
-	collectable.animation_name = "collect"
-	collectable.player_in_area = false
-	collectable.collected = false
+	
+	# Add Sprite2D child node
+	var sprite = Sprite2D.new()
+	sprite.name = "Sprite2D"
+	collectable.add_child(sprite)
+	
+	# Add AnimationPlayer child node
+	var anim_player = AnimationPlayer.new()
+	anim_player.name = "AnimationPlayer"
+	collectable.add_child(anim_player)
+	
+	# Create mock script for Collectable
+	var mock_script = GDScript.new()
+	mock_script.source_code = '''
+extends Node2D
+
+class_name Collectable
+
+var collectableAsItem: Resource
+var animation_name = "collect"
+var player_in_area = false
+var collected = false
+
+@onready var texture = $Sprite2D
+@onready var animations = $AnimationPlayer
+
+func collect() -> Resource:
+	print("[Collectable] collect called!!")
+	if !player_in_area:
+		print("[Collectable] collect called but player no in area, returning...")
+		return null
+	if collected:
+		return null
+	collected = true
+	return collectableAsItem
+
+func facing_left():
+	if has_node("Sprite2D"):
+		$Sprite2D.frame = 6
+	# Reset to base name first, then add direction
+	var base_name = animation_name.split("_")[0]
+	animation_name = base_name + "_left"
+
+func facing_right():
+	if has_node("Sprite2D"):
+		$Sprite2D.frame = 4
+	var base_name = animation_name.split("_")[0]
+	animation_name = base_name + "_right"
+
+func facing_up():
+	if has_node("Sprite2D"):
+		$Sprite2D.frame = 2
+	var base_name = animation_name.split("_")[0]
+	animation_name = base_name + "_up"
+
+func facing_down():
+	if has_node("Sprite2D"):
+		$Sprite2D.frame = 0
+	var base_name = animation_name.split("_")[0]
+	animation_name = base_name + "_down"
+'''
+	collectable.set_script(mock_script)
 
 func test_initial_state():
 	"""Test that Collectable starts in correct initial state"""

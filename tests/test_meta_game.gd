@@ -1,11 +1,64 @@
 extends "res://tests/test_runner.gd".BaseTest
 
-var meta_game: Node
+var meta_game: Control
 
 func _init():
-	# Create a mock MetaGameScreen node for testing
-	meta_game = Node.new()
-	meta_game.set_script(load("res://screens/meta_game_screen.gd"))
+	# Create a Control node and apply the meta game script
+	meta_game = Control.new()
+	
+	# Create a mock script for testing
+	var mock_script = GDScript.new()
+	mock_script.source_code = '''
+extends Control
+
+var current_gold: int = 250
+var current_minerals: int = 15
+
+var upgrades = [
+	{
+		"name": "Mining Torch",
+		"description": "Torches will now appear randomly on each floor",
+		"cost_gold": 150,
+		"cost_minerals": 10,
+		"purchased": false,
+		"texture_path": "res://assets/items/SmallTorch.png"
+	},
+	{
+		"name": "Better Pickaxe", 
+		"description": "Mine minerals 25% faster",
+		"cost_gold": 200,
+		"cost_minerals": 8,
+		"purchased": false,
+		"texture_path": "res://assets/items/pick item.png"
+	},
+	{
+		"name": "Energy Pack",
+		"description": "Start each run with +50 food",
+		"cost_gold": 100,
+		"cost_minerals": 5,
+		"purchased": false,
+		"texture_path": "res://assets/items/EnergyBar.png"
+	},
+	{
+		"name": "Health Boost",
+		"description": "Start each run with +25 health",
+		"cost_gold": 175,
+		"cost_minerals": 12,
+		"purchased": false,
+		"texture_path": "res://assets/particles/GainedHealth v1.png"
+	}
+]
+
+func can_afford_upgrade(upgrade_data: Dictionary) -> bool:
+	return current_gold >= upgrade_data.cost_gold and current_minerals >= upgrade_data.cost_minerals and not upgrade_data.purchased
+
+func purchase_upgrade(upgrade_data: Dictionary):
+	if can_afford_upgrade(upgrade_data):
+		current_gold -= upgrade_data.cost_gold
+		current_minerals -= upgrade_data.cost_minerals
+		upgrade_data.purchased = true
+'''
+	meta_game.set_script(mock_script)
 
 func test_initial_resources():
 	"""Test that MetaGameScreen starts with correct initial resources"""

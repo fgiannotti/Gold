@@ -117,6 +117,9 @@ func test_get_all_stats():
 
 func test_reset_stats():
 	"""Test that reset_stats properly zeros all values"""
+	# Explicitly reset first to ensure clean state
+	game_stats.reset_stats()
+	
 	# Set some values
 	game_stats.increment_stat("breakables_destroyed", 10)
 	game_stats.increment_stat("damage_taken", 100)

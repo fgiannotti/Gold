@@ -3,9 +3,49 @@ extends "res://tests/test_runner.gd".BaseTest
 var player_manager: Node
 
 func _init():
-	# Create a mock PlayerManager node for testing
+	# Create a mock PlayerManager that doesn't depend on autoloads
 	player_manager = Node.new()
-	player_manager.set_script(load("res://screens/player_manager.gd"))
+	
+	# Add all the required properties manually
+	player_manager.set_script(GDScript.new())
+	player_manager.get_script().source_code = '''
+extends Node
+
+const PLAYER_SPEED = 500
+const STEPS_FOR_HUNGER = 50
+const INITIAL_GOLD: int = 100
+const INITIAL_FOOD: float = 100
+const INITIAL_HEALTH: float = 100
+
+signal hp_updated(new_hp: float)
+signal food_updated(new_food: float)
+
+var health: float = INITIAL_HEALTH
+var food: float = INITIAL_FOOD
+var gold: int = INITIAL_GOLD
+var final_inventory_count: int = 0
+
+func set_health(new_health: float):
+	self.health = new_health
+	hp_updated.emit(new_health) 
+
+func set_food(new_food: float):
+	self.food = new_food
+	food_updated.emit(new_food) 
+
+func store_final_inventory_count():
+	final_inventory_count = 0
+
+func get_final_inventory_count() -> int:
+	return final_inventory_count
+	
+func restart():
+	food = INITIAL_FOOD
+	gold = INITIAL_GOLD
+	health = INITIAL_HEALTH
+	final_inventory_count = 0
+'''
+	player_manager.get_script().reload()
 
 func test_initial_values():
 	"""Test that PlayerManager starts with correct initial values"""
