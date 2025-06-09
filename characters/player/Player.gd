@@ -115,6 +115,7 @@ const NORTH_POS = 2
 const WEST_POS  = 3'''
 func player_facing_mineral(mineral: Mineral):
 	var direction = self.direction_string(facing_direction)
+	
 	if mineral.is_in_group("minerals_0") && direction == "Down":
 		return true
 	if mineral.is_in_group("minerals_1") && direction == "Right":
