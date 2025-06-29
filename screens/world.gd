@@ -172,11 +172,13 @@ func _on_inventory_opened() -> void:
 	pass
 
 func _on_health_bar_player_died() -> void:
+	get_tree().paused = false
 	# Store inventory count before transitioning to avoid freed object access
 	PlayerManager.store_final_inventory_count()
 	$SceneTransitioner.trigger_lose()
 
 func _on_food_bar_player_starved() -> void:
+	get_tree().paused = false
 	# Store inventory count before transitioning to avoid freed object access
 	PlayerManager.store_final_inventory_count()
 	$SceneTransitioner.trigger_lose()
@@ -186,6 +188,7 @@ func _on_ladder_area_body_entered(body: Node2D) -> void:
 	get_tree().paused = true  # Pauses everything
 	if floor == 3:
 		# Store inventory count before transitioning to avoid freed object access
+		get_tree().paused = false
 		PlayerManager.store_final_inventory_count()
 		$SceneTransitioner.trigger_win()
 		return
@@ -193,5 +196,6 @@ func _on_ladder_area_body_entered(body: Node2D) -> void:
 	await $SceneTransitioner.trigger_veil_screen()
 	$CanvasLayer/Floor.update_floor(floor)
 	$TileMap/walls.restart_maze()
+	$FogOfWar.reset()
 	await $SceneTransitioner.trigger_unveil_screen()
 	get_tree().paused = false 

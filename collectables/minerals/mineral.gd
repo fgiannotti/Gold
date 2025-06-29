@@ -23,6 +23,7 @@ func collect() -> InventoryItem:
 	if collected:
 		return null
 	collected = true
+	GameStats.mineral_mined()
 	queue_free()
 	return mineral_data.collectableAsItem
 

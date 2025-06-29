@@ -176,6 +176,7 @@ func restart_game():
 	tween.tween_property(self, "modulate:a", 0.0, 0.5)
 	await tween.finished
 	
+	PlayerManager.apply_run_results(false, 0, 0)
 	PlayerManager.restart()
 	get_tree().change_scene_to_file("res://screens/meta_game_screen.tscn")
 

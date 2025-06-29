@@ -288,12 +288,12 @@ func fill_maze_from_room(maze, visited_maze, room):
 				positions_open_room.append(self.map_to_local(Vector2(x, y)))
 	#assign stair
 	if (room.has_stair):
-		var rng = RandomNumberGenerator.new()
-		var int_random_x = rng.randi_range(room.position.x + 1, width_line_finish - 1)
-		var int_random_y = rng.randi_range(room.position.y + 1, height_line_finish - 1)
+		#var rng = RandomNumberGenerator.new()
+		#var int_random_x = rng.randi_range(room.position.x + 1, width_line_finish - 1)
+		# var int_random_y = rng.randi_range(room.position.y + 1, height_line_finish - 1)
 		#maze[intRandomY][intRandomX] = STAIR_DOWN
 		#Antes la Linea de arriba ponia la escalera desde el Tile Set
-		stair_position_in_tilemap = Vector2(int_random_x, int_random_y)
+		stair_position_in_tilemap = Vector2(5, 5)
 		print('######### Spawn Stair ###############', stair_position_in_tilemap)
 
 	# print("iterating to fill gates for room...")
