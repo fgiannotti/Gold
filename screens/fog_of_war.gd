@@ -79,3 +79,6 @@ func black_fog_image():
 	var img = Image.create(world_size.x, world_size.y, false, Image.FORMAT_RGBA8)
 	img.fill(fog_color)
 	return img
+
+func reset():
+	exploration_texture = ImageTexture.create_from_image(world_size_transparent_image())
