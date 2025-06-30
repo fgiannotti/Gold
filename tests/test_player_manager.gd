@@ -12,17 +12,26 @@ func _init():
 extends Node
 
 const PLAYER_SPEED = 500
-const STEPS_FOR_HUNGER = 50
-const INITIAL_GOLD: int = 100
+const INITIAL_STEPS_FOR_HUNGER = 50
+var steps_for_hunger: float = INITIAL_STEPS_FOR_HUNGER
+
 const INITIAL_FOOD: float = 100
 const INITIAL_HEALTH: float = 100
 
 signal hp_updated(new_hp: float)
 signal food_updated(new_food: float)
+signal meta_stats_changed
 
 var health: float = INITIAL_HEALTH
 var food: float = INITIAL_FOOD
-var gold: int = INITIAL_GOLD
+var gold: int = 0
+
+# Meta-game variables
+var meta_gold: int = 0
+var meta_minerals: int = 0
+var expedition_number: int = 1
+var upgrades = [] # Simplified for test
+
 var final_inventory_count: int = 0
 
 func set_health(new_health: float):
@@ -31,7 +40,12 @@ func set_health(new_health: float):
 
 func set_food(new_food: float):
 	self.food = new_food
-	food_updated.emit(new_food) 
+	food_updated.emit(new_food)
+
+func get_hunger_modifier() -> float:
+	if expedition_number > 1:
+		return 0.05 * (expedition_number - 1)
+	return 0.0
 
 func store_final_inventory_count():
 	final_inventory_count = 0
@@ -40,8 +54,9 @@ func get_final_inventory_count() -> int:
 	return final_inventory_count
 	
 func restart():
+	steps_for_hunger = float(INITIAL_STEPS_FOR_HUNGER) * (1.0 - get_hunger_modifier())
 	food = INITIAL_FOOD
-	gold = INITIAL_GOLD
+	gold = 0
 	health = INITIAL_HEALTH
 	final_inventory_count = 0
 '''
@@ -53,16 +68,40 @@ func test_initial_values():
 	
 	assert_equal(player_manager.health, 100.0)
 	assert_equal(player_manager.food, 100.0)
-	assert_equal(player_manager.gold, 100)
+	assert_equal(player_manager.gold, 0)
 	assert_equal(player_manager.final_inventory_count, 0)
+	assert_equal(player_manager.steps_for_hunger, 50.0)
 
 func test_constants():
 	"""Test that constants are set correctly"""
 	assert_equal(player_manager.PLAYER_SPEED, 500)
-	assert_equal(player_manager.STEPS_FOR_HUNGER, 50)
-	assert_equal(player_manager.INITIAL_GOLD, 100)
+	assert_equal(player_manager.INITIAL_STEPS_FOR_HUNGER, 50)
 	assert_equal(player_manager.INITIAL_FOOD, 100.0)
 	assert_equal(player_manager.INITIAL_HEALTH, 100.0)
+
+func test_hunger_modifier_calculation():
+	"""Test that the hunger modifier is calculated correctly"""
+	player_manager.restart()
+	
+	# Expedition 1: No modifier
+	player_manager.expedition_number = 1
+	player_manager.restart()
+	assert_equal(player_manager.steps_for_hunger, 50.0)
+	
+	# Expedition 2: 5% modifier
+	player_manager.expedition_number = 2
+	player_manager.restart()
+	assert_true(abs(player_manager.steps_for_hunger - 47.5) < 0.01) # 50 * (1 - 0.05)
+	
+	# Expedition 3: 10% modifier
+	player_manager.expedition_number = 3
+	player_manager.restart()
+	assert_true(abs(player_manager.steps_for_hunger - 45.0) < 0.01) # 50 * (1 - 0.10)
+	
+	# Expedition 11: 50% modifier
+	player_manager.expedition_number = 11
+	player_manager.restart()
+	assert_true(abs(player_manager.steps_for_hunger - 25.0) < 0.01) # 50 * (1 - 0.50)
 
 func test_set_health():
 	"""Test health setting functionality"""
@@ -147,7 +186,7 @@ func test_restart_functionality():
 	
 	assert_equal(player_manager.health, 100.0)
 	assert_equal(player_manager.food, 100.0)
-	assert_equal(player_manager.gold, 100)
+	assert_equal(player_manager.gold, 0)
 	assert_equal(player_manager.final_inventory_count, 0)
 
 func test_health_boundaries():

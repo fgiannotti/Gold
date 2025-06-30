@@ -94,7 +94,8 @@ func test_player_manager_constants():
 extends Node
 
 const PLAYER_SPEED = 500
-const STEPS_FOR_HUNGER = 50
+const INITIAL_STEPS_FOR_HUNGER = 50
+var steps_for_hunger: float = INITIAL_STEPS_FOR_HUNGER
 const INITIAL_GOLD: int = 100
 const INITIAL_FOOD: float = 100
 const INITIAL_HEALTH: float = 100
@@ -106,8 +107,8 @@ const INITIAL_HEALTH: float = 100
 	assert_true(player_manager.PLAYER_SPEED <= 1000, "Player speed should be reasonable")
 	
 	# Test hunger constant
-	assert_true(player_manager.STEPS_FOR_HUNGER > 0, "Steps for hunger must be positive")
-	assert_true(player_manager.STEPS_FOR_HUNGER <= 200, "Steps for hunger should be reasonable")
+	assert_true(player_manager.INITIAL_STEPS_FOR_HUNGER > 0, "Steps for hunger must be positive")
+	assert_true(player_manager.INITIAL_STEPS_FOR_HUNGER <= 200, "Steps for hunger should be reasonable")
 	
 	# Test initial values
 	assert_true(player_manager.INITIAL_GOLD >= 0, "Initial gold cannot be negative")

@@ -22,15 +22,18 @@ func _ready():
 	InteractionManager.set_health_bar($CanvasLayer/TopRight/HealthBar)
 	MineralAutoloader.walls_tilemap = $TileMap/walls
 	MineralAutoloader.collectables_tilemap = $TileMap/collectables
-	MineralAutoloader.spawn_all_minerals()
 	CollectableAutoloader.walls_tilemap = $TileMap/walls
 	CollectableAutoloader.collectables_tilemap = $TileMap/collectables
-	CollectableAutoloader.spawn_all_collectables()
 	BreakablesAutoloader.walls_tilemap = $TileMap/walls
 	BreakablesAutoloader.collectables_tilemap = $TileMap/collectables
-	BreakablesAutoloader.spawn_all_breakables()
+	
+	walls.maze_rebuilt.connect($Player/Camera2D.update_limits)
+	
+	walls.restart_maze()
+	
 	$CanvasLayer/InventoryGUI.show()
 	$SceneTransitioner.process_mode = Node.PROCESS_MODE_ALWAYS
+	$FogOfWar.process_mode = Node.PROCESS_MODE_ALWAYS
 	PlayerManager.hp_updated.connect(_on_hp_updated)
 	_on_hp_updated(PlayerManager.health)
 	PlayerManager.food_updated.connect(_on_food_updated)
@@ -194,8 +197,8 @@ func _on_ladder_area_body_entered(body: Node2D) -> void:
 		return
 
 	await $SceneTransitioner.trigger_veil_screen()
+	$FogOfWar.reset()
 	$CanvasLayer/Floor.update_floor(floor)
 	$TileMap/walls.restart_maze()
-	$FogOfWar.reset()
 	await $SceneTransitioner.trigger_unveil_screen()
 	get_tree().paused = false 

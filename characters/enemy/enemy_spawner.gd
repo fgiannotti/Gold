@@ -16,11 +16,11 @@ func _process(delta: float) -> void:
 	pass
 
 ## Positions from the tilemapLayer and how many enemies
-func spawn_enemies(valid_positions: Array, qty: int):
+func spawn_enemies(valid_positions: Array, qty: int, parent_node: Node):
 	for n in qty:
 		var spawned_enemy : Enemy = enemy_scene.instantiate()
 		spawned_enemy.enemy_data = enemy_type[1]
-		get_tree().root.get_node("World").add_child.call_deferred(spawned_enemy)
+		parent_node.add_child.call_deferred(spawned_enemy)
 		#Create a group that only persist in execution time
 		spawned_enemy.add_to_group("enemies", true)
 		var aux_positon = valid_positions.pick_random()
