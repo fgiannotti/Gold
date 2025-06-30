@@ -408,6 +408,7 @@ func clear_enemies():
 
 func restart_maze() -> void:
 	self.clear()
+	await get_tree().process_frame
 	rooms = []
 	clear_enemies()
 	_ready() # Regenerate maze

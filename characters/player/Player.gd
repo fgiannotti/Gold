@@ -5,7 +5,6 @@ class_name Player
 const SPEED = PlayerManager.PLAYER_SPEED
 
 const run_speed = 1000
-const STEPS_FOR_HUNGER = PlayerManager.STEPS_FOR_HUNGER
 var step_count = 0
 
 const moving = false
@@ -171,7 +170,7 @@ func trigger_hunger(movement_collides: KinematicCollision2D, movement_intent_exi
 	if !movement_collides and movement_intent_exists and !is_interacting:
 		# print('[player] step count++ ', step_count, ' ',food)
 		step_count += 1
-		if step_count >= STEPS_FOR_HUNGER:
+		if step_count >= PlayerManager.steps_for_hunger:
 			step_count = 0
 			PlayerManager.set_food(PlayerManager.food-1)
 

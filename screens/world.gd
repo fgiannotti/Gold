@@ -31,6 +31,7 @@ func _ready():
 	BreakablesAutoloader.spawn_all_breakables()
 	$CanvasLayer/InventoryGUI.show()
 	$SceneTransitioner.process_mode = Node.PROCESS_MODE_ALWAYS
+	$FogOfWar.process_mode = Node.PROCESS_MODE_ALWAYS
 	PlayerManager.hp_updated.connect(_on_hp_updated)
 	_on_hp_updated(PlayerManager.health)
 	PlayerManager.food_updated.connect(_on_food_updated)
@@ -194,8 +195,8 @@ func _on_ladder_area_body_entered(body: Node2D) -> void:
 		return
 
 	await $SceneTransitioner.trigger_veil_screen()
+	$FogOfWar.reset()
 	$CanvasLayer/Floor.update_floor(floor)
 	$TileMap/walls.restart_maze()
-	$FogOfWar.reset()
 	await $SceneTransitioner.trigger_unveil_screen()
 	get_tree().paused = false 

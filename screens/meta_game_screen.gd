@@ -2,6 +2,8 @@ extends Control
 
 @onready var gold_label = $VBoxContainer/ResourcesContainer/GoldContainer/GoldLabel
 @onready var minerals_label = $VBoxContainer/ResourcesContainer/MineralsContainer/MineralsLabel
+@onready var expedition_label = $VBoxContainer/ExpeditionLabel
+@onready var hunger_penalty_label = $VBoxContainer/HungerPenaltyLabel
 @onready var play_button = $VBoxContainer/ButtonsContainer/PlayButton
 @onready var upgrades_container = $VBoxContainer/UpgradesContainer/ScrollContainer/UpgradesGrid
 
@@ -15,6 +17,14 @@ func _ready():
 func update_display():
 	gold_label.text = str(PlayerManager.meta_gold) + " G"
 	minerals_label.text = str(PlayerManager.meta_minerals) + " Minerals"
+	expedition_label.text = "Expedition #" + str(PlayerManager.expedition_number)
+
+	var hunger_modifier = PlayerManager.get_hunger_modifier()
+	if hunger_modifier > 0:
+		hunger_penalty_label.text = "+%d%% Hunger" % [hunger_modifier * 100]
+		hunger_penalty_label.visible = true
+	else:
+		hunger_penalty_label.visible = false
 
 func setup_upgrades():
 	# Clear existing children

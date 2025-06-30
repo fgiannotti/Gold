@@ -1,7 +1,8 @@
 extends Node
 
 const PLAYER_SPEED = 500
-const STEPS_FOR_HUNGER = 50
+const INITIAL_STEPS_FOR_HUNGER = 50
+var steps_for_hunger: float = INITIAL_STEPS_FOR_HUNGER
 
 const INITIAL_FOOD: float = 100
 const INITIAL_HEALTH: float = 100
@@ -17,6 +18,7 @@ var gold: int = 0
 # Meta-game variables
 var meta_gold: int = 0
 var meta_minerals: int = 0
+var expedition_number: int = 1
 var upgrades = [
 	{
 		"name": "Mining Torch",
@@ -63,6 +65,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+func get_hunger_modifier() -> float:
+	if expedition_number > 1:
+		return 0.05 * (expedition_number - 1)
+	return 0.0
+	
 func set_health(new_health: float):
 	self.health = new_health
 	hp_updated.emit(new_health) 
@@ -75,6 +82,7 @@ func apply_run_results(is_win: bool, run_gold: int, run_minerals: int):
 	if is_win:
 		meta_gold += run_gold
 		meta_minerals += run_minerals
+		expedition_number += 1
 	else:
 		meta_gold = 0
 		meta_minerals = 0
@@ -120,6 +128,9 @@ func restart():
 				starting_health += 25
 			if upgrade.name == "Energy Pack":
 				starting_food += 50
+
+	# Calculate hunger penalty for subsequent expeditions
+	steps_for_hunger = float(INITIAL_STEPS_FOR_HUNGER) * (1.0 - get_hunger_modifier())
 	
 	PlayerManager.food = starting_food
 	PlayerManager.gold = 0
