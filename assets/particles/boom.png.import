@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8740oaaqex4y"
-path="res://.godot/imported/barrelstardew.png-895a9fe0fc655c50089c26444cba83aa.ctex"
+uid="uid://dwv4kfavhqn2f"
+path="res://.godot/imported/boom.png-144fca8e28ec1a17c8172f81e665c9b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/interactables/barrelstardew.png"
-dest_files=["res://.godot/imported/barrelstardew.png-895a9fe0fc655c50089c26444cba83aa.ctex"]
+source_file="res://assets/particles/boom.png"
+dest_files=["res://.godot/imported/boom.png-144fca8e28ec1a17c8172f81e665c9b1.ctex"]
 
 [params]
 
