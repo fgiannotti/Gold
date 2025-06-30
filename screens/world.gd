@@ -22,13 +22,15 @@ func _ready():
 	InteractionManager.set_health_bar($CanvasLayer/TopRight/HealthBar)
 	MineralAutoloader.walls_tilemap = $TileMap/walls
 	MineralAutoloader.collectables_tilemap = $TileMap/collectables
-	MineralAutoloader.spawn_all_minerals()
 	CollectableAutoloader.walls_tilemap = $TileMap/walls
 	CollectableAutoloader.collectables_tilemap = $TileMap/collectables
-	CollectableAutoloader.spawn_all_collectables()
 	BreakablesAutoloader.walls_tilemap = $TileMap/walls
 	BreakablesAutoloader.collectables_tilemap = $TileMap/collectables
-	BreakablesAutoloader.spawn_all_breakables()
+	
+	walls.maze_rebuilt.connect($Player/Camera2D.update_limits)
+	
+	walls.restart_maze()
+	
 	$CanvasLayer/InventoryGUI.show()
 	$SceneTransitioner.process_mode = Node.PROCESS_MODE_ALWAYS
 	$FogOfWar.process_mode = Node.PROCESS_MODE_ALWAYS

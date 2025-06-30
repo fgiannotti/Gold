@@ -1,7 +1,7 @@
 class_name Walls extends TileMapLayer
 
 signal stair_decided(stair_position_in_world: Vector2i)
-signal maze_rebuilt()
+signal maze_rebuilt
 
 const MAZE_WIDTH = 20
 const MAZE_HEIGHT = 20 # counting from 0
@@ -91,12 +91,18 @@ const SOURCE_ID = 0 # Tileset atlas, only 1
 const DEBUG_MAZE = false
 var stair_position_in_tilemap: Vector2
 
+@onready var enemy_spawner: EnemySpawner = EnemySpawner.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Add the enemy spawner as a child of this node to ensure it's part of the scene tree
+	add_child(enemy_spawner)
+
+func restart_maze():
+	rooms = []
+	self.clear()
+	
 	var maze: Array = generate_maze()
-	# Add some start/finish:
-	# await connect_cell_with_nghbr(maze, Vector2(0,1), Vector2(1,1))
-	# await connect_cell_with_nghbr(maze, Vector2(7,6), Vector2(6,6))
 	
 	# Set tile 
 	for y in maze.size():
@@ -107,12 +113,28 @@ func _ready():
 		set_cell(Vector2i(room.bottom_gate.y, room.bottom_gate.x), SOURCE_ID, decimal_to_cord[ROOM_BOTTOM_GATE], 0)
 		set_cell(Vector2i(room.right_gate.y, room.right_gate.x), SOURCE_ID, decimal_to_cord[ROOM_RIGHT_GATE], 0)
 		set_cell(Vector2i(room.left_gate.y, room.left_gate.x), SOURCE_ID, decimal_to_cord[ROOM_LEFT_GATE], 0)
-
+	
+	stair_position_in_tilemap = self.local_to_map(positions_open_room.pick_random())
 	var stair_position_in_world = self.map_to_local(stair_position_in_tilemap)
 	emit_signal("stair_decided", stair_position_in_world)
+	
+	print('spawning enemies')
+	var world_node = get_tree().root.get_node("World")
+	if is_instance_valid(world_node):
+		enemy_spawner.spawn_enemies(positions_open_room, 5, world_node)
+	
+	print('finished spawning enemies')
 
-	EnemyAutoloader.spawn_enemies(positions_open_room, 10)
+	MineralAutoloader.respawn_minerals()
+	CollectableAutoloader.respawn_collectables()
+	BreakablesAutoloader.respawn_breakables()
+	emit_signal("maze_rebuilt")
 
+func flip_dict(dict: Dictionary) -> Dictionary:
+	var flipped_dict = {}
+	for key in dict:
+		flipped_dict[dict[key]] = key
+	return flipped_dict
 
 ######
 # Functions used to ask questions about tiles in other nodes
@@ -402,22 +424,3 @@ class Room:
 		for x in range(self.position.x, width_line_finish + 1):
 			for y in range(self.position.y, height_line_finish + 1):
 				room_tiles.append(Vector2(y, x))
-
-func clear_enemies():
-	get_tree().call_group("enemies", "queue_free")
-
-func restart_maze() -> void:
-	self.clear()
-	await get_tree().process_frame
-	rooms = []
-	clear_enemies()
-	_ready() # Regenerate maze
-	MineralAutoloader.respawn_minerals()
-	CollectableAutoloader.respawn_collectables()
-	BreakablesAutoloader.respawn_breakables()
-
-func flip_dict(dict: Dictionary) -> Dictionary:
-	var flipped_dict = {}
-	for key in dict:
-		flipped_dict[dict[key]] = key
-	return flipped_dict
