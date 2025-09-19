@@ -70,7 +70,7 @@ func _process(delta):
 		var forge_nodes = get_tree().get_nodes_in_group("forges")
 		for forge in forge_nodes:
 			if forge.has_method("can_be_used") and forge.can_be_used():
-				forge_used = forge.use_forge()
+				forge_used = await forge.use_forge()
 				break
 		
 		# If no forge was used, check for collectables
@@ -83,7 +83,10 @@ func _process(delta):
 			if world_position && collectable && collectable.has_method("collect") && !collectable.is_in_group("minerals"):
 				collectablesLayer.collect_tile(world_position)
 		
-		await animations.animation_finished
+		# Safety check: no need to await if forge animation is longer than player use animation
+		if animations.is_playing() and animations.current_animation.begins_with("use"):
+			await animations.animation_finished
+		
 		is_interacting = false
 		#use_cooldown.start()
 		return

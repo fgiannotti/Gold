@@ -8,7 +8,7 @@ func _ready() -> void:
 	$AnimatedSprite.play("default")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _on_interactable_area_body_entered(body: Node2D) -> void:
@@ -28,7 +28,13 @@ func use_forge() -> bool:
 	
 	print("[Forge] Using forge!")
 	is_used = true
+	$AnimatedSprite.play("use")
+	await $AnimatedSprite.animation_looped
 	$AnimatedSprite.play("off")
+	
+	# Wait for the "off" animation to complete one loop cycle
+	# Since it's a looping animation, we wait for animation_looped
+	await $AnimatedSprite.animation_looped
 	
 	# Find and upgrade the BasedSword artifact
 	upgrade_based_sword()

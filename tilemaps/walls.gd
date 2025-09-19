@@ -122,6 +122,11 @@ func restart_maze():
 	var world_node = get_tree().root.get_node("World")
 	if is_instance_valid(world_node):
 		enemy_spawner.spawn_enemies(positions_open_room, 5, world_node)
+		
+		# Initialize PlacementManager before spawning collectables
+		var collectables_tilemap = world_node.get_node("TileMap/collectables")
+		PlacementManager.initialize(collectables_tilemap)
+		PlacementManager.clear_occupied_positions()
 	
 	print('finished spawning enemies')
 
