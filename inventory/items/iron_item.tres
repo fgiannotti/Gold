@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_4clsv")
 name = "Iron"
-description = "Useful for building stuff."
+description = "Useful for crafting stuff."
 texture = ExtResource("2_4pnpq")
 sell_price = 3

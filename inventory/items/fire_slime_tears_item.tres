@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_faril")
 name = "Fire Slime Tears"
-description = "Can you imagine how hot it was to obtain?"
+description = "Looking at it makes you sweat."
 texture = ExtResource("2_dg7uo")
 sell_price = 4

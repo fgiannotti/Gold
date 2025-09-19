@@ -9,4 +9,4 @@ recover_value = 35
 name = "Energy Bar"
 description = "Recovers 35 hunger. Full of carbs and sugar!"
 texture = ExtResource("2_7cv8g")
-sell_price = 10
+sell_price = 15

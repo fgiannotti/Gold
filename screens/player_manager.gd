@@ -1,6 +1,6 @@
 extends Node
 
-const PLAYER_SPEED = 500
+const PLAYER_SPEED = 100
 const INITIAL_STEPS_FOR_HUNGER = 50
 var steps_for_hunger: float = INITIAL_STEPS_FOR_HUNGER
 
