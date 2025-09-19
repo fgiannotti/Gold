@@ -1,42 +1,70 @@
-[gd_scene load_steps=12 format=3 uid="uid://vctj1ma2bc1l"]
+[gd_scene load_steps=19 format=3 uid="uid://vctj1ma2bc1l"]
 
 [ext_resource type="Script" path="res://interactables/forge.gd" id="1_mgjg0"]
-[ext_resource type="Texture2D" uid="uid://dlphh7owj40lc" path="res://assets/interactables/furnance.png" id="1_qtjr3"]
+[ext_resource type="Texture2D" uid="uid://cb2xdy80kcx6k" path="res://assets/interactables/furnace 0.4.png" id="2_lfa31"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6u8a8"]
-atlas = ExtResource("1_qtjr3")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpyhw"]
+atlas = ExtResource("2_lfa31")
+region = Rect2(32, 0, 32, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tevxy"]
-atlas = ExtResource("1_qtjr3")
-region = Rect2(64, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7ux4"]
+atlas = ExtResource("2_lfa31")
+region = Rect2(64, 0, 32, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hbjj4"]
-atlas = ExtResource("1_qtjr3")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1ykj"]
+atlas = ExtResource("2_lfa31")
+region = Rect2(96, 0, 32, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4r8ac"]
-atlas = ExtResource("1_qtjr3")
-region = Rect2(128, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_max6x"]
+atlas = ExtResource("2_lfa31")
+region = Rect2(128, 0, 32, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0x3qe"]
-atlas = ExtResource("1_qtjr3")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ear42"]
+atlas = ExtResource("2_lfa31")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2db16"]
+atlas = ExtResource("2_lfa31")
+region = Rect2(0, 92, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjak8"]
+atlas = ExtResource("2_lfa31")
+region = Rect2(32, 92, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whixn"]
+atlas = ExtResource("2_lfa31")
+region = Rect2(64, 92, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2x20n"]
+atlas = ExtResource("2_lfa31")
+region = Rect2(96, 92, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrt1j"]
+atlas = ExtResource("2_lfa31")
+region = Rect2(128, 92, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g7hk"]
+atlas = ExtResource("2_lfa31")
+region = Rect2(32, 46, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sk26"]
+atlas = ExtResource("2_lfa31")
+region = Rect2(0, 46, 32, 46)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eerri"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6u8a8")
+"texture": SubResource("AtlasTexture_rpyhw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tevxy")
+"texture": SubResource("AtlasTexture_u7ux4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hbjj4")
+"texture": SubResource("AtlasTexture_b1ykj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4r8ac")
+"texture": SubResource("AtlasTexture_max6x")
 }],
 "loop": true,
 "name": &"default",
@@ -44,10 +72,36 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0x3qe")
+"texture": SubResource("AtlasTexture_ear42")
 }],
 "loop": true,
 "name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2db16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjak8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whixn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2x20n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrt1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g7hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sk26")
+}],
+"loop": true,
+"name": &"use",
 "speed": 5.0
 }]
 
@@ -67,7 +121,8 @@ script = ExtResource("1_mgjg0")
 z_index = 1
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_eerri")
-animation = &"off"
+frame = 3
+frame_progress = 1.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 z_index = 3

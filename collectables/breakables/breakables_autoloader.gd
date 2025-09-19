@@ -28,6 +28,7 @@ var rng = RandomNumberGenerator.new()
 
 func respawn_breakables():
 	clear_breakables()
+	# PlacementManager should already be initialized by walls.gd
 	spawn_all_breakables()
 	
 func clear_breakables():
@@ -47,18 +48,18 @@ func spawn_all_breakables():
 	while breakables_spawned < TARGET_BREAKABLE_COUNT and attempt_count < max_attempts:
 		attempt_count += 1
 		
-		# Get a random room position
-		var room_position = get_random_room_position()
-		if room_position == Vector2.ZERO:
-			continue
+		# Use PlacementManager to get available positions
+		var available_positions = PlacementManager.get_available_room_positions(walls_tilemap)
+		if available_positions.size() == 0:
+			print('[BreakablesAutoloader] No available positions left')
+			break
 		
-		# Check if this position is valid (no collisions)
-		if not is_position_valid(room_position):
-			continue
+		# Pick a random available position
+		var room_position = available_positions[rng.randi() % available_positions.size()]
 		
 		# Convert to tilemap coordinates and spawn
 		var tilemap_coords = walls_tilemap.local_to_map(room_position)
-		if spawn_breakable_at_position(tilemap_coords):
+		if spawn_breakable_at_position(tilemap_coords, room_position):
 			breakables_spawned += 1
 			
 	print('[BreakablesAutoloader] Successfully spawned ', breakables_spawned, ' breakables out of ', TARGET_BREAKABLE_COUNT, ' target')
@@ -108,7 +109,7 @@ func randomize_breakable_contents(breakable_instance) -> void:
 	# Apply the randomized config
 	breakable_instance.config = config_copy
 
-func spawn_breakable_at_position(tilemap_coords: Vector2i) -> bool:
+func spawn_breakable_at_position(tilemap_coords: Vector2i, world_position: Vector2) -> bool:
 	var breakable_instance = breakable_interactable_scene.instantiate()
 	
 	# Randomize the contents of this breakable
@@ -119,6 +120,9 @@ func spawn_breakable_at_position(tilemap_coords: Vector2i) -> bool:
 	
 	# Spawn using the collectables tilemap system
 	collectables_tilemap.spawn_scene_at_tile(tilemap_coords, breakable_instance)
+	
+	# Mark position as occupied in PlacementManager
+	PlacementManager.mark_position_occupied(world_position)
 	
 	var item_name = "nothing"
 	if breakable_instance.config.collectableAsItem:
