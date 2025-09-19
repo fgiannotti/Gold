@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_wlien")
 name = "Diamond"
-description = "The shinier the better"
+description = "The shinier the better."
 texture = ExtResource("2_xcpcu")
 sell_price = 20

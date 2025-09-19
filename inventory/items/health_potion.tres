@@ -7,6 +7,6 @@
 script = ExtResource("1_vulxc")
 recover_value = 10
 name = "Health Potion"
-description = "Heals 10 HP."
+description = "A basic potion. Heals 10 HP."
 texture = ExtResource("2_u70f5")
 sell_price = 3

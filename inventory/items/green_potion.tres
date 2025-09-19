@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_eh3yu")
-name = "Cooked Steak"
-description = "A cooked piece of steak."
+name = "Green Potion"
+description = "A Potion of a mossy green.  It has a nasty smell..."
 texture = ExtResource("2_k8odp")
 sell_price = 20
